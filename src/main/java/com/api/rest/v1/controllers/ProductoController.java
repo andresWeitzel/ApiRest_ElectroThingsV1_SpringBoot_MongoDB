@@ -55,67 +55,89 @@ public class ProductoController {
 
 		}
 	}
+
+	// ==============
+	// ===== PUT=====
+	// ==============
+	@Operation(summary = "Actualización de un Producto")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Actualizado el Producto Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo Actualizar el Producto. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PutMapping("/")
+	public void updateProducto(@RequestBody ProductoEntity producto) {
+		iProductoService.updateProducto(producto);
+	}
+
+	// ==================
+	// ===== DELETE =====
+	// ==================
+	@Operation(summary = "Eliminación de un Producto por su ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Eliminado el Producto Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo Eliminar el Producto. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "La Eliminación del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@DeleteMapping("/{id}")
+	public void deleteProducto(@PathVariable("id") String id) {
+		iProductoService.deleteProducto(id);
+	}
+
+	// ===================
+	// ===== GET ALL =====
+	// ===================
+	// ---LISTADO PAGINADO---
+	@Operation(summary = "Listado Paginado de Productos Electrónicos")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer el Listado de Productos. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/listado")
+	public Page<ProductoEntity> getAll(Pageable pageable) {
+		return iProductoService.getAllProductos(pageable);
+	}
+
+	// ==================================================
+	// ============= MÉTODOS HTTP BÚSQUEDA =============
+	// ==================================================
+
+	// ===================
+	// ===== GET BY ID ===
+	// ===================
+	// ---PRODUCTO POR ID---
+	@Operation(summary = "Producto según su ID")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Producto según su ID Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer el Producto según su ID. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Producto según su ID no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/id/{id}")
+	public ProductoEntity getById(@PathVariable("id") String id) {
+		return iProductoService.getById(id);
+	}
+
+	// =======================
+	// ===== GET BY CODIGO ===
+	// =======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR CODIGO---
+	@Operation(summary = "Producto según su CODIGO")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su CODIGO Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su CODIGO. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su CODIGO no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/codigo/{codigo}")
+	public Page<ProductoEntity> getByCodigo(@PathVariable("codigo") String codigo, Pageable pageable) {
+		return iProductoService.getByCodigo(codigo, pageable);
+	}
 	
-	// ================
-		// ===== PUT=====
-		// =================
-		@Operation(summary = "Actualización de un Producto")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "Se ha Actualizado el Producto Correctamente", content = {
-						@Content(mediaType = "application/json") }),
-				@ApiResponse(responseCode = "400", description = "No se pudo Actualizar el Producto. Comprobar la Solicitud", content = @Content),
-				@ApiResponse(responseCode = "404", description = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
-				@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-		@PutMapping("/")
-		public void updateProducto(@RequestBody ProductoEntity producto) {
-			iProductoService.updateProducto(producto);
-		}
-		
-		
-		// ==================
-		// ===== DELETE =====
-		// ==================
-		@Operation(summary = "Eliminación de un Producto por su ID")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "Se ha Eliminado el Producto Correctamente", content = {
-						@Content(mediaType = "application/json") }),
-				@ApiResponse(responseCode = "400", description = "No se pudo Eliminar el Producto. Comprobar la Solicitud", content = @Content),
-				@ApiResponse(responseCode = "404", description = "La Eliminación del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
-				@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-		@DeleteMapping("/{id}")
-		public void deleteProducto(@PathVariable("id") String id) {
-			iProductoService.deleteProducto(id);
-		}
-		
-		
-		// ===============
-		// ===== GET =====
-		// ===============
-		// ---LISTADO PAGINADO Y COMPLETO---
-		@Operation(summary = "Listado Paginado de Productos Electrónicos")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos", content = {
-						@Content(mediaType = "application/json") }),
-				@ApiResponse(responseCode = "400", description = "No se pudo traer el Listado de Productos. Comprobar la Solicitud", content = @Content),
-				@ApiResponse(responseCode = "404", description = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
-				@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-		@GetMapping("/listado")
-		public Page<ProductoEntity> getAll(Pageable pageable) {
-			return iProductoService.getAllProductos(pageable);
-		}
-		
-		
-		
-		
-		// ==================================================
-		// ============= MÉTODOS HTTP BÚSQUEDA =============
-		// ==================================================
 	
-	
-	
-	
-	
-	
-	
-	
+
 }
