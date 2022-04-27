@@ -24,8 +24,8 @@
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png" />
 
   ### Búsqueda del Producto Insertado según su Código
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png)
+  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png" />
+    <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png" />
   
  ### Actualización de un Producto Método Put
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png" />
