@@ -31,7 +31,7 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	LocalDate fecha = LocalDate.now();
 	LocalTime hora = LocalTime.now();
 
-	DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 	DateTimeFormatter formatoHora = DateTimeFormatter.ofPattern("HH:mm").withLocale(Locale.US);
 
 	// ===============================================
@@ -138,7 +138,7 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==================================================
 	// ============= MÉTODOS HTTP BÚSQUEDA =============
 	// ==================================================
-	
+
 	// =====================
 	// ===== GET BY ID =====
 	// =====================
@@ -148,7 +148,7 @@ public class ProductoServiceImplementation implements I_ProductoService {
 			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
 
 			// Si esta vacio es nulo
-			if (producto.isEmpty()) {
+			if (producto.isEmpty() || id == " ") {
 				logger.error("ERROR getById : EL PRODUCTO CON EL ID " + id + " NO EXISTE!!");
 				throw new ProductoIdMismatchException("EL PRODUCTO CON EL ID NO EXISTE EN LA DB");
 			} else {
@@ -170,7 +170,7 @@ public class ProductoServiceImplementation implements I_ProductoService {
 			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByCodigo(codigo, pageable);
 
 			// Si esta vacio es nulo
-			if (productosPaginados.isEmpty()) {
+			if (productosPaginados.isEmpty() || codigo == " ") {
 				logger.error("ERROR getByCodigo : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN EL CODIGO " + codigo
 						+ " NO EXISTE!!");
 				throw new ProductoNotFoundException(
@@ -193,8 +193,26 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByNombre(String nombre, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByNombre(nombre, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || nombre == " ") {
+				logger.error("ERROR getByNombre : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN EL NOMBRE " + nombre
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO CON EL NOMBRE " + nombre);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByNombre : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN EL NOMBRE SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO CON EL NOMBRE " + nombre, e);
+		}
 	}
 
 	// ===============================
@@ -202,8 +220,26 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ===============================
 	@Override
 	public Page<ProductoEntity> getByDescripcion(String descripcion, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByDescripcion(descripcion, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || descripcion == " ") {
+				logger.error("ERROR getByDescripcion : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA DESCRIPCIÓN "
+						+ descripcion + " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA DESCRIPCIÓN " + descripcion);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByDescripcion : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA DESCRIPCIÓN SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA DESCRIPCIÓN " + descripcion, e);
+		}
 	}
 
 	// =============================
@@ -211,8 +247,26 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// =============================
 	@Override
 	public Page<ProductoEntity> getByCategoria(String categoria, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByCategoria(categoria, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || categoria == " ") {
+				logger.error("ERROR getByCategoria : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA CATEGORIA " + categoria
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA CATEGORIA " + categoria);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByCategoria : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA CATEGORIA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA CATEGORIA " + categoria, e);
+		}
 	}
 
 	// ==========================
@@ -220,8 +274,26 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByMarca(String marca, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByMarca(marca, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || marca == " ") {
+				logger.error("ERROR getByMarca : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA MARCA " + marca
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA MARCA " + marca);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByMarca : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA MARCA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA MARCA " + marca, e);
+		}
 	}
 
 	// =================================
@@ -229,8 +301,26 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// =================================
 	@Override
 	public Page<ProductoEntity> getByHojaDatos(String hojaDatos, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByHojaDatos(hojaDatos, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || hojaDatos == " ") {
+				logger.error("ERROR getByHojaDatos : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA HOJA DE DATOS "
+						+ hojaDatos + " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA HOJA DE DATOS " + hojaDatos);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByHojaDatos : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA HOJA DE DATOS SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA HOJA DE DATOS " + hojaDatos, e);
+		}
 	}
 
 	// ==========================
@@ -238,8 +328,26 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByStock(int stock, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByStock(stock, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || stock < 0) {
+				logger.error("ERROR getByStock : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByStock : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock, e);
+		}
 	}
 
 	// ==========================
@@ -247,8 +355,28 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByPrecio(int precio, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			
+		Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByPrecio(precio, pageable);
+
+		// Si esta vacio es nulo
+		if (productosPaginados.isEmpty() || precio < 0) {
+			logger.error("ERROR getByPrecio : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
+					+ " NO EXISTE!!");
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
+		} else {
+			return productosPaginados;
+		}
+	}catch(Exception e)
+	{
+		logger.error(
+				"ERROR getByPrecio : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
+						+ e);
+		throw new ProductoNotFoundException(
+				"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
+	}
 	}
 
 	// ==========================
@@ -256,8 +384,27 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByFecha(String fecha, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByFecha(fecha, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || fecha == " ") {
+				logger.error("ERROR getByFecha : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA " + fecha
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA " + fecha);
+			} else {
+				return productosPaginados;
+			}
+		}catch(Exception e)
+		{
+			logger.error(
+					"ERROR getByFecha : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA " + fecha, e);
+		}
 	}
 
 	// ==========================
@@ -265,8 +412,27 @@ public class ProductoServiceImplementation implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByHora(String hora, Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
+	try {
+			
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByHora(hora, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || hora == " ") {
+				logger.error("ERROR getByHora : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora);
+			} else {
+				return productosPaginados;
+			}
+		}catch(Exception e)
+		{
+			logger.error(
+					"ERROR getByHora : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora, e);
+		}
 	}
 
 }

@@ -38,7 +38,7 @@ public class ProductoController {
 	// ================
 	// ===== POST =====
 	// =================
-	@Operation(summary = "Inserción de un Producto Electrónico")
+	@Operation(summary = "Inserción de un Producto")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha Insertado el Producto Correctamente", content = {
 					@Content(mediaType = "application/json") }),
@@ -67,14 +67,20 @@ public class ProductoController {
 			@ApiResponse(responseCode = "404", description = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@PutMapping("/")
-	public void updateProducto(@RequestBody ProductoEntity producto) {
-		iProductoService.updateProducto(producto);
+	public ResponseEntity<?> updateProducto(@RequestBody ProductoEntity producto) {
+		try {
+			iProductoService.updateProducto(producto);
+			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
+		} catch (ConstraintViolationException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 	}
 
 	// ==================
 	// ===== DELETE =====
 	// ==================
-	@Operation(summary = "Eliminación de un Producto por su ID")
+	@Operation(summary = "Eliminación de un Producto por su Id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha Eliminado el Producto Correctamente", content = {
 					@Content(mediaType = "application/json") }),
@@ -82,15 +88,21 @@ public class ProductoController {
 			@ApiResponse(responseCode = "404", description = "La Eliminación del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@DeleteMapping("/{id}")
-	public void deleteProducto(@PathVariable("id") String id) {
-		iProductoService.deleteProducto(id);
+	public ResponseEntity<?> deleteProducto(@PathVariable("id") String id) {
+		try {
+			iProductoService.deleteProducto(id);
+			return new ResponseEntity<Integer>(HttpStatus.OK);
+		} catch (ConstraintViolationException e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+
+		}
 	}
 
 	// ===================
 	// ===== GET ALL =====
 	// ===================
 	// ---LISTADO PAGINADO---
-	@Operation(summary = "Listado Paginado de Productos Electrónicos")
+	@Operation(summary = "Listado Paginado de Productos")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos Correctamente", content = {
 					@Content(mediaType = "application/json") }),
@@ -110,7 +122,7 @@ public class ProductoController {
 	// ===== GET BY ID ===
 	// ===================
 	// ---PRODUCTO POR ID---
-	@Operation(summary = "Producto según su ID")
+	@Operation(summary = "Producto según su Id")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha Traído el Producto según su ID Correctamente", content = {
 					@Content(mediaType = "application/json") }),
@@ -126,7 +138,7 @@ public class ProductoController {
 	// ===== GET BY CODIGO ===
 	// =======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR CODIGO---
-	@Operation(summary = "Producto según su CODIGO")
+	@Operation(summary = "Listado de Productos o Producto según su Código")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su CODIGO Correctamente", content = {
 					@Content(mediaType = "application/json") }),
@@ -137,7 +149,136 @@ public class ProductoController {
 	public Page<ProductoEntity> getByCodigo(@PathVariable("codigo") String codigo, Pageable pageable) {
 		return iProductoService.getByCodigo(codigo, pageable);
 	}
+
+	// =======================
+	// ===== GET BY NOMBRE ===
+	// =======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR NOMBRE---
+	@Operation(summary = "Listado de Productos o Producto según su Nombre")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su NOMBRE Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su NOMBRE. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su NOMBRE no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/nombre/{nombre}")
+	public Page<ProductoEntity> getByNombre(@PathVariable("nombre") String nombre, Pageable pageable) {
+		return iProductoService.getByNombre(nombre, pageable);
+	}
+
+	// ============================
+	// ===== GET BY DESCRIPCION ===
+	// ============================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR DESCRIPCION---
+	@Operation(summary = "Listado de Productos o Producto según su Descripción")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su DESCRIPCION Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su DESCRIPCION. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su DESCRIPCION no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/descripcion/{descripcion}")
+	public Page<ProductoEntity> getByDescripcion(@PathVariable("descripcion") String descripcion, Pageable pageable) {
+		return iProductoService.getByDescripcion(descripcion, pageable);
+	}
+
+	// ============================
+	// ===== GET BY MARCA ===
+	// ============================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR MARCA---
+	@Operation(summary = "Listado de Productos o Producto según su Marca")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su MARCA Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su MARCA. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su MARCA no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/marca/{marca}")
+	public Page<ProductoEntity> getByMarca(@PathVariable("marca") String marca, Pageable pageable) {
+		return iProductoService.getByMarca(marca, pageable);
+	}
+
+	// ==============================
+	// ===== GET BY HOJA DE DATOS ===
+	// ==============================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR HOJA DE DATOS---
+	@Operation(summary = "Listado de Productos o Producto según su Hoja De Datos")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su HOJA DE DATOS Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su HOJA DE DATOS. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su HOJA DE DATOS no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/hojaDatos/{hojaDatos}")
+	public Page<ProductoEntity> getByHojaDatos(@PathVariable("hojaDatos") String hojaDatos, Pageable pageable) {
+		return iProductoService.getByHojaDatos(hojaDatos, pageable);
+	}
+
+	// ======================
+	// ===== GET BY STOCK ===
+	// ======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR STOCK---
+	@Operation(summary = "Listado de Productos o Producto según su Stock")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su STOCK Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su STOCK. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su STOCK no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/stock/{stock}")
+	public Page<ProductoEntity> getByStock(@PathVariable("stock") int stock, Pageable pageable) {
+		return iProductoService.getByStock(stock, pageable);
+	}
+
+	// ======================
+	// ===== GET BY PRECIO ===
+	// ======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO---
+	@Operation(summary = "Listado de Productos o Producto según su Precio")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su PRECIO Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su PRECIO. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su PRECIO no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/precio/{precio}")
+	public Page<ProductoEntity> getByPrecio(@PathVariable("precio") int precio, Pageable pageable) {
+		return iProductoService.getByPrecio(precio, pageable);
+	}
 	
+	
+	// ======================
+	// ===== GET BY FECHA ===
+	// ======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR FECHA---
+	@Operation(summary = "Listado de Productos o Producto según su Fecha")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su FECHA Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su FECHA. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su FECHA no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/fecha/{fecha}")
+	public Page<ProductoEntity> getByFecha(@PathVariable("fecha") String fecha, Pageable pageable) {
+		return iProductoService.getByFecha(fecha, pageable);
+	}
+	
+	
+	// ======================
+	// ===== GET BY HORA ===
+	// ======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR HORA---
+	@Operation(summary = "Listado de Productos o Producto según su Hora")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su HORA Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su HORA. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su HORA no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/hora/{hora}")
+	public Page<ProductoEntity> getByHora(@PathVariable("hora") String hora, Pageable pageable) {
+		return iProductoService.getByHora(hora, pageable);
+	}
 	
 
 }

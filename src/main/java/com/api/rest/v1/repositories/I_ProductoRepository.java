@@ -19,8 +19,10 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	 * 
 	 * MONGOREPO IMPLEMENTA PAGINADO Y SORTING
 	 * 
-	 * APLICAMOS REGEX PARA NO DISTINGUIR MAYUSCULAS MINUSCULAS
+	 * APLICAMOS REGEX PARA NO DISTINGUIR MAYUSCULAS, MINUSCULAS Y
+	 * BUSQUEDA TIPO LIKE.
 	 * 
+	 *
 	 */
 	@Query("{'id': ?0}")
 	Optional<ProductoEntity> findById(String id);
