@@ -19,9 +19,10 @@
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png" />
   
  ### Inserción de un Producto Método Post
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png)
+  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png" />
   
+  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png" />
+
   ### Búsqueda del Producto Insertado según su Código
  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png)
  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png)
