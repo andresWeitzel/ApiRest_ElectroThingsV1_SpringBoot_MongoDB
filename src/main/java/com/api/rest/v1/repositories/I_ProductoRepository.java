@@ -42,6 +42,11 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	@Query(value = "{'marca': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByMarca(String marca, Pageable pageable);
 
+
+	@Query(value = "{'imagen': {$regex : ?0, $options: 'i'}}")
+	Page<ProductoEntity> findByImagen(String imagen, Pageable pageable);
+	
+	
 	@Query(value = "{'hojaDatos': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByHojaDatos(String hojaDatos, Pageable pageable);
 

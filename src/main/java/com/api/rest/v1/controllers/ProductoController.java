@@ -200,6 +200,22 @@ public class ProductoController {
 		return iProductoService.getByMarca(marca, pageable);
 	}
 
+	// =======================
+	// ===== GET BY IMAGEN ===
+	// =======================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR IMAGEN---
+	@Operation(summary = "Listado de Productos o Producto según su Imagen")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su IMAGEN Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su IMAGEN. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su IMAGEN no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/imagen/{imagen}")
+	public Page<ProductoEntity> getByImagen(@PathVariable("imagen") String imagen, Pageable pageable) {
+		return iProductoService.getByImagen(imagen, pageable);
+	}
+	
 	// ==============================
 	// ===== GET BY HOJA DE DATOS ===
 	// ==============================

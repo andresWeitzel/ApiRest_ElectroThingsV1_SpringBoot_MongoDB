@@ -294,7 +294,37 @@ public class ProductoServiceImplementation implements I_ProductoService {
 			throw new ProductoNotFoundException(
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA MARCA " + marca, e);
 		}
+
 	}
+	
+
+	// =========================
+	// ===== GET BY IMAGEN =====
+	// =========================
+	@Override
+	public Page<ProductoEntity> getByImagen(String imagen, Pageable pageable) {
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByImagen(imagen, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || imagen == " ") {
+				logger.error("ERROR getByImagen : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN "
+						+ imagen + " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN " + imagen);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByImagen : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN " + imagen, e);
+		}
+	}
+	
 
 	// =================================
 	// ===== GET BY HOJA DE DATOS =====

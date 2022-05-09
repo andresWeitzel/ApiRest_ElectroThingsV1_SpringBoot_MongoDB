@@ -44,6 +44,10 @@ public class ProductoEntity {
 	@NotNull(message="La marca no puede ser null")
 	private String marca;
 	
+	@Field("imagen")
+	@NotNull(message="La Imagen no puede ser null")
+	private String imagen;
+	
 	@Field("hoja_datos")
 	@NotNull(message="La Hoja De Datos no puede ser null")
 	private String hojaDatos;

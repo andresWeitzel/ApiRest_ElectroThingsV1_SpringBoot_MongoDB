@@ -43,6 +43,8 @@ public interface I_ProductoService {
 
 	public abstract Page<ProductoEntity> getByMarca(String marca, Pageable pageable);
 
+	public abstract Page<ProductoEntity> getByImagen(String imagen, Pageable pageable);
+	
 	public abstract Page<ProductoEntity> getByHojaDatos(String hojaDatos, Pageable pageable);
 
 	public abstract Page<ProductoEntity> getByStock(int stock, Pageable pageable);
