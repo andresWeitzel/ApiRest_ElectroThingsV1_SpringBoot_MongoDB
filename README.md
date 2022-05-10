@@ -1,6 +1,6 @@
 # ApiRest_ElectroThingsV1_SpringBoot_MongoDB
 
-* Api Rest Base para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring Data MongoDB, SpringDoc-OpenApi, Swagger UI, Maven, Lombok, Log4j y MongoDB.
+* Api Rest Base para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC,  Spring Data MongoDB, SpringDoc-OpenApi, Swagger UI, Maven, Lombok, Log4j, Git, MongoDBCompass y MongoDB.
 * Repositorio Aplicación Tienda Electrónica (https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
 * Repositorio Base de Datos Mongodb : https://github.com/andresWeitzel/db_ElectroThings_MongoDB
 
