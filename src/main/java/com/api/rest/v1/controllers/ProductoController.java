@@ -1,5 +1,8 @@
 package com.api.rest.v1.controllers;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import javax.validation.ConstraintViolationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -215,7 +218,7 @@ public class ProductoController {
 	public Page<ProductoEntity> getByImagen(@PathVariable("imagen") String imagen, Pageable pageable) {
 		return iProductoService.getByImagen(imagen, pageable);
 	}
-	
+
 	// ==============================
 	// ===== GET BY HOJA DE DATOS ===
 	// ==============================
@@ -263,8 +266,7 @@ public class ProductoController {
 	public Page<ProductoEntity> getByPrecio(@PathVariable("precio") int precio, Pageable pageable) {
 		return iProductoService.getByPrecio(precio, pageable);
 	}
-	
-	
+
 	// ======================
 	// ===== GET BY FECHA ===
 	// ======================
@@ -280,8 +282,7 @@ public class ProductoController {
 	public Page<ProductoEntity> getByFecha(@PathVariable("fecha") String fecha, Pageable pageable) {
 		return iProductoService.getByFecha(fecha, pageable);
 	}
-	
-	
+
 	// ======================
 	// ===== GET BY HORA ===
 	// ======================
@@ -297,6 +298,80 @@ public class ProductoController {
 	public Page<ProductoEntity> getByHora(@PathVariable("hora") String hora, Pageable pageable) {
 		return iProductoService.getByHora(hora, pageable);
 	}
+
+	// ========================================
+	// ============= GRÁFICOS ==============
+	// ========================================
+
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR HORA---
+	@Operation(summary = "Diccionario de Productos en relación al Stock y Marca")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Diccionario de Productos en relación al Stock y Marca Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el  Diccionario de Productos en relación al Stock y Marca. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos  Diccionario de Productos en relación al Stock y Marca no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	
+	@GetMapping("/grafico-stock-marca")
+	public Map<String, Integer> graficoStockCateg(Pageable pageable) {
+
+		Page<ProductoEntity> listProd = iProductoService.getAllProductos(pageable);
+
+		// ----------- VARIABLES MARCA ---------------
+		String gener = "Generica";
+		String hp = "HP";
+		String sams = "Samsung";
+		String asus = "Asus";
+		String hukio = "Hukio";
+		String xperia = "Xperia";
+		String ard = "Arduino";
+		String celet = "Celetron";
+		String cisc = "Cisco";
+		String lora = "Lora";
+		String nulib = "Nulibash";
+		String juui = "Juui";
+		String apple = "Apple";
+		String gezat = "Gezatek";
+
+		// ------------- STOCK POR MARCA ------------------
+
+		// MARCA GENERICA
+		int stockGener = iProductoService.getStockPorMarca(listProd, gener);
+		int stockHp = iProductoService.getStockPorMarca(listProd, hp);
+		int stockSams = iProductoService.getStockPorMarca(listProd, sams);
+		int stockAsus = iProductoService.getStockPorMarca(listProd, asus);
+		int stockHukio = iProductoService.getStockPorMarca(listProd, hukio);
+		int stockXperia = iProductoService.getStockPorMarca(listProd, xperia);
+		int stockArd = iProductoService.getStockPorMarca(listProd, ard);
+		int stockCelet = iProductoService.getStockPorMarca(listProd, celet);
+		int stockCisc = iProductoService.getStockPorMarca(listProd, cisc);
+		int stockLora = iProductoService.getStockPorMarca(listProd, lora);
+		int stockNulib = iProductoService.getStockPorMarca(listProd, nulib);
+		int stockJuui = iProductoService.getStockPorMarca(listProd, juui);
+		int stockApple = iProductoService.getStockPorMarca(listProd, apple);
+		int stockGezat = iProductoService.getStockPorMarca(listProd, gezat);
+
+		// --------- SET DE STOCK POR CATEGORIA ------------
+
+		Map<String, Integer> data = new LinkedHashMap<>();
+
+		data.put(gener, stockGener);
+		data.put(hp, stockHp);
+		data.put(sams, stockSams);
+		data.put(asus, stockAsus);
+		data.put(hukio, stockHukio);
+		data.put(xperia, stockXperia);
+		data.put(ard, stockArd);
+		data.put(celet, stockCelet);
+		data.put(cisc, stockCisc);
+		data.put(lora, stockLora);
+		data.put(nulib, stockNulib);
+		data.put(juui, stockJuui);
+		data.put(apple, stockApple);
+		data.put(gezat, stockGezat);
+
+		return data;
+
+	}
 
 }

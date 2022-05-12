@@ -464,5 +464,31 @@ public class ProductoServiceImplementation implements I_ProductoService {
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora, e);
 		}
 	}
+	
+	// =============== MÉTODOS PARA GRAFICO ====================
+
+		// ===============
+		// ===== GET =====
+		// ===============
+		// ------ STOCK POR MARCA ------
+		public int getStockPorMarca(Page<ProductoEntity> listComp, String marca) {
+
+			try {
+				return (int) (listComp.stream().filter(obj -> obj.getMarca().equalsIgnoreCase(marca))
+						.mapToInt(obj -> obj.getStock()).sum());	
+			} catch (Exception e) {
+			    logger.error("ERROR getStockPorMarca : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS CON EL STOCK POR MARCA SOLICITADO. CAUSADO POR "+e);
+				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS CON EL STOCK POR MARCA SOLICITADO ", e);
+			}
+			
+		}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

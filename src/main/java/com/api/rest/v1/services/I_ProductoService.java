@@ -54,5 +54,12 @@ public interface I_ProductoService {
 	public abstract Page<ProductoEntity> getByFecha(String fecha, Pageable pageable);
 	
 	public abstract Page<ProductoEntity> getByHora(String hora, Pageable pageable);
+	
+	
+	// ==================================================
+	// ============= MÉTODOS GRÁFICO =============
+	// ==================================================
+
+	public int getStockPorMarca(Page<ProductoEntity> listComp, String marca);
 
 }
