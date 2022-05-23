@@ -2,6 +2,11 @@ package com.api.rest.v1.exceptions.producto;
 
 public class ProductoNotFoundException extends RuntimeException{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ProductoNotFoundException() {
 
 	}

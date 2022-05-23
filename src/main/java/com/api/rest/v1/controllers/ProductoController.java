@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.rest.v1.entities.ProductoEntity;
-import com.api.rest.v1.services.I_ProductoService;
+import com.api.rest.v1.entities.UsuarioEntity;
+import com.api.rest.v1.services.productos.I_ProductoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -29,7 +30,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
 
 @RestController
-@RequestMapping("/v1/productos")
+@RequestMapping("/api/v1/productos")
 @CrossOrigin()
 public class ProductoController {
 
@@ -55,7 +56,7 @@ public class ProductoController {
 		try {
 			iProductoService.addProducto(producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
-		} catch (ConstraintViolationException e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
 		}
@@ -76,7 +77,7 @@ public class ProductoController {
 		try {
 			iProductoService.updateProducto(producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
-		} catch (ConstraintViolationException e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
 		}
@@ -96,8 +97,8 @@ public class ProductoController {
 	public ResponseEntity<?> deleteProducto(@PathVariable("id") String id) {
 		try {
 			iProductoService.deleteProducto(id);
-			return new ResponseEntity<Integer>(HttpStatus.OK);
-		} catch (ConstraintViolationException e) {
+			return new ResponseEntity<UsuarioEntity>(HttpStatus.OK);
+		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
 		}

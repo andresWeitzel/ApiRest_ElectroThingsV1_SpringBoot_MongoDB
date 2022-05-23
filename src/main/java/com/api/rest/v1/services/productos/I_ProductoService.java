@@ -1,4 +1,4 @@
-package com.api.rest.v1.services;
+package com.api.rest.v1.services.productos;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

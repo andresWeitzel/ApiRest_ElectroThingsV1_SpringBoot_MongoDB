@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.api.rest.v1.exceptions.producto.ProductoIdMismatchException;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
+import com.api.rest.v1.exceptions.usuario.UsuarioIdMismatchException;
+import com.api.rest.v1.exceptions.usuario.UsuarioNotFoundException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
@@ -26,6 +28,20 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
     protected ResponseEntity<Object> ProductoHandleIdMismatchException(Exception ex, WebRequest request)
     {
         return handleExceptionInternal(ex, "Producto según el Id No Encontrado ",new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+	
+	
+	@ExceptionHandler({UsuarioNotFoundException.class})
+    protected ResponseEntity<Object> UsuarioHandleNotFoundException(Exception ex, WebRequest request)
+    {
+        return handleExceptionInternal(ex, "Usuario No Encontrado ",new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+	
+	
+	@ExceptionHandler({UsuarioIdMismatchException.class})
+    protected ResponseEntity<Object> UsuarioHandleIdMismatchException(Exception ex, WebRequest request)
+    {
+        return handleExceptionInternal(ex, "Usuario según el Id No Encontrado ",new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 	
 	

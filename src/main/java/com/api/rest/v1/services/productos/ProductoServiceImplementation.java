@@ -1,4 +1,4 @@
-package com.api.rest.v1.services;
+package com.api.rest.v1.services.productos;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
