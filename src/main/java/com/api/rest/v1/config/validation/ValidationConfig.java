@@ -1,4 +1,4 @@
-package com.api.rest.v1.config;
+package com.api.rest.v1.config.validation;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

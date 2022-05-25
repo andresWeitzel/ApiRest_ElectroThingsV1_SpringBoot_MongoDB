@@ -33,7 +33,11 @@ public interface I_UsuarioService {
 	
 	public abstract Page<UsuarioEntity> getByUser(String user, Pageable pageable);
 	
+	public abstract UsuarioEntity getByUser(String user);
+	
 	public abstract Page<UsuarioEntity> getByPassword(String password, Pageable pageable);
+
+	public abstract Page<UsuarioEntity> getByRol(String rol, Pageable pageable);
 	
 
 }

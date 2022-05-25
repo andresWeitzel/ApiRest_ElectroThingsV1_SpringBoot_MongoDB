@@ -40,5 +40,9 @@ public class UsuarioEntity {
 	@Field("email")
 	@NotNull(message="El Email no puede ser null")
 	private String email;
+	
+	@Field("rol")
+	@NotNull(message="El Rol no puede ser null")
+	private String rol;
 
 }

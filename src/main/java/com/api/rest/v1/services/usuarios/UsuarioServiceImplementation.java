@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.api.rest.v1.entities.ProductoEntity;
 import com.api.rest.v1.entities.UsuarioEntity;
@@ -16,6 +17,7 @@ import com.api.rest.v1.repositories.I_ProductoRepository;
 import com.api.rest.v1.repositories.I_UsuarioRepository;
 import com.api.rest.v1.services.productos.ProductoServiceImplementation;
 
+@Service
 public class UsuarioServiceImplementation implements I_UsuarioService {
 
 	@Autowired
@@ -206,6 +208,29 @@ public class UsuarioServiceImplementation implements I_UsuarioService {
 			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USER " + user, e);
 		}
 	}
+	
+	
+	// =========================
+	// ===== GET BY USER =====
+	// =========================
+	@Override
+	public UsuarioEntity getByUser(String user) {
+		try {
+			UsuarioEntity usuario = iUsuarioRepositoryMongo.findByUser(user);
+
+			if (usuario == null ||  user == " ") {
+				logger.error("ERROR getByUser : EL USUARIO CON EL USER " + user + " NO EXISTE!!");
+				throw new UsuarioNotFoundException("EL USUARIO CON EL USER " + user + " NO EXISTE EN LA DB");
+			} else {
+				return usuario;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByUser : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL USER SOLICITADO. CAUSADO POR " + e);
+			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USER " + user, e);
+		}
+	}
 
 	// =========================
 	// ===== GET BY PASSWORD =====
@@ -229,5 +254,28 @@ public class UsuarioServiceImplementation implements I_UsuarioService {
 			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL PASSWORD " + password, e);
 		}
 	}
+	
+	// =========================
+		// ===== GET BY ROL =====
+		// =========================
+		@Override
+		public Page<UsuarioEntity> getByRol(String rol, Pageable pageable) {
+			try {
+				Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findByRol(rol, pageable);
+
+				if (usuariosPaginados.isEmpty() || rol == " ") {
+					logger.error("ERROR getByRol : EL USUARIO CON EL ROL " + rol + " NO EXISTE!!");
+					throw new UsuarioNotFoundException("EL USUARIO CON EL ROL " + rol + " NO EXISTE EN LA DB");
+				} else {
+					return usuariosPaginados;
+
+				}
+			} catch (Exception e) {
+				logger.error(
+						"ERROR getByRol : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL ROL SOLICITADO. CAUSADO POR "
+								+ e);
+				throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL ROL " + rol, e);
+			}
+		}
 
 }

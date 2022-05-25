@@ -24,8 +24,15 @@ public interface I_UsuarioRepository extends MongoRepository<UsuarioEntity, Stri
 	@Query(value = "{'user': {$regex : ?0, $options: 'i'}}")
 	Page<UsuarioEntity> findByUser(String user, Pageable pageable);
 	
+	
+	@Query(value = "{'user': {$regex : ?0, $options: 'i'}}")
+	UsuarioEntity findByUser(String user);
+	
 	@Query(value = "{'password': {$regex : ?0, $options: 'i'}}")
 	Page<UsuarioEntity> findByPassword(String password, Pageable pageable);
+	
+	@Query(value = "{'rol': {$regex : ?0, $options: 'i'}}")
+	Page<UsuarioEntity> findByRol(String rol, Pageable pageable);
 
 
 
