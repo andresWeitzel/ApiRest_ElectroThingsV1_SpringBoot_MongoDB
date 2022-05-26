@@ -1,4 +1,5 @@
-package com.api.rest.v1.security.config.usuario;
+package com.api.rest.v1.config.security.usuario;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,9 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UsuarioConfiguration {
-
+	
 	private String user;
-
 	private String password;
 
 }

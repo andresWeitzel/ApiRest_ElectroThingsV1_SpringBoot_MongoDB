@@ -18,14 +18,14 @@ import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
 
 @Service
-public class ProductoServiceImplementation implements I_ProductoService {
+public class ProductoServiceImpl implements I_ProductoService {
 
 	@Autowired
 	I_ProductoRepository iProductoRepositoryMongo;
 
 	// =============== LOGS ====================
 	private static final Logger logger = org.apache.logging.log4j.LogManager
-			.getLogger(ProductoServiceImplementation.class);
+			.getLogger(ProductoServiceImpl.class);
 
 	// Fecha y Hora Formateado
 	LocalDate fecha = LocalDate.now();

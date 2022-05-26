@@ -15,17 +15,17 @@ import com.api.rest.v1.exceptions.usuario.UsuarioIdMismatchException;
 import com.api.rest.v1.exceptions.usuario.UsuarioNotFoundException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
 import com.api.rest.v1.repositories.I_UsuarioRepository;
-import com.api.rest.v1.services.productos.ProductoServiceImplementation;
+import com.api.rest.v1.services.productos.ProductoServiceImpl;
 
 @Service
-public class UsuarioServiceImplementation implements I_UsuarioService {
+public class UsuarioServiceImpl implements I_UsuarioService {
 
 	@Autowired
 	I_UsuarioRepository iUsuarioRepositoryMongo;
 
 	// =============== LOGS ====================
 	private static final Logger logger = org.apache.logging.log4j.LogManager
-			.getLogger(UsuarioServiceImplementation.class);
+			.getLogger(UsuarioServiceImpl.class);
 	// ===============================================
 	// ============= MÉTODOS HTTP CRUD ==============
 	// ===============================================

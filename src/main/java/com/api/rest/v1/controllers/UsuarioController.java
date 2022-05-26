@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.api.rest.v1.entities.UsuarioEntity;
 import com.api.rest.v1.services.usuarios.I_UsuarioService;
 
@@ -198,21 +197,21 @@ public class UsuarioController {
 	public Page<UsuarioEntity> getByPassword(@PathVariable("password") String password, Pageable pageable) {
 		return iUsuarioService.getByPassword(password, pageable);
 	}
-	
+
 	// =======================
-		// ===== GET BY ROL ===
-		// =======================
-		// ---LISTADO DE USUARIOS O USUARIO POR ROL---
-		@Operation(summary = "Listado de Usuarios o Usuario según su Rol")
-		@ApiResponses(value = {
-				@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Usuarios o Usuario según su ROL Correctamente", content = {
-						@Content(mediaType = "application/json") }),
-				@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Usuarios o Usuario según su ROL. Comprobar la Solicitud", content = @Content),
-				@ApiResponse(responseCode = "404", description = "El Listado de Usuarios o Usuario según su ROL no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
-				@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-		@GetMapping("/rol/{rol}")
-		public Page<UsuarioEntity> getByRol(@PathVariable("rol") String rol, Pageable pageable) {
-			return iUsuarioService.getByRol(rol, pageable);
-		}
+	// ===== GET BY ROL ===
+	// =======================
+	// ---LISTADO DE USUARIOS O USUARIO POR ROL---
+	@Operation(summary = "Listado de Usuarios o Usuario según su Rol")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Usuarios o Usuario según su ROL Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Usuarios o Usuario según su ROL. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Usuarios o Usuario según su ROL no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@GetMapping("/rol/{rol}")
+	public Page<UsuarioEntity> getByRol(@PathVariable("rol") String rol, Pageable pageable) {
+		return iUsuarioService.getByRol(rol, pageable);
+	}
 
 }
