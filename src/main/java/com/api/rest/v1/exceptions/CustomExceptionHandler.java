@@ -11,8 +11,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.api.rest.v1.exceptions.producto.ProductoIdMismatchException;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
-import com.api.rest.v1.exceptions.usuario.UsuarioIdMismatchException;
-import com.api.rest.v1.exceptions.usuario.UsuarioNotFoundException;
+import com.api.rest.v1.security.exc.usuario.UsuarioIdMismatchException;
+import com.api.rest.v1.security.exc.usuario.UsuarioNotFoundException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler{

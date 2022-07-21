@@ -1,4 +1,4 @@
-package com.api.rest.v1.exceptions.usuario;
+package com.api.rest.v1.security.exc.usuario;
 
 public class UsuarioIdMismatchException extends RuntimeException {
 

@@ -1,4 +1,8 @@
+
+
 package com.api.rest.v1.services.usuarios;
+
+/*
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,3 +45,5 @@ public interface I_UsuarioService {
 	
 
 }
+
+*/

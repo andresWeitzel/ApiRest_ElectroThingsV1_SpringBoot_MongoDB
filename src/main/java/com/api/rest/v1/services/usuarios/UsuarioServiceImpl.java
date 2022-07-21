@@ -1,5 +1,5 @@
 package com.api.rest.v1.services.usuarios;
-
+/*
 import java.util.Optional;
 
 import org.apache.logging.log4j.Logger;
@@ -14,7 +14,7 @@ import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.exceptions.usuario.UsuarioIdMismatchException;
 import com.api.rest.v1.exceptions.usuario.UsuarioNotFoundException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
-import com.api.rest.v1.repositories.I_UsuarioRepository;
+import com.api.rest.v1.security.repositories.I_UsuarioRepository;
 import com.api.rest.v1.services.productos.ProductoServiceImpl;
 
 @Service
@@ -279,3 +279,6 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 		}
 
 }
+
+
+*/

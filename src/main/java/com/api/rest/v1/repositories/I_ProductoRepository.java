@@ -61,5 +61,9 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 
 	@Query("{'hora': ?0}")
 	Page<ProductoEntity> findByHora(String hora, Pageable pageable);
+	
+	
+	
+	
 
 }

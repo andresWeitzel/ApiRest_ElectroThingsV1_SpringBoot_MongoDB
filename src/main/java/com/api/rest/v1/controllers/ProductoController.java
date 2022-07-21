@@ -1,5 +1,7 @@
 package com.api.rest.v1.controllers;
 
+
+/*
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -314,7 +316,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	
 	@GetMapping("/grafico-stock-marca")
-	public Map<String, Integer> graficoStockCateg(Pageable pageable) {
+	public ResponseEntity<?> graficoStockCateg(Pageable pageable) {
 
 		Page<ProductoEntity> listProd = iProductoService.getAllProductos(pageable);
 
@@ -371,8 +373,9 @@ public class ProductoController {
 		data.put(apple, stockApple);
 		data.put(gezat, stockGezat);
 
-		return data;
+		return new ResponseEntity<>(data, HttpStatus.OK);
 
 	}
 
 }
+*/
