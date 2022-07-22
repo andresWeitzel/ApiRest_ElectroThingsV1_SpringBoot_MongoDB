@@ -1,5 +1,5 @@
-package com.api.rest.v1.services.usuarios;
-/*
+package com.api.rest.v1.security.services;
+
 import java.util.Optional;
 
 import org.apache.logging.log4j.Logger;
@@ -7,21 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.api.rest.v1.entities.ProductoEntity;
-import com.api.rest.v1.entities.UsuarioEntity;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
-import com.api.rest.v1.exceptions.usuario.UsuarioIdMismatchException;
-import com.api.rest.v1.exceptions.usuario.UsuarioNotFoundException;
-import com.api.rest.v1.repositories.I_ProductoRepository;
+import com.api.rest.v1.security.entities.Usuario;
+import com.api.rest.v1.security.exc.usuario.UsuarioIdMismatchException;
+import com.api.rest.v1.security.exc.usuario.UsuarioNotFoundException;
 import com.api.rest.v1.security.repositories.I_UsuarioRepository;
-import com.api.rest.v1.services.productos.ProductoServiceImpl;
 
 @Service
+@Transactional
 public class UsuarioServiceImpl implements I_UsuarioService {
 
 	@Autowired
-	I_UsuarioRepository iUsuarioRepositoryMongo;
+	I_UsuarioRepository iUsuarioRepository;
 
 	// =============== LOGS ====================
 	private static final Logger logger = org.apache.logging.log4j.LogManager
@@ -34,14 +33,14 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== INSERT =====
 	// ==================
 	@Override
-	public void addUsuario(UsuarioEntity usuario) {
+	public void addUsuario(Usuario usuario) {
 
 		try {
 			if (usuario == null) {
 				logger.error("ERROR addUsuario : EL USUARIO " + usuario + " ES NULO!!");
 				throw new UsuarioNotFoundException("EL USUARIO ES NULO");
 			} else {
-				iUsuarioRepositoryMongo.save(usuario);
+				iUsuarioRepository.save(usuario);
 				logger.info("SE HA INSERTADO CORRECTAMENTE EL USUARIO CON EL ID " + usuario.getId());
 			}
 		} catch (Exception e) {
@@ -55,13 +54,13 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== UPDATE =====
 	// ==================
 	@Override
-	public void updateUsuario(UsuarioEntity usuario) {
+	public void updateUsuario(Usuario usuario) {
 		try {
 			if (usuario == null) {
 				logger.error("ERROR updateUsuario : EL USUARIO " + usuario + " ES NULO!!");
 				throw new UsuarioNotFoundException("EL USUARIO ES NULO");
 			} else {
-				iUsuarioRepositoryMongo.save(usuario);
+				iUsuarioRepository.save(usuario);
 				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL USUARIO CON EL ID " + usuario.getId());
 			}
 		} catch (Exception e) {
@@ -77,13 +76,13 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	@Override
 	public void deleteUsuario(String id) {
 		try {
-			Optional<UsuarioEntity> usuario = iUsuarioRepositoryMongo.findById(id);
+			Optional<Usuario> usuario = iUsuarioRepository.findById(id);
 
 			if (usuario.isEmpty()) {
 				logger.error("ERROR deleteUsuario : EL USUARIO " + usuario + " ES NULO!!");
 				throw new UsuarioIdMismatchException("EL USUARIO CON EL ID NO EXISTE EN LA DB");
 			} else {
-				iUsuarioRepositoryMongo.deleteById(id);
+				iUsuarioRepository.deleteById(id);
 				logger.info("SE HA ELIMINADO CORRECTAMENTE EL USUARIO CON EL ID " + id);
 			}
 		} catch (Exception e) {
@@ -98,10 +97,10 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===================
 	// ------- LISTADO PAGINADO ---------
 	@Override
-	public Page<UsuarioEntity> getAllUsuarios(Pageable pageable) {
+	public Page<Usuario> getAllUsuario(Pageable pageable) {
 
 		try {
-			Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findAll(pageable);
+			Page<Usuario> usuariosPaginados = iUsuarioRepository.findAll(pageable);
 
 			// Si esta vacio es nulo
 			if (usuariosPaginados.isEmpty()) {
@@ -125,15 +124,15 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== GET BY ID =====
 	// =====================
 	@Override
-	public UsuarioEntity getById(String id) {
+	public Optional<Usuario> getById(String id) {
 		try {
-			Optional<UsuarioEntity> usuario = iUsuarioRepositoryMongo.findById(id);
+			Optional<Usuario> usuario = iUsuarioRepository.findById(id);
 
 			if (usuario.isEmpty() || id == " ") {
 				logger.error("ERROR getById : EL USUARIO CON EL ID " + id + " NO EXISTE!!");
 				throw new UsuarioIdMismatchException("EL USUARIO CON EL ID NO EXISTE EN LA DB");
 			} else {
-				return iUsuarioRepositoryMongo.findById(id).orElseThrow(UsuarioIdMismatchException::new);
+				return iUsuarioRepository.findById(id);
 
 			}
 		} catch (Exception e) {
@@ -146,9 +145,9 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== GET BY NOMBRE =====
 	// =========================
 	@Override
-	public Page<UsuarioEntity> getByNombre(String nombre, Pageable pageable) {
+	public Page<Usuario> getByNombre(String nombre, Pageable pageable) {
 		try {
-			Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findByNombre(nombre, pageable);
+			Page<Usuario> usuariosPaginados = iUsuarioRepository.findByNombre(nombre, pageable);
 
 			if (usuariosPaginados.isEmpty() || nombre == " ") {
 				logger.error("ERROR getByNombre : EL USUARIO CON EL NOMBRE " + nombre + " NO EXISTE!!");
@@ -168,9 +167,9 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== GET BY APELLIDO =====
 	// =========================
 	@Override
-	public Page<UsuarioEntity> getByApellido(String apellido, Pageable pageable) {
+	public Page<Usuario> getByApellido(String apellido, Pageable pageable) {
 		try {
-			Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findByApellido(apellido, pageable);
+			Page<Usuario> usuariosPaginados = iUsuarioRepository.findByApellido(apellido, pageable);
 
 			if (usuariosPaginados.isEmpty() || apellido == " ") {
 				logger.error("ERROR getByApellido : EL USUARIO CON EL APELLIDO " + apellido + " NO EXISTE!!");
@@ -188,47 +187,47 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	}
 
 	// =========================
-	// ===== GET BY USER =====
+	// ===== GET BY USERNAME =====
 	// =========================
 	@Override
-	public Page<UsuarioEntity> getByUser(String user, Pageable pageable) {
+	public Page<Usuario> getByUsername(String username, Pageable pageable) {
 		try {
-			Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findByUser(user, pageable);
+			Page<Usuario> usuariosPaginados = iUsuarioRepository.findByUsername(username, pageable);
 
-			if (usuariosPaginados.isEmpty() || user == " ") {
-				logger.error("ERROR getByUser : EL USUARIO CON EL USER " + user + " NO EXISTE!!");
-				throw new UsuarioNotFoundException("EL USUARIO CON EL USER " + user + " NO EXISTE EN LA DB");
+			if (usuariosPaginados.isEmpty() || username == " ") {
+				logger.error("ERROR getByUsername : EL USUARIO CON EL USERNAME " + username + " NO EXISTE!!");
+				throw new UsuarioNotFoundException("EL USUARIO CON EL USERNAME " + username + " NO EXISTE EN LA DB");
 			} else {
 				return usuariosPaginados;
 
 			}
 		} catch (Exception e) {
 			logger.error(
-					"ERROR getByUser : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL USER SOLICITADO. CAUSADO POR " + e);
-			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USER " + user, e);
+					"ERROR getByUser : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL USERNAME SOLICITADO. CAUSADO POR " + e);
+			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USERNAME " + username, e);
 		}
 	}
 	
 	
 	// =========================
-	// ===== GET BY USER =====
+	// ===== GET BY USERNAME =====
 	// =========================
 	@Override
-	public UsuarioEntity getByUser(String user) {
+	public Optional<Usuario> getByUsername(String username) {
 		try {
-			UsuarioEntity usuario = iUsuarioRepositoryMongo.findByUser(user);
+			Optional<Usuario> usuario = iUsuarioRepository.findByUsername(username);
 
-			if (usuario == null ||  user == " ") {
-				logger.error("ERROR getByUser : EL USUARIO CON EL USER " + user + " NO EXISTE!!");
-				throw new UsuarioNotFoundException("EL USUARIO CON EL USER " + user + " NO EXISTE EN LA DB");
+			if (usuario == null ||  username == " ") {
+				logger.error("ERROR getByUsername : EL USUARIO CON EL USERNAME " + username + " NO EXISTE!!");
+				throw new UsuarioNotFoundException("EL USUARIO CON EL USERNAME " + username + " NO EXISTE EN LA DB");
 			} else {
 				return usuario;
 
 			}
 		} catch (Exception e) {
 			logger.error(
-					"ERROR getByUser : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL USER SOLICITADO. CAUSADO POR " + e);
-			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USER " + user, e);
+					"ERROR getByUsername : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL USERNAME SOLICITADO. CAUSADO POR " + e);
+			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USERNAME " + username, e);
 		}
 	}
 
@@ -236,9 +235,9 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== GET BY PASSWORD =====
 	// =========================
 	@Override
-	public Page<UsuarioEntity> getByPassword(String password, Pageable pageable) {
+	public Page<Usuario> getByPassword(String password, Pageable pageable) {
 		try {
-			Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findByPassword(password, pageable);
+			Page<Usuario> usuariosPaginados = iUsuarioRepository.findByPassword(password, pageable);
 
 			if (usuariosPaginados.isEmpty() || password == " ") {
 				logger.error("ERROR getByPassword : EL USUARIO CON EL PASSWORD " + password + " NO EXISTE!!");
@@ -255,30 +254,91 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 		}
 	}
 	
+	
+	
 	// =========================
-		// ===== GET BY ROL =====
-		// =========================
-		@Override
-		public Page<UsuarioEntity> getByRol(String rol, Pageable pageable) {
-			try {
-				Page<UsuarioEntity> usuariosPaginados = iUsuarioRepositoryMongo.findByRol(rol, pageable);
+	// ===== GET BY EMAIL ======
+	// =========================
+	@Override
+	public Page<Usuario> getByEmail(String email, Pageable pageable) {
+		try {
+			Page<Usuario> usuariosPaginados = iUsuarioRepository.findByEmail(email, pageable);
 
-				if (usuariosPaginados.isEmpty() || rol == " ") {
-					logger.error("ERROR getByRol : EL USUARIO CON EL ROL " + rol + " NO EXISTE!!");
-					throw new UsuarioNotFoundException("EL USUARIO CON EL ROL " + rol + " NO EXISTE EN LA DB");
-				} else {
-					return usuariosPaginados;
+			if (usuariosPaginados.isEmpty() || email == " ") {
+				logger.error("ERROR getByEmail : EL USUARIO CON EL EMAIL " + email + " NO EXISTE!!");
+				throw new UsuarioNotFoundException("EL USUARIO CON EL EMAIL " + email + " NO EXISTE EN LA DB");
+			} else {
+				return usuariosPaginados;
 
-				}
-			} catch (Exception e) {
-				logger.error(
-						"ERROR getByRol : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL ROL SOLICITADO. CAUSADO POR "
-								+ e);
-				throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL ROL " + rol, e);
 			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByEmail : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL EMAIL SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL EMAIL " + email, e);
 		}
+	}
+	
+	
+	// ============= MÉTODOS DE COMPROBACIONES ===================
+
+	
+	
+	// ==============================
+	// ===== EXISTS BY USERNAME =====
+	// ==============================
+	public boolean existsByUsername(String username) {
+		
+		try {
+			
+			boolean checkUsuario = iUsuarioRepository.existsByUsername(username);
+			
+			if(username.isEmpty() || username == " ") {
+				logger.error("ERROR existsByUsername : EL USUARIO CON EL USERNAME " + username + " NO EXISTE!!");
+				throw new UsuarioNotFoundException("EL USUARIO CON EL USERNAME " + username + " NO EXISTE EN LA DB");
+			} else {
+				return checkUsuario;
+
+			}
+			
+		} catch (Exception e) {
+			logger.error(
+					"ERROR existsByUsername : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL USERNAME SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL USERNAME " + username, e);
+		
+		}
+	}
+	
+	
+	// ===========================
+	// ===== EXISTS BY EMAIL =====
+	// ===========================
+	public boolean existsByEmail(String email) {
+		
+		try {
+			
+			boolean checkEmail = iUsuarioRepository.existsByEmail(email);
+			
+			if(email.isEmpty() || email == " ") {
+				logger.error("ERROR existsByEmail : EL USUARIO CON EL EMAIL " + email + " NO EXISTE!!");
+				throw new UsuarioNotFoundException("EL USUARIO CON EL EMAIL " + email + " NO EXISTE EN LA DB");
+			} else {
+				return checkEmail;
+
+			}
+			
+		} catch (Exception e) {
+			logger.error(
+					"ERROR existsByEmail : NO SE HA ENCONTRADO EL USUARIO  SEGÚN EL EMAIL SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new UsuarioNotFoundException("NO SE PUDO ENCONTRAR EL USUARIO CON EL EMAIL " + email, e);
+		
+		}
+	}
+	
+  
 
 }
 
 
-*/

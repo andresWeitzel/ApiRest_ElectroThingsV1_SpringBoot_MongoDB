@@ -29,7 +29,7 @@ public interface I_UsuarioRepository extends MongoRepository<Usuario, String> {
 	
 	
 	@Query(value = "{'username': {$regex : ?0, $options: 'i'}}")
-	Usuario findByUsername(String username);
+	Optional<Usuario> findByUsername(String username);
 	
 	@Query(value = "{'password': {$regex : ?0, $options: 'i'}}")
 	Page<Usuario> findByPassword(String password, Pageable pageable);
