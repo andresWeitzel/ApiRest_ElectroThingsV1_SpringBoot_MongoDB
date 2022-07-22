@@ -4,15 +4,13 @@ package com.api.rest.v1.entities;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.annotation.Id;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 
@@ -22,8 +20,9 @@ import lombok.Setter;
 @Document(collection="productos")
 public class ProductoEntity {
 
-	@Id
-	private String id;
+	@Field("_id")
+	@NotNull(message="El ID no puede ser null")
+	private ObjectId id;
 	
 	@Field("codigo")
 	@NotNull(message="El Código no puede ser null")

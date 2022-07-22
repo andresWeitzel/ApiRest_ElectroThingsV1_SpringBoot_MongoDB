@@ -1,5 +1,6 @@
 package com.api.rest.v1.security.controllers;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -97,7 +98,7 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> deleteUsuario(@RequestBody String id) {
+	public ResponseEntity<?> deleteUsuario(@RequestBody ObjectId id) {
 
 		try {
 			usuarioService.deleteUsuario(id);
@@ -121,7 +122,7 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "404", description = "El Listado de Usuarios no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@GetMapping("/listado")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Page<Usuario> getAllUsuario(Pageable pageable) {
 
 		return usuarioService.getAllUsuario(pageable);

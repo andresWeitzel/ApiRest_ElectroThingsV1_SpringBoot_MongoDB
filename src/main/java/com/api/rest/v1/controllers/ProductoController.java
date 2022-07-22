@@ -1,17 +1,16 @@
 package com.api.rest.v1.controllers;
 
 
-/*
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.validation.ConstraintViolationException;
-
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.rest.v1.entities.ProductoEntity;
-import com.api.rest.v1.entities.UsuarioEntity;
 import com.api.rest.v1.services.productos.I_ProductoService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +31,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 
 @RestController
 @RequestMapping("/api/v1/productos")
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 public class ProductoController {
 
 	@Autowired
@@ -96,10 +94,10 @@ public class ProductoController {
 			@ApiResponse(responseCode = "404", description = "La Eliminación del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteProducto(@PathVariable("id") String id) {
+	public ResponseEntity<?> deleteProducto(@PathVariable("id") ObjectId id) {
 		try {
 			iProductoService.deleteProducto(id);
-			return new ResponseEntity<UsuarioEntity>(HttpStatus.OK);
+			return new ResponseEntity<ProductoEntity>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -117,6 +115,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer el Listado de Productos. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	
 	@GetMapping("/listado")
 	public Page<ProductoEntity> getAll(Pageable pageable) {
 		return iProductoService.getAllProductos(pageable);
@@ -138,7 +137,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "404", description = "El Producto según su ID no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@GetMapping("/id/{id}")
-	public ProductoEntity getById(@PathVariable("id") String id) {
+	public ProductoEntity getById(@PathVariable("id") ObjectId id) {
 		return iProductoService.getById(id);
 	}
 
@@ -378,4 +377,3 @@ public class ProductoController {
 	}
 
 }
-*/

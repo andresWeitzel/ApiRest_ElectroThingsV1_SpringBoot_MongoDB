@@ -2,6 +2,7 @@ package com.api.rest.v1.security.entities;
 
 import javax.validation.constraints.NotNull;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -10,7 +11,6 @@ import com.api.rest.v1.security.enums.TipoRol;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import nonapi.io.github.classgraph.json.Id;
 
 @Data
 @AllArgsConstructor
@@ -19,8 +19,9 @@ import nonapi.io.github.classgraph.json.Id;
 public class Rol {
 	
 	
-	@Id
-	private String id;
+	@Field("_id")
+	@NotNull(message="El ID no puede ser null")
+	private ObjectId id;
 	
 	@Field("rol")
 	@NotNull(message = "El Rol no puede ser null")

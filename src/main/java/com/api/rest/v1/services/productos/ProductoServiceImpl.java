@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 import org.apache.logging.log4j.Logger;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -90,7 +91,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== DELETE =====
 	// ==================
 	@Override
-	public void deleteProducto(String id) {
+	public void deleteProducto(ObjectId id) {
 		try {
 			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
 
@@ -143,12 +144,12 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== GET BY ID =====
 	// =====================
 	@Override
-	public ProductoEntity getById(String id) {
+	public ProductoEntity getById(ObjectId id) {
 		try {
 			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
 
 			// Si esta vacio es nulo
-			if (producto.isEmpty() || id == " ") {
+			if (producto.isEmpty() || id == null) {
 				logger.error("ERROR getById : EL PRODUCTO CON EL ID " + id + " NO EXISTE!!");
 				throw new ProductoIdMismatchException("EL PRODUCTO CON EL ID NO EXISTE EN LA DB");
 			} else {

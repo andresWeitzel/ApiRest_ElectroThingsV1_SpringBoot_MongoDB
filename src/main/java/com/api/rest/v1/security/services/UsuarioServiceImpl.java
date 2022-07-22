@@ -3,6 +3,7 @@ package com.api.rest.v1.security.services;
 import java.util.Optional;
 
 import org.apache.logging.log4j.Logger;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -74,7 +75,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== DELETE =====
 	// ==================
 	@Override
-	public void deleteUsuario(String id) {
+	public void deleteUsuario(ObjectId id) {
 		try {
 			Optional<Usuario> usuario = iUsuarioRepository.findById(id);
 
@@ -124,11 +125,11 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== GET BY ID =====
 	// =====================
 	@Override
-	public Optional<Usuario> getById(String id) {
+	public Optional<Usuario> getById(ObjectId id) {
 		try {
 			Optional<Usuario> usuario = iUsuarioRepository.findById(id);
 
-			if (usuario.isEmpty() || id == " ") {
+			if (usuario.isEmpty() || id == null) {
 				logger.error("ERROR getById : EL USUARIO CON EL ID " + id + " NO EXISTE!!");
 				throw new UsuarioIdMismatchException("EL USUARIO CON EL ID NO EXISTE EN LA DB");
 			} else {

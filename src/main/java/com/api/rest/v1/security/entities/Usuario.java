@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -19,8 +20,9 @@ import nonapi.io.github.classgraph.json.Id;
 @Document(collection = "usuarios")
 public class Usuario {
 
-	@Id
-	private String id;
+	@Field("_id")
+	@NotNull(message="El ID no puede ser null")
+	private ObjectId id;
 
 	@Field("nombre")
 	@NotNull(message = "El Nombre no puede ser null")
