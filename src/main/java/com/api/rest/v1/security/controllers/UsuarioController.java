@@ -10,12 +10,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.api.rest.v1.security.dto.SigninUsuarioDTO;
 import com.api.rest.v1.security.entities.Usuario;
 import com.api.rest.v1.security.services.UsuarioServiceImpl;
 
@@ -48,12 +50,12 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@PostMapping("/")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> addUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<?> addUsuario(@RequestBody SigninUsuarioDTO usuarioDTO) {
 
 		try {
-			usuarioService.addUsuario(usuario);
+			usuarioService.addUsuarioDTO(usuarioDTO);
 
-			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+			return new ResponseEntity<String>("Se ha agregado el usuario en la db correctamente",HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -71,14 +73,15 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "400", description = "No se pudo Actualizar el Usuario. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "La Actualización del Usuario no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-	@PutMapping("/")
+	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
+	public ResponseEntity<?> updateUsuario(@PathVariable("id") ObjectId id,@RequestBody SigninUsuarioDTO usuarioDTO) {
 
 		try {
-			usuarioService.updateUsuario(usuario);
+			usuarioService.updateUsuario(id, usuarioDTO);
 
-			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+			return new ResponseEntity<String>("Se ha Actualizado el usuario en la db correctamente",HttpStatus.OK);
+
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -103,7 +106,7 @@ public class UsuarioController {
 		try {
 			usuarioService.deleteUsuario(id);
 
-			return new ResponseEntity<Usuario>(HttpStatus.OK);
+			return new ResponseEntity<String>("Se ha eliminado el usuario en la db correctamente",HttpStatus.OK);
 
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);

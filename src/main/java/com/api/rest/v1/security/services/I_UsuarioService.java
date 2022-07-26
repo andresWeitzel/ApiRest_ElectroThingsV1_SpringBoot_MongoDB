@@ -9,6 +9,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.api.rest.v1.security.dto.SigninUsuarioDTO;
 import com.api.rest.v1.security.entities.Usuario;
 
 
@@ -21,9 +22,11 @@ public interface I_UsuarioService {
 	// ============= MÉTODOS HTTP CRUD ==============
 	// ===============================================
 
+	public abstract void addUsuarioDTO(SigninUsuarioDTO usuarioDTO);
+	
 	public abstract void addUsuario(Usuario usuario);
 
-	public abstract void updateUsuario(Usuario usuario);
+	public abstract void updateUsuario(ObjectId id, SigninUsuarioDTO usuario);
 
 	public abstract void deleteUsuario(ObjectId id);
 

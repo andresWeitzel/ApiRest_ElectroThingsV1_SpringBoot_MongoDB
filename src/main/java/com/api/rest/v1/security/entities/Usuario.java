@@ -48,6 +48,20 @@ public class Usuario {
 	private Set<Rol> roles = new HashSet<>();
 
 	
+	/*Constructor parametrico con id
+	 * 
+	 */
+    public Usuario(@NotNull ObjectId id,@NotNull String nombre, @NotNull String username, @NotNull String password
+    		, @NotNull String email) {
+    	this.id=id;
+        this.nombre = nombre;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+	
+	
+	
 	/*Constructor parametrico sin id
 	 * 
 	 */

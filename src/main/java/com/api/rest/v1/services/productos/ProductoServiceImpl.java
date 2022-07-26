@@ -11,12 +11,14 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.api.rest.v1.entities.ProductoEntity;
 import com.api.rest.v1.exceptions.producto.ProductoIdMismatchException;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
+import com.api.rest.v1.security.entities.Usuario;
 
 @Service
 public class ProductoServiceImpl implements I_ProductoService {
@@ -49,7 +51,17 @@ public class ProductoServiceImpl implements I_ProductoService {
 			if (producto == null) {
 				logger.error("ERROR addProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
-			} else {
+			} else if( producto.getCodigo() == "" || producto.getImagen() == ""
+					|| producto.getNombre() == "" || producto.getMarca() == "" 
+					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
+					|| producto.getPrecio() == 0.0 || producto.getHojaDatos() == ""
+					|| producto.getStock() == 0.0 || producto.getFecha() == ""
+					) {
+				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
+						+ " NO SON VÁLIDOS!!");
+				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
+				
+			}else {
 				producto.setFecha(fecha.format(formatoFecha));
 				producto.setHora(hora.format(formatoHora));
 				iProductoRepositoryMongo.save(producto);
@@ -67,19 +79,46 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== UPDATE =====
 	// ==================
 	@Override
-	public void updateProducto(ProductoEntity producto) {
+	public void updateProducto(ObjectId id ,ProductoEntity producto) {
 		try {
 
 			if (producto == null) {
 				logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
 
+			} else if( producto.getCodigo() == "" || producto.getImagen() == ""
+					|| producto.getNombre() == "" || producto.getMarca() == "" 
+					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
+					|| producto.getPrecio() == 0 || producto.getHojaDatos() == ""
+					|| producto.getStock() == 0 || producto.getFecha() == ""
+					) {
+				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
+						+ " NO SON VÁLIDOS!!");
+				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
+				
 			} else {
-				producto.setFecha(fecha.format(formatoFecha));
-				producto.setHora(hora.format(formatoHora));
-				iProductoRepositoryMongo.save(producto);
 
-				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO CON EL ID " + producto.getId());
+				String codigo = producto.getCodigo();
+				String nombre = producto.getNombre();
+				String descripcion = producto.getDescripcion();
+				String categoria = producto.getCategoria();
+				String marca = producto.getMarca();
+				String imagen = producto.getImagen();
+				String hojaDatos = producto.getHojaDatos();
+				int stock = producto.getStock();
+				int precio = producto.getPrecio();
+				String fechaModif = fecha.format(formatoFecha);
+				String horaModif = hora.format(formatoHora);
+				
+				
+				
+				ProductoEntity nuevoProducto = new ProductoEntity(id, codigo, nombre, descripcion
+						, categoria, marca, imagen, hojaDatos, stock, precio, fechaModif, horaModif);
+		
+
+				iProductoRepositoryMongo.save(nuevoProducto);
+
+				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO CON EL ID " + nuevoProducto.getId());
 			}
 		} catch (Exception e) {
 			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!");

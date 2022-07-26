@@ -56,6 +56,7 @@ public class AuthController {
 	@Autowired
 	JwtProvider jwtProvider;
 
+	
 	@PostMapping("/signin")
 	public ResponseEntity<?> signin(@Valid @RequestBody SigninUsuarioDTO signinUsuario, BindingResult bindingResult) {
 
@@ -69,6 +70,15 @@ public class AuthController {
 
 		if (usuarioServiceImpl.existsByEmail(signinUsuario.getEmail())) {
 			 return new ResponseEntity("El Email del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
+		}
+		
+		if(signinUsuario.getNombre().isBlank() 
+				|| signinUsuario.getUsername().isBlank() 
+				|| signinUsuario.getPassword().isBlank()
+				|| signinUsuario.getPassword().isBlank()
+				|| signinUsuario.getEmail().isBlank())
+		{
+			return new ResponseEntity("No se permiten campos vacios", HttpStatus.BAD_REQUEST);
 		}
 			
 		Usuario usuario = new Usuario(signinUsuario.getNombre(), signinUsuario.getUsername()
@@ -111,7 +121,8 @@ public class AuthController {
 
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-		JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+		//JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+		JwtDTO jwtDto = new JwtDTO(jwt);
 
 		return new ResponseEntity(jwtDto, HttpStatus.OK);
 	}

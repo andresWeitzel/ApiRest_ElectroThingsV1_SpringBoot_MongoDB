@@ -1,6 +1,5 @@
 package com.api.rest.v1.controllers;
 
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -52,6 +51,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "404", description = "La Inserción del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@PostMapping("/")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> addProducto(@RequestBody ProductoEntity producto) {
 		try {
 			iProductoService.addProducto(producto);
@@ -72,10 +72,11 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo Actualizar el Producto. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-	@PutMapping("/")
-	public ResponseEntity<?> updateProducto(@RequestBody ProductoEntity producto) {
+	@PutMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public ResponseEntity<?> updateProducto(@PathVariable ObjectId id, @RequestBody ProductoEntity producto) {
 		try {
-			iProductoService.updateProducto(producto);
+			iProductoService.updateProducto(id, producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -94,6 +95,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "404", description = "La Eliminación del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> deleteProducto(@PathVariable("id") ObjectId id) {
 		try {
 			iProductoService.deleteProducto(id);
@@ -115,7 +117,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer el Listado de Productos. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-	
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/listado")
 	public Page<ProductoEntity> getAll(Pageable pageable) {
 		return iProductoService.getAllProductos(pageable);
@@ -136,6 +138,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer el Producto según su ID. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Producto según su ID no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/id/{id}")
 	public ProductoEntity getById(@PathVariable("id") ObjectId id) {
 		return iProductoService.getById(id);
@@ -152,6 +155,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su CODIGO. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su CODIGO no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/codigo/{codigo}")
 	public Page<ProductoEntity> getByCodigo(@PathVariable("codigo") String codigo, Pageable pageable) {
 		return iProductoService.getByCodigo(codigo, pageable);
@@ -168,6 +172,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su NOMBRE. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su NOMBRE no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/nombre/{nombre}")
 	public Page<ProductoEntity> getByNombre(@PathVariable("nombre") String nombre, Pageable pageable) {
 		return iProductoService.getByNombre(nombre, pageable);
@@ -184,6 +189,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su DESCRIPCION. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su DESCRIPCION no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/descripcion/{descripcion}")
 	public Page<ProductoEntity> getByDescripcion(@PathVariable("descripcion") String descripcion, Pageable pageable) {
 		return iProductoService.getByDescripcion(descripcion, pageable);
@@ -200,6 +206,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su MARCA. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su MARCA no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/marca/{marca}")
 	public Page<ProductoEntity> getByMarca(@PathVariable("marca") String marca, Pageable pageable) {
 		return iProductoService.getByMarca(marca, pageable);
@@ -216,6 +223,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su IMAGEN. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su IMAGEN no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/imagen/{imagen}")
 	public Page<ProductoEntity> getByImagen(@PathVariable("imagen") String imagen, Pageable pageable) {
 		return iProductoService.getByImagen(imagen, pageable);
@@ -232,6 +240,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su HOJA DE DATOS. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su HOJA DE DATOS no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/hojaDatos/{hojaDatos}")
 	public Page<ProductoEntity> getByHojaDatos(@PathVariable("hojaDatos") String hojaDatos, Pageable pageable) {
 		return iProductoService.getByHojaDatos(hojaDatos, pageable);
@@ -248,6 +257,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su STOCK. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su STOCK no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/stock/{stock}")
 	public Page<ProductoEntity> getByStock(@PathVariable("stock") int stock, Pageable pageable) {
 		return iProductoService.getByStock(stock, pageable);
@@ -264,6 +274,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su PRECIO. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su PRECIO no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/precio/{precio}")
 	public Page<ProductoEntity> getByPrecio(@PathVariable("precio") int precio, Pageable pageable) {
 		return iProductoService.getByPrecio(precio, pageable);
@@ -280,6 +291,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su FECHA. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su FECHA no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/fecha/{fecha}")
 	public Page<ProductoEntity> getByFecha(@PathVariable("fecha") String fecha, Pageable pageable) {
 		return iProductoService.getByFecha(fecha, pageable);
@@ -296,6 +308,7 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su HORA. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su HORA no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/hora/{hora}")
 	public Page<ProductoEntity> getByHora(@PathVariable("hora") String hora, Pageable pageable) {
 		return iProductoService.getByHora(hora, pageable);
@@ -313,7 +326,8 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo traer  el  Diccionario de Productos en relación al Stock y Marca. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "El Listado de Productos  Diccionario de Productos en relación al Stock y Marca no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-	
+
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/grafico-stock-marca")
 	public ResponseEntity<?> graficoStockCateg(Pageable pageable) {
 

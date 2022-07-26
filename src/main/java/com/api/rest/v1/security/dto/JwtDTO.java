@@ -23,4 +23,8 @@ public class JwtDTO {
         this.username = username;
         this.authorities = authorities;
     }
+    
+    public JwtDTO(String token) {
+        this.token = token;
+    }
 }

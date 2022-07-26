@@ -63,12 +63,31 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/auth/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers(URL_PERMITIDAS).permitAll()
+                .antMatchers("/**").authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+    
+    
+    private static final String[] URL_PERMITIDAS = {
+    		//-- auth login and signin--
+    		"/api/v1/auth/**",
+    		
+            // -- swagger, swagger ui, api doc--
+            "/v2/api-docs",
+            "/api-docs/**",
+            "/swagger-resources",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/swagger-ui/index.html#/**",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/webjars/**"
+           
+    };
 }
