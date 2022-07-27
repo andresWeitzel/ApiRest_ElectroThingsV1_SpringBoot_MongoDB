@@ -1,11 +1,25 @@
 # ApiRest_ElectroThingsV1_SpringBoot_MongoDB
 
-* Api Rest Base para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC, , Spring Security, JWT, Spring Data MongoDB, SpringDoc-OpenApi, Swagger UI, Maven, Lombok, Log4j, Git, MongoDBCompass y MongoDB.
-* Repositorio Aplicación Tienda Electrónica (https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
-* Repositorio Base de Datos Mongodb : https://github.com/andresWeitzel/db_ElectroThings_MongoDB
+* Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC, Spring Security, JWT, Spring Data MongoDB, SpringDoc-OpenApi, Swagger UI, Api Highchart, Maven, Lombok, Log4j, Git, MongoDBCompass, MongoDB y Otras Tecnologías.
+* Se Desarrollan Clases Específicas para el Manejo de Excepciones para cada Servicio , como también un manejador de excepciones y validaciones por campos de beans.
+* Todas las funcionalidades tienen generación de logs en el Server para los errores y excepciones personalizadas.
+* Se incluye documentación completa de la Api con open-api para la visualización con swagger-ui, las anotaciones de open-api se aplican junto con los códigos de 
+ respuesta de tipo HTTP para cada función en los respectivos controllers.
+* Se desarrolla toda la funcionalidad para las Operaciones CRUD, como así también paginados y funcionalidades para uso de filtros de búsqueda de productos desde el frontend. 
+* Se separa la capa de seguridad para la autenticación , implementando Spring Security y JWT. Además de realizar las operaciones CRUD para usuarios se aplica login y signin para la capa de presentación.
+* También se desarrollan los métodos de búsquedas independientes de tipo Like para todos los campos, tanto de usuarios como productos.
+* Los objetos de tipo getBy se manipulan como paginados, salvo los getById y Optional que se requiere un response por objeto y no una E.D como de tipo lista, stream, etc.
+* Entre Otros.
+
+* Se pone a disposición todos los recursos anteriores para productos y usuarios.
+
+</br>
+
+* Repositorio AppTiendaElectronica : https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB
+* Repositorio db_ElectroThings : https://github.com/andresWeitzel/db_ElectroThings_MongoDB
 
 
-<br>
+</br>
 
 ### Documentación con Swagger-UI `producto-controller`
  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/productosController.png" />
