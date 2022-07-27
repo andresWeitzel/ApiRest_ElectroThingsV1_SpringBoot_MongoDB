@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import com.api.rest.v1.entities.ProductoEntity;
 
-public interface I_ProductoRepository extends MongoRepository<ProductoEntity, ObjectId> {
+public interface I_ProductoRepository extends MongoRepository<ProductoEntity, String> {
 
 	/*
 	 * LOS METODOS OPTIONAL Y LAS ANNOTATIONS @QUERY(JSON Query Methods) LOS IMPLEMENTA 
@@ -26,7 +26,7 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, Ob
 	 *
 	 */
 	@Query("{'id': ?0}")
-	Optional<ProductoEntity> findById(ObjectId id);
+	Optional<ProductoEntity> findById(String id);
 
 	@Query(value = "{'codigo': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByCodigo(String codigo, Pageable pageable);

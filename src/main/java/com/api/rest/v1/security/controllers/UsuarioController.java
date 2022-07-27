@@ -75,7 +75,7 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> updateUsuario(@PathVariable("id") ObjectId id,@RequestBody SigninUsuarioDTO usuarioDTO) {
+	public ResponseEntity<?> updateUsuario(@PathVariable("id") String id,@RequestBody SigninUsuarioDTO usuarioDTO) {
 
 		try {
 			usuarioService.updateUsuario(id, usuarioDTO);
@@ -101,7 +101,7 @@ public class UsuarioController {
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> deleteUsuario(@RequestBody ObjectId id) {
+	public ResponseEntity<?> deleteUsuario(@RequestBody String id) {
 
 		try {
 			usuarioService.deleteUsuario(id);

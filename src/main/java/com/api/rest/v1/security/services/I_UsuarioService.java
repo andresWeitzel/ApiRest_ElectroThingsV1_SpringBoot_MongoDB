@@ -5,7 +5,7 @@ package com.api.rest.v1.security.services;
 
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -26,9 +26,9 @@ public interface I_UsuarioService {
 	
 	public abstract void addUsuario(Usuario usuario);
 
-	public abstract void updateUsuario(ObjectId id, SigninUsuarioDTO usuario);
+	public abstract void updateUsuario(String id, SigninUsuarioDTO usuario);
 
-	public abstract void deleteUsuario(ObjectId id);
+	public abstract void deleteUsuario(String id);
 
 	public abstract Page<Usuario> getAllUsuario(Pageable pageable);
 
@@ -36,7 +36,7 @@ public interface I_UsuarioService {
 	// ============= MÉTODOS HTTP BÚSQUEDA =============
 	// ==================================================
 
-	public abstract Optional<Usuario> getById(ObjectId id);
+	public abstract Optional<Usuario> getById(String id);
 
 	public abstract Page<Usuario> getByNombre(String nombre, Pageable pageable);
 	

@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 import com.api.rest.v1.security.entities.Usuario;
 
 @Repository
-public interface I_UsuarioRepository extends MongoRepository<Usuario, ObjectId> {
+public interface I_UsuarioRepository extends MongoRepository<Usuario, String> {
 	
 	// ============= MÉTODOS DE BÚSQUEDA ===================
 	
 	@Query("{'id': ?0}")
-	Optional<Usuario> findById(ObjectId id);
+	Optional<Usuario> findById(String id);
 
 	@Query(value = "{'nombre': {$regex : ?0, $options: 'i'}}")
 	Page<Usuario> findByNombre(String nombre, Pageable pageable);

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.security.dto.SigninUsuarioDTO;
-import com.api.rest.v1.security.entities.Rol;
 import com.api.rest.v1.security.entities.Usuario;
 import com.api.rest.v1.security.enums.TipoRol;
 import com.api.rest.v1.security.exc.usuario.UsuarioIdMismatchException;
@@ -28,9 +27,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 
 	@Autowired
 	I_UsuarioRepository iUsuarioRepository;
-	
-	@Autowired
-	RolService rolService;
+
 
 	// =============== LOGS ====================
 	private static final Logger logger = org.apache.logging.log4j.LogManager
@@ -54,15 +51,15 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 				Usuario usuarioEncode = new Usuario(usuarioDTO.getNombre(), usuarioDTO.getUsername(),
 						new BCryptPasswordEncoder().encode(usuarioDTO.getPassword()), usuarioDTO.getEmail());
 
-				Set<Rol> roles = new HashSet<>();
+				Set<TipoRol> roles = new HashSet<>();
 
 				if (usuarioDTO.getRoles().contains("user")) {
-					roles.add(rolService.getByRol(TipoRol.ROLE_USER).get());
+					roles.add(TipoRol.ROLE_USER);
 				}
 
 				if (usuarioDTO.getRoles().contains("admin")) {
-					roles.add(rolService.getByRol(TipoRol.ROLE_ADMIN).get());
-					roles.add(rolService.getByRol(TipoRol.ROLE_USER).get());
+					roles.add(TipoRol.ROLE_ADMIN);
+					roles.add(TipoRol.ROLE_USER);
 				}
 
 				usuarioEncode.setRoles(roles);
@@ -111,7 +108,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== UPDATE =====
 	// ==================
 	@Override
-	public void updateUsuario(ObjectId id, SigninUsuarioDTO usuarioDTO) {
+	public void updateUsuario(String id, SigninUsuarioDTO usuarioDTO) {
 		try {
 			if (usuarioDTO == null) {
 				logger.error("ERROR updateUsuario : EL USUARIO " + usuarioDTO + " ES NULO!!");
@@ -131,15 +128,15 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 				Usuario usuarioEncode = new Usuario(id, usuarioDTO.getNombre(), usuarioDTO.getUsername(),
 						new BCryptPasswordEncoder().encode(usuarioDTO.getPassword()), usuarioDTO.getEmail());
 
-				Set<Rol> roles = new HashSet<>();
+				Set<TipoRol> roles = new HashSet<>();
 
 				if (usuarioDTO.getRoles().contains("user")) {
-					roles.add(rolService.getByRol(TipoRol.ROLE_USER).get());
+					roles.add(TipoRol.ROLE_USER);
 				}
 
 				if (usuarioDTO.getRoles().contains("admin")) {
-					roles.add(rolService.getByRol(TipoRol.ROLE_ADMIN).get());
-					roles.add(rolService.getByRol(TipoRol.ROLE_USER).get());
+					roles.add(TipoRol.ROLE_ADMIN);
+					roles.add(TipoRol.ROLE_USER);
 				}
 
 				usuarioEncode.setRoles(roles);
@@ -159,7 +156,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== DELETE =====
 	// ==================
 	@Override
-	public void deleteUsuario(ObjectId id) {
+	public void deleteUsuario(String id) {
 		try {
 			Optional<Usuario> usuario = iUsuarioRepository.findById(id);
 
@@ -209,7 +206,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	// ===== GET BY ID =====
 	// =====================
 	@Override
-	public Optional<Usuario> getById(ObjectId id) {
+	public Optional<Usuario> getById(String id) {
 		try {
 			Optional<Usuario> usuario = iUsuarioRepository.findById(id);
 

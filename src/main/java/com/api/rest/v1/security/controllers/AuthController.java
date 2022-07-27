@@ -26,11 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.api.rest.v1.security.dto.JwtDTO;
 import com.api.rest.v1.security.dto.LoginUsuarioDTO;
 import com.api.rest.v1.security.dto.SigninUsuarioDTO;
-import com.api.rest.v1.security.entities.Rol;
 import com.api.rest.v1.security.entities.Usuario;
 import com.api.rest.v1.security.enums.TipoRol;
 import com.api.rest.v1.security.jwt.JwtProvider;
-import com.api.rest.v1.security.services.RolService;
 import com.api.rest.v1.security.services.UsuarioServiceImpl;
 
 
@@ -49,9 +47,6 @@ public class AuthController {
 
 	@Autowired
 	UsuarioServiceImpl usuarioServiceImpl;
-
-	@Autowired
-	RolService rolService;
 
 	@Autowired
 	JwtProvider jwtProvider;
@@ -84,17 +79,17 @@ public class AuthController {
 		Usuario usuario = new Usuario(signinUsuario.getNombre(), signinUsuario.getUsername()
 				, passwordEncoder.encode(signinUsuario.getPassword()),signinUsuario.getEmail());
 		
-		Set<Rol> roles = new HashSet<>();
+		Set<TipoRol> roles = new HashSet<>();
 		
 		if(signinUsuario.getRoles().contains("user") 
 				|| signinUsuario.getRoles().contains("admin") 
 				|| signinUsuario.getRoles().contains("")) {
     		
-    		roles.add(rolService.getByRol(TipoRol.ROLE_USER).get());
+    		roles.add(TipoRol.ROLE_USER);
     	}
 
 		if (signinUsuario.getRoles().contains("admin")) {
-			roles.add(rolService.getByRol(TipoRol.ROLE_ADMIN).get());
+			roles.add(TipoRol.ROLE_ADMIN);
 		}
 			
 		usuario.setRoles(roles);
@@ -121,8 +116,8 @@ public class AuthController {
 
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-		//JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-		JwtDTO jwtDto = new JwtDTO(jwt);
+		JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+		
 
 		return new ResponseEntity(jwtDto, HttpStatus.OK);
 	}

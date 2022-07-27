@@ -47,9 +47,13 @@ public class UsuarioDetails implements UserDetails{
      * @return
      */
     public static UsuarioDetails build(Usuario usuario){
-        List<GrantedAuthority> authorities =
-                usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
-                .getRol().name())).collect(Collectors.toList());
+        
+    	
+    	
+    	List<GrantedAuthority> authorities =
+                usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.name())).collect(Collectors.toList());
+        
+        
         return new UsuarioDetails(usuario.getNombre(), usuario.getApellido(), usuario.getUsername(), usuario.getPassword(), usuario.getEmail(), authorities);
     }
 

@@ -1,6 +1,6 @@
 package com.api.rest.v1.services.productos;
 
-import org.bson.types.ObjectId;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,9 +21,9 @@ public interface I_ProductoService {
 
 	public abstract void addProducto(ProductoEntity producto);
 
-	public abstract void updateProducto(ObjectId id ,ProductoEntity producto);
+	public abstract void updateProducto(String id ,ProductoEntity producto);
 
-	public abstract void deleteProducto(ObjectId id);
+	public abstract void deleteProducto(String id);
 
 	public abstract Page<ProductoEntity> getAllProductos(Pageable pageable);
 
@@ -31,7 +31,7 @@ public interface I_ProductoService {
 	// ============= MÉTODOS HTTP BÚSQUEDA =============
 	// ==================================================
 
-	public abstract ProductoEntity getById(ObjectId id);
+	public abstract ProductoEntity getById(String id);
 
 	public abstract Page<ProductoEntity> getByCodigo(String codigo, Pageable pageable);
 

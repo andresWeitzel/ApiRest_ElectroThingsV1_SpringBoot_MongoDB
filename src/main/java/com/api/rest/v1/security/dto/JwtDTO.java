@@ -18,13 +18,21 @@ public class JwtDTO {
     private String username;
     private Collection<? extends GrantedAuthority> authorities;
 
+
+    
+    public JwtDTO(String token) {
+        this.token = token;
+    }
+    
+    
+    public JwtDTO(String token, String username) {
+        this.token = token;
+        this.username = username;
+    }
+    
     public JwtDTO(String token, String username, Collection<? extends GrantedAuthority> authorities) {
         this.token = token;
         this.username = username;
         this.authorities = authorities;
-    }
-    
-    public JwtDTO(String token) {
-        this.token = token;
     }
 }

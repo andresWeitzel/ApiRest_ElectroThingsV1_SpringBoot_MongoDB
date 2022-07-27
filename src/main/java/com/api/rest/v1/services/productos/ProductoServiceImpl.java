@@ -51,10 +51,10 @@ public class ProductoServiceImpl implements I_ProductoService {
 			if (producto == null) {
 				logger.error("ERROR addProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
-			} else if( producto.getCodigo() == "" || producto.getImagen() == ""
+			} else if( producto.getCodigo() == "" 
 					|| producto.getNombre() == "" || producto.getMarca() == "" 
 					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
-					|| producto.getPrecio() == 0.0 || producto.getHojaDatos() == ""
+					|| producto.getPrecio() == 0.0 
 					|| producto.getStock() == 0.0 || producto.getFecha() == ""
 					) {
 				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
@@ -70,7 +70,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 			}
 		} catch (Exception e) {
 			logger.error("ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!!");
-			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO ", e, false, true);
+			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO. EL CÓDIGO Y NOMBRE NO PUEDEN REPETIRSE! ", e, false, true);
 		}
 
 	}
@@ -79,17 +79,17 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== UPDATE =====
 	// ==================
 	@Override
-	public void updateProducto(ObjectId id ,ProductoEntity producto) {
+	public void updateProducto(String id ,ProductoEntity producto) {
 		try {
 
 			if (producto == null) {
 				logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
 
-			} else if( producto.getCodigo() == "" || producto.getImagen() == ""
+			} else if( producto.getCodigo() == "" 
 					|| producto.getNombre() == "" || producto.getMarca() == "" 
 					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
-					|| producto.getPrecio() == 0 || producto.getHojaDatos() == ""
+					|| producto.getPrecio() == 0 
 					|| producto.getStock() == 0 || producto.getFecha() == ""
 					) {
 				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
@@ -122,7 +122,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 			}
 		} catch (Exception e) {
 			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!");
-			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO ", e, false, true);
+			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. EL CÓDIGO Y NOMBRE NO PUEDEN REPETIRSE! ", e, false, true);
 		}
 	}
 
@@ -130,7 +130,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== DELETE =====
 	// ==================
 	@Override
-	public void deleteProducto(ObjectId id) {
+	public void deleteProducto(String id) {
 		try {
 			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
 
@@ -159,7 +159,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 		try {
 
 			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findAll(pageable);
-
+		
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty()) {
 				logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS!!");
@@ -183,7 +183,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== GET BY ID =====
 	// =====================
 	@Override
-	public ProductoEntity getById(ObjectId id) {
+	public ProductoEntity getById(String id) {
 		try {
 			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
 
