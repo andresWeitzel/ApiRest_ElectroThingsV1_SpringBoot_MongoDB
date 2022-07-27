@@ -10,7 +10,6 @@
 * También se desarrollan los métodos de búsquedas independientes de tipo Like para todos los campos, tanto de usuarios como productos.
 * Los objetos de tipo getBy se manipulan como paginados, salvo los getById y Optional que se requiere un response por objeto y no una E.D como de tipo lista, stream, etc.
 * Entre Otros.
-
 * Se pone a disposición todos los recursos anteriores para productos y usuarios.
 
 </br>
@@ -18,40 +17,43 @@
 * Repositorio AppTiendaElectronica : https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB
 * Repositorio db_ElectroThings : https://github.com/andresWeitzel/db_ElectroThings_MongoDB
 
+</br>
+
+Documentación Gráfica de algunos Recursos la Api.
 
 </br>
 
-### Documentación con Swagger-UI `producto-controller`
+#### Documentación con Swagger-UI `producto-controller`
  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/productosController.png" />
  
- ### Listado de Productos Paginados
+ #### Listado de Productos Paginados
  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAll.png" />
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAllResponse.png" />
 
-  ### Listado de Productos o Producto Paginado/s por Fecha
+  #### Listado de Productos o Producto Paginado/s por Fecha
    <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png" />
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png" />
   
- ### Inserción de un Producto Método Post
+ #### Inserción de un Producto Método Post
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png" />
   
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png" />
 
-  ### Búsqueda del Producto Insertado según su Código
+  #### Búsqueda del Producto Insertado según su Código
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png" />
     <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png" />
   
- ### Actualización de un Producto Método Put
+ #### Actualización de un Producto Método Put
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png" />
 <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/putResponse.png" />
 
-  ### Eliminación de un Producto Método Delete
+  #### Eliminación de un Producto Método Delete
   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/delete.png" />
     <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/deleteResponse.png" />
  
   
   
- ### Búsqueda del Producto Eliminado según su Id
+ #### Búsqueda del Producto Eliminado según su Id
    <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png" />
      <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png" />
 
