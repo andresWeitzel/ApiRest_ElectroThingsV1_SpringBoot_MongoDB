@@ -19,9 +19,8 @@
 
 </br>
 
-Documentación Gráfica de algunos Recursos la Api.
+### Documentación Gráfica de algunos Recursos la Api.
 
-</br>
 
 #### Documentación con Swagger-UI `producto-controller`
  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/productosController.png" />
