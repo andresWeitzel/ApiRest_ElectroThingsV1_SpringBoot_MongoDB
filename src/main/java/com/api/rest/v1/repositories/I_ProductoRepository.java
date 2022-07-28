@@ -25,8 +25,13 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	 * 
 	 *
 	 */
-	@Query("{'id': ?0}")
+	
+	
+	//==================== METODOS DE BUSQUEDA =======================
+	
+	//@Query("{'id': ?0}")
 	Optional<ProductoEntity> findById(String id);
+	
 
 	@Query(value = "{'codigo': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByCodigo(String codigo, Pageable pageable);
@@ -64,7 +69,17 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	Page<ProductoEntity> findByHora(String hora, Pageable pageable);
 	
 	
+	Page<ProductoEntity> findAll(Pageable pageable);
 	
+	
+	//Filtro personalizado fast match
+	@Query(value="{ $or : [ {'codigo': {$regex : ?0, $options: 'i'}}"
+			+ ",{'nombre': {$regex : ?0, $options: 'i'}}"
+			+ ",{'descripcion': {$regex : ?0, $options: 'i'}}"
+			+ ",{'categoria': {$regex : ?0, $options: 'i'}}"
+			+ ",{'marca': {$regex : ?0, $options: 'i'}} ] }")
+	Page<ProductoEntity> findAllFilter(String filtro,Pageable pageable);
+
 	
 
 }

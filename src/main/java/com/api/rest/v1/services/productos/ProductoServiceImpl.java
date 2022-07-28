@@ -79,14 +79,17 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== UPDATE =====
 	// ==================
 	@Override
-	public void updateProducto(String id ,ProductoEntity producto) {
+	public void updateProducto(ProductoEntity producto) {
 		try {
 
-			if (producto == null) {
+			Optional<ProductoEntity> productoDb = this.iProductoRepositoryMongo.findById(producto.getId());
+			
+			
+			if (productoDb.isEmpty() || !(productoDb.isPresent())) {
 				logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
 
-			} else if( producto.getCodigo() == "" 
+			}else if( producto.getCodigo() == "" 
 					|| producto.getNombre() == "" || producto.getMarca() == "" 
 					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
 					|| producto.getPrecio() == 0 
@@ -98,31 +101,31 @@ public class ProductoServiceImpl implements I_ProductoService {
 				
 			} else {
 
-				String codigo = producto.getCodigo();
-				String nombre = producto.getNombre();
-				String descripcion = producto.getDescripcion();
-				String categoria = producto.getCategoria();
-				String marca = producto.getMarca();
-				String imagen = producto.getImagen();
-				String hojaDatos = producto.getHojaDatos();
-				int stock = producto.getStock();
-				int precio = producto.getPrecio();
-				String fechaModif = fecha.format(formatoFecha);
-				String horaModif = hora.format(formatoHora);
-				
-				
-				
-				ProductoEntity nuevoProducto = new ProductoEntity(id, codigo, nombre, descripcion
-						, categoria, marca, imagen, hojaDatos, stock, precio, fechaModif, horaModif);
-		
+					ProductoEntity productoUpdate = productoDb.get();
+					
+					productoUpdate.setId(producto.getId());
+					productoUpdate.setCodigo(producto.getCodigo());
+					productoUpdate.setNombre(producto.getNombre());
+					productoUpdate.setDescripcion(producto.getDescripcion());
+					productoUpdate.setCategoria(producto.getCategoria());
+					productoUpdate.setMarca(producto.getMarca());
+					productoUpdate.setImagen(producto.getImagen());
+					productoUpdate.setHojaDatos(producto.getHojaDatos());
+					productoUpdate.setStock(producto.getStock());
+					productoUpdate.setPrecio(producto.getPrecio());
+					productoUpdate.setFecha(fecha.format(formatoFecha));
+					productoUpdate.setHora(hora.format(formatoHora));
+					
 
-				iProductoRepositoryMongo.save(nuevoProducto);
+					iProductoRepositoryMongo.save(productoUpdate);
+					
+					logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO  " + productoUpdate);
 
-				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO CON EL ID " + nuevoProducto.getId());
+	
 			}
 		} catch (Exception e) {
 			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!");
-			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. EL CÓDIGO Y NOMBRE NO PUEDEN REPETIRSE! ", e, false, true);
+			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. EL CÓDIGO Y NOMBRE NO PUEDEN REPETIRSE! ", e, true, true);
 		}
 	}
 
@@ -132,10 +135,12 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public void deleteProducto(String id) {
 		try {
-			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
+			
+	
+			Optional<ProductoEntity> productoDb = iProductoRepositoryMongo.findById(id);
 
 			// Si esta vacio es nulo
-			if (producto.isEmpty()) {
+			if (productoDb.isEmpty() || !(productoDb.isPresent())) {
 				logger.error("ERROR deleteProducto : EL PRODUCTO CON EL ID " + id + " NO EXISTE!!");
 				throw new ProductoIdMismatchException("EL PRODUCTO CON EL ID NO EXISTE EN LA DB");
 			} else {
@@ -172,6 +177,33 @@ public class ProductoServiceImpl implements I_ProductoService {
 		} catch (Exception e) {
 			logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS. CAUSADO POR " + e);
 			throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS ", e);
+		}
+	}
+	
+	
+	
+	// ========================
+	// ===== GET ALL FILTER====
+	// ========================
+	// ------- LISTADO PAGINADO CON FILTRO ---------
+	@Override
+	public Page<ProductoEntity> getAllProductosFilter(String filtro, Pageable pageable) {
+		try {
+
+			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findAllFilter(filtro, pageable);
+		
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty()) {
+				logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS!!");
+				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS FILTRADOS");
+			} else {
+				return productosPaginados;
+
+			}
+
+		} catch (Exception e) {
+			logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS. CAUSADO POR " + e);
+			throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS FILTRADOS ", e);
 		}
 	}
 

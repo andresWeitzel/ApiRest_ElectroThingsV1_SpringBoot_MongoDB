@@ -72,11 +72,11 @@ public class ProductoController {
 			@ApiResponse(responseCode = "400", description = "No se pudo Actualizar el Producto. Comprobar la Solicitud", content = @Content),
 			@ApiResponse(responseCode = "404", description = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
 			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> updateProducto(@PathVariable String id, @RequestBody ProductoEntity producto) {
+	public ResponseEntity<?> updateProducto( @RequestBody ProductoEntity producto) {
 		try {
-			iProductoService.updateProducto(id, producto);
+			iProductoService.updateProducto(producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -121,6 +121,26 @@ public class ProductoController {
 	@GetMapping("/listado")
 	public Page<ProductoEntity> getAll(Pageable pageable) {
 		return iProductoService.getAllProductos(pageable);
+	}
+	
+	
+	
+
+	// =========================
+	// ===== GET ALL FILTER =====
+	// ==========================
+	// ---LISTADO PAGINADO FILTROS---
+	@Operation(summary = "Listado Paginado de Productos Filtrados")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer el Listado de Productos. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/listado-filter/{filtro}")
+	public Page<ProductoEntity> getAllFilter(@PathVariable String filtro, Pageable pageable) {
+		return iProductoService.getAllProductosFilter(filtro, pageable);
 	}
 
 	// ==================================================
