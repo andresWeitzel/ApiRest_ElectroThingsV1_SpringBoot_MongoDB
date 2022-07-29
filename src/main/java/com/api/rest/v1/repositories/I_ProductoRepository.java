@@ -2,14 +2,16 @@ package com.api.rest.v1.repositories;
 
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.api.rest.v1.entities.ProductoEntity;
 
+@Repository
 public interface I_ProductoRepository extends MongoRepository<ProductoEntity, String> {
 
 	/*
@@ -29,7 +31,7 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	
 	//==================== METODOS DE BUSQUEDA =======================
 	
-	//@Query("{'id': ?0}")
+	@Query("{'id': ?0}")
 	Optional<ProductoEntity> findById(String id);
 	
 
@@ -79,6 +81,10 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 			+ ",{'categoria': {$regex : ?0, $options: 'i'}}"
 			+ ",{'marca': {$regex : ?0, $options: 'i'}} ] }")
 	Page<ProductoEntity> findAllFilter(String filtro,Pageable pageable);
+	
+	
+	
+
 
 	
 

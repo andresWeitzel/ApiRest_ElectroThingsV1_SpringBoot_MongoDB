@@ -24,11 +24,14 @@ import com.api.rest.v1.security.entities.Usuario;
 public class ProductoServiceImpl implements I_ProductoService {
 
 	@Autowired
-	I_ProductoRepository iProductoRepositoryMongo;
+	I_ProductoRepository iProductoRepository;
 
 	// =============== LOGS ====================
 	private static final Logger logger = org.apache.logging.log4j.LogManager
 			.getLogger(ProductoServiceImpl.class);
+	
+	
+	// ================ AUTOGENERATE ====================
 
 	// Fecha y Hora Formateado
 	LocalDate fecha = LocalDate.now();
@@ -52,25 +55,41 @@ public class ProductoServiceImpl implements I_ProductoService {
 				logger.error("ERROR addProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
 			} else if( producto.getCodigo() == "" 
-					|| producto.getNombre() == "" || producto.getMarca() == "" 
-					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
+					|| producto.getNombre() == "" 
+					|| producto.getMarca() == "" 
+					|| producto.getDescripcion() == "" 
+					|| producto.getCategoria() == "" 
 					|| producto.getPrecio() == 0.0 
-					|| producto.getStock() == 0.0 || producto.getFecha() == ""
+					|| producto.getStock() == 0.0 
 					) {
 				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
 						+ " NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
 				
+			//}else if( !(producto.getFecha().isEmpty()) || !(producto.getHora().isEmpty())){
+			//	logger.error("ERROR addProducto : LA FECHA/HORA DEL PRODUCTO " + producto 
+			//			+ " NO DEBEN INCLUIRSE. EL SISTEMA LO GESTIONA!!");
+			//	throw new ProductoNotFoundException("FECHA/HORA INCLUIDAS. EL SISTEMA GESTIONA ESTOS CAMPOS");
 			}else {
+				
+				System.out.println("\n PRODUCTO PRE:"+producto);
+				
+				String id = new ObjectId().toString();
+		
+
+				producto.setId(id);
 				producto.setFecha(fecha.format(formatoFecha));
 				producto.setHora(hora.format(formatoHora));
-				iProductoRepositoryMongo.save(producto);
+				
+				System.out.println("\n PRODUCTO MODIFICADO:"+producto);
+				
+				iProductoRepository.save(producto);
 
 				logger.info("SE HA INSERTADO CORRECTAMENTE EL PRODUCTO CON EL ID " + producto.getId());
 			}
 		} catch (Exception e) {
 			logger.error("ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!!");
-			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO. EL CÓDIGO Y NOMBRE NO PUEDEN REPETIRSE! ", e, false, true);
+			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO. ", e, false, true);
 		}
 
 	}
@@ -79,15 +98,24 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ===== UPDATE =====
 	// ==================
 	@Override
-	public void updateProducto(ProductoEntity producto) {
+	public void updateProducto(String id, ProductoEntity producto) {
 		try {
 
-			Optional<ProductoEntity> productoDb = this.iProductoRepositoryMongo.findById(producto.getId());
+			Optional<ProductoEntity> productoDb = this.iProductoRepository.findById(id);
 			
+			System.out.println(producto);
 			
-			if (productoDb.isEmpty() || !(productoDb.isPresent())) {
-				logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " ES NULO!!");
-				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
+			System.out.println(producto.getId());
+			
+			System.out.println(productoDb);
+			
+			if(id.isBlank() || id.isEmpty() || id==null) {
+				logger.error("ERROR updateProducto : EL ID  ES NULO O VACIO!!");
+				throw new ProductoNotFoundException("EL ID ES NULO O VACIO");
+			
+			}else if (productoDb.isEmpty()  || productoDb.get() == null) {
+				logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " ES NULO O VACIO!!");
+				throw new ProductoNotFoundException("EL PRODUCTO ES NULO O VACIO");
 
 			}else if( producto.getCodigo() == "" 
 					|| producto.getNombre() == "" || producto.getMarca() == "" 
@@ -103,7 +131,9 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 					ProductoEntity productoUpdate = productoDb.get();
 					
-					productoUpdate.setId(producto.getId());
+					System.out.println(productoUpdate);
+				
+					productoUpdate.setId(id);
 					productoUpdate.setCodigo(producto.getCodigo());
 					productoUpdate.setNombre(producto.getNombre());
 					productoUpdate.setDescripcion(producto.getDescripcion());
@@ -116,8 +146,10 @@ public class ProductoServiceImpl implements I_ProductoService {
 					productoUpdate.setFecha(fecha.format(formatoFecha));
 					productoUpdate.setHora(hora.format(formatoHora));
 					
-
-					iProductoRepositoryMongo.save(productoUpdate);
+					System.out.println(productoUpdate);
+					
+		
+					iProductoRepository.save(productoUpdate);
 					
 					logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO  " + productoUpdate);
 
@@ -125,7 +157,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 			}
 		} catch (Exception e) {
 			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!");
-			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. EL CÓDIGO Y NOMBRE NO PUEDEN REPETIRSE! ", e, true, true);
+			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. CÓDIGO/NOMBRE REPETIDO O PRODUCTO NO ENCONTRADO! ", e, true, true);
 		}
 	}
 
@@ -137,14 +169,14 @@ public class ProductoServiceImpl implements I_ProductoService {
 		try {
 			
 	
-			Optional<ProductoEntity> productoDb = iProductoRepositoryMongo.findById(id);
+			Optional<ProductoEntity> productoDb = iProductoRepository.findById(id);
 
 			// Si esta vacio es nulo
 			if (productoDb.isEmpty() || !(productoDb.isPresent())) {
 				logger.error("ERROR deleteProducto : EL PRODUCTO CON EL ID " + id + " NO EXISTE!!");
 				throw new ProductoIdMismatchException("EL PRODUCTO CON EL ID NO EXISTE EN LA DB");
 			} else {
-				iProductoRepositoryMongo.deleteById(id);
+				iProductoRepository.deleteById(id);
 
 				logger.info("SE HA ELIMINADO CORRECTAMENTE EL PRODUCTO CON EL ID " + id);
 			}
@@ -163,7 +195,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	public Page<ProductoEntity> getAllProductos(Pageable pageable) {
 		try {
 
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findAll(pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findAll(pageable);
 		
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty()) {
@@ -190,7 +222,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	public Page<ProductoEntity> getAllProductosFilter(String filtro, Pageable pageable) {
 		try {
 
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findAllFilter(filtro, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findAllFilter(filtro, pageable);
 		
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty()) {
@@ -217,14 +249,14 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public ProductoEntity getById(String id) {
 		try {
-			Optional<ProductoEntity> producto = iProductoRepositoryMongo.findById(id);
+			Optional<ProductoEntity> producto = iProductoRepository.findById(id);
 
 			// Si esta vacio es nulo
 			if (producto.isEmpty() || id == null) {
 				logger.error("ERROR getById : EL PRODUCTO CON EL ID " + id + " NO EXISTE!!");
 				throw new ProductoIdMismatchException("EL PRODUCTO CON EL ID NO EXISTE EN LA DB");
 			} else {
-				return iProductoRepositoryMongo.findById(id).orElseThrow(ProductoIdMismatchException::new);
+				return iProductoRepository.findById(id).orElseThrow(ProductoIdMismatchException::new);
 
 			}
 		} catch (Exception e) {
@@ -239,7 +271,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByCodigo(String codigo, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByCodigo(codigo, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByCodigo(codigo, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || codigo == " ") {
@@ -266,7 +298,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByNombre(String nombre, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByNombre(nombre, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByNombre(nombre, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || nombre == " ") {
@@ -293,7 +325,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByDescripcion(String descripcion, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByDescripcion(descripcion, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByDescripcion(descripcion, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || descripcion == " ") {
@@ -320,7 +352,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByCategoria(String categoria, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByCategoria(categoria, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByCategoria(categoria, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || categoria == " ") {
@@ -347,7 +379,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByMarca(String marca, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByMarca(marca, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByMarca(marca, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || marca == " ") {
@@ -376,7 +408,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByImagen(String imagen, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByImagen(imagen, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByImagen(imagen, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || imagen == " ") {
@@ -404,7 +436,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByHojaDatos(String hojaDatos, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByHojaDatos(hojaDatos, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByHojaDatos(hojaDatos, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || hojaDatos == " ") {
@@ -431,7 +463,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByStock(int stock, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByStock(stock, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStock(stock, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || stock < 0) {
@@ -460,7 +492,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 		
 		try {
 			
-		Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByPrecio(precio, pageable);
+		Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecio(precio, pageable);
 
 		// Si esta vacio es nulo
 		if (productosPaginados.isEmpty() || precio < 0) {
@@ -488,7 +520,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	public Page<ProductoEntity> getByFecha(String fecha, Pageable pageable) {
 		try {
 			
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByFecha(fecha, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByFecha(fecha, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || fecha == " ") {
@@ -516,7 +548,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	public Page<ProductoEntity> getByHora(String hora, Pageable pageable) {
 	try {
 			
-			Page<ProductoEntity> productosPaginados = iProductoRepositoryMongo.findByHora(hora, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByHora(hora, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || hora == " ") {

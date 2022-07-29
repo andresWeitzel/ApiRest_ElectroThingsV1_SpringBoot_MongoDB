@@ -11,20 +11,27 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 
 @Data
-@AllArgsConstructor
+//@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Document(collection="productos")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ProductoEntity {
 
+	//@Field("_id") Porque es que el repository de mongo no toma valido el id con esta referencia???
+	
 	@Id
-	@Field("_id")
+	//@Field("_id")
 	private String id;
 	
 	@Field("codigo")
@@ -54,11 +61,11 @@ public class ProductoEntity {
 	private String marca;
 	
 	@Field("imagen")
-	@NotNull(message="La Imagen no puede ser null")
+	//@NotNull(message="La Imagen no puede ser null")
 	private String imagen;
 	
 	@Field("hoja_datos")
-	@NotNull(message="La Hoja De Datos no puede ser null")
+	//@NotNull(message="La Hoja De Datos no puede ser null")
 	private String hojaDatos;
 	
 	@Field("stock")

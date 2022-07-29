@@ -21,7 +21,7 @@ public interface I_ProductoService {
 
 	public abstract void addProducto(ProductoEntity producto);
 
-	public abstract void updateProducto(ProductoEntity producto);
+	public abstract void updateProducto(String id, ProductoEntity producto);
 
 	public abstract void deleteProducto(String id);
 
