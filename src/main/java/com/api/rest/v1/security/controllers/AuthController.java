@@ -2,6 +2,7 @@ package com.api.rest.v1.security.controllers;
 
 
 
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -60,11 +61,11 @@ public class AuthController {
 		}
 
 		if (usuarioServiceImpl.existsByUsername(signinUsuario.getUsername())) {
-			return new ResponseEntity("El Username del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("El Username del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
 		}
 
 		if (usuarioServiceImpl.existsByEmail(signinUsuario.getEmail())) {
-			 return new ResponseEntity("El Email del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
+			 return new ResponseEntity<String>("El Email del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
 		}
 		
 		if(signinUsuario.getNombre().isBlank() 
@@ -73,7 +74,7 @@ public class AuthController {
 				|| signinUsuario.getPassword().isBlank()
 				|| signinUsuario.getEmail().isBlank())
 		{
-			return new ResponseEntity("No se permiten campos vacios", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("No se permiten campos vacios", HttpStatus.BAD_REQUEST);
 		}
 			
 		Usuario usuario = new Usuario(signinUsuario.getNombre(), signinUsuario.getUsername()
@@ -96,14 +97,18 @@ public class AuthController {
 		
 		usuarioServiceImpl.addUsuario(usuario);
 		
-		return new ResponseEntity("Usuario Insertado Correctamente", HttpStatus.CREATED);
+		return new ResponseEntity<String>("Usuario Insertado Correctamente", HttpStatus.CREATED);
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<JwtDTO> login(@Valid @RequestBody LoginUsuarioDTO loginUsuario, BindingResult bindingResult) {
+	public ResponseEntity<?> login(@Valid @RequestBody LoginUsuarioDTO loginUsuario, BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity("Campos Inválidos", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("Campos Inválidos", HttpStatus.BAD_REQUEST);
+		}
+		
+		if (!(usuarioServiceImpl.existsByUsername(loginUsuario.getUsername())) ) {
+			return new ResponseEntity<String>("El Usuario no existe. Comprobar username y password!!", HttpStatus.BAD_REQUEST);
 		}
 			
 
@@ -119,7 +124,22 @@ public class AuthController {
 		JwtDTO jwtDto = new JwtDTO(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 		
 
-		return new ResponseEntity(jwtDto, HttpStatus.OK);
+		return new ResponseEntity<JwtDTO>(jwtDto, HttpStatus.OK);
 	}
+	
+	
+	
+	@PostMapping("/refresh-token")
+	public ResponseEntity<?> refreshToken(@RequestBody JwtDTO jwtDto) throws ParseException {
+		
+		String token = jwtProvider.refreshToken(jwtDto);
+		
+		JwtDTO jwtRefresh = new JwtDTO(token);
+		
+		return new ResponseEntity<JwtDTO> (jwtRefresh, HttpStatus.OK);
+		
+		
+	}
+	
 
 }

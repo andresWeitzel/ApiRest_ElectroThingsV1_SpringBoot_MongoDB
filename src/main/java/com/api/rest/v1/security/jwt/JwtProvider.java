@@ -1,16 +1,16 @@
 package com.api.rest.v1.security.jwt;
 
 
+import com.api.rest.v1.security.dto.JwtDTO;
 import com.api.rest.v1.security.entities.UsuarioDetails;
 
-
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
@@ -24,17 +24,21 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
 
+import com.nimbusds.jwt.JWT;
+import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.JWTParser;
+
+
 
 @Component
 public class JwtProvider {
 	
 	 private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-	    @Value("${jwt.secret}")
-	    private String secret;
+	    private String secret="secret";
 
-	    @Value("${jwt.expiration}")
-	    private int expiration;
+	    //private int expiration= 300000 * 1;//5min * x --> 5min
+	    private int expiration= 300000 * 10;
 
 	    public String generateToken(Authentication authentication){
 	    	
@@ -49,7 +53,7 @@ public class JwtProvider {
 	        		.setSubject(usuarioPrincipal.getUsername())
 	        		 .claim("roles", roles)
 	                .setIssuedAt(new Date())
-	                .setExpiration(new Date(new Date().getTime() + expiration * 1000))
+	                .setExpiration(new Date(new Date().getTime() + expiration))
 	                .signWith(SignatureAlgorithm.HS512, secret.getBytes())
 	                .compact();
 	    }
@@ -75,5 +79,42 @@ public class JwtProvider {
 	        }
 	        return false;
 	    }
+	    
+	    
+	    
+	    public String refreshToken(JwtDTO jwtDto) throws ParseException {
+	    	
+	    	try {
+	        	Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(jwtDto.getToken());
+
+	    	}catch(ExpiredJwtException e) {
+	        	
+	    	
+	    	JWT jwt = JWTParser.parse(jwtDto.getToken());
+	    	
+	    	JWTClaimsSet claims = jwt.getJWTClaimsSet();
+	    	
+	    	String username = claims.getSubject();
+	    	
+	    	//roles pasado desde el .claim de Jwts.builder
+	    	List<String> roles = (List<String>)claims.getClaim("roles");
+	    	
+	    	//actualizamos un nuevo token
+	    	 return Jwts.builder()
+	         		.setSubject(username)
+	         	    .claim("roles", roles)
+	                 .setIssuedAt(new Date())
+	                 .setExpiration(new Date(new Date().getTime() + expiration))
+	                 .signWith(SignatureAlgorithm.HS512, secret.getBytes())
+	                 .compact();
+	    }
+	    	
+	    	return null;
+	    	
+	    }
+	    
+
+	    
+	    
 
 }
