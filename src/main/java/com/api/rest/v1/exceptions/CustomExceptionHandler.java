@@ -20,7 +20,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler{
 	@ExceptionHandler({ProductoNotFoundException.class})
     protected ResponseEntity<Object> ProductoHandleNotFoundException(Exception ex, WebRequest request)
     {
-        return handleExceptionInternal(ex, "Producto No Encontrado ",new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+        return handleExceptionInternal(ex, "Producto No Encontrado",new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 	
 	

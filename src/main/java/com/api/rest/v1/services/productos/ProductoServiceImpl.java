@@ -575,7 +575,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 		// ===== GET =====
 		// ===============
 		// ------ STOCK POR MARCA ------
-		public int getStockPorMarca(Page<ProductoEntity> listComp, String marca) {
+		public int getStockByMarca(Page<ProductoEntity> listComp, String marca) {
 
 			try {
 				return (int) (listComp.stream().filter(obj -> obj.getMarca().equalsIgnoreCase(marca))
@@ -583,6 +583,22 @@ public class ProductoServiceImpl implements I_ProductoService {
 			} catch (Exception e) {
 			    logger.error("ERROR getStockPorMarca : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS CON EL STOCK POR MARCA SOLICITADO. CAUSADO POR "+e);
 				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS CON EL STOCK POR MARCA SOLICITADO ", e);
+			}
+			
+		}
+		
+		// ===============
+		// ===== GET =====
+		// ===============
+		// ------ STOCK POR CATEGORIA ------
+		public int getStockByCateg(Page<ProductoEntity> listComp, String categoria) {
+
+			try {
+				return (int) (listComp.stream().filter(obj -> obj.getCategoria().equalsIgnoreCase(categoria))
+						.mapToInt(obj -> obj.getStock()).sum());	
+			} catch (Exception e) {
+			    logger.error("ERROR getStockPorMarca : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS CON EL STOCK POR CATEGORIA SOLICITADO. CAUSADO POR "+e);
+				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS CON EL STOCK POR CATEGORIA SOLICITADO ", e);
 			}
 			
 		}

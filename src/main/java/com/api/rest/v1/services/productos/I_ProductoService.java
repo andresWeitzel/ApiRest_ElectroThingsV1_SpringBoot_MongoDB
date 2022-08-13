@@ -62,6 +62,9 @@ public interface I_ProductoService {
 	// ============= MÉTODOS GRÁFICO =============
 	// ==================================================
 
-	public int getStockPorMarca(Page<ProductoEntity> listComp, String marca);
+	public int getStockByMarca(Page<ProductoEntity> listComp, String marca);
+	
+	
+	public int getStockByCateg(Page<ProductoEntity> listComp, String categoria);
 
 }

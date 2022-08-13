@@ -389,20 +389,20 @@ public class ProductoController {
 		// ------------- STOCK POR MARCA ------------------
 
 		// MARCA GENERICA
-		int stockGener = iProductoService.getStockPorMarca(listProd, gener);
-		int stockHp = iProductoService.getStockPorMarca(listProd, hp);
-		int stockSams = iProductoService.getStockPorMarca(listProd, sams);
-		int stockAsus = iProductoService.getStockPorMarca(listProd, asus);
-		int stockHukio = iProductoService.getStockPorMarca(listProd, hukio);
-		int stockXperia = iProductoService.getStockPorMarca(listProd, xperia);
-		int stockArd = iProductoService.getStockPorMarca(listProd, ard);
-		int stockCelet = iProductoService.getStockPorMarca(listProd, celet);
-		int stockCisc = iProductoService.getStockPorMarca(listProd, cisc);
-		int stockLora = iProductoService.getStockPorMarca(listProd, lora);
-		int stockNulib = iProductoService.getStockPorMarca(listProd, nulib);
-		int stockJuui = iProductoService.getStockPorMarca(listProd, juui);
-		int stockApple = iProductoService.getStockPorMarca(listProd, apple);
-		int stockGezat = iProductoService.getStockPorMarca(listProd, gezat);
+		int stockGener = iProductoService.getStockByMarca(listProd, gener);
+		int stockHp = iProductoService.getStockByMarca(listProd, hp);
+		int stockSams = iProductoService.getStockByMarca(listProd, sams);
+		int stockAsus = iProductoService.getStockByMarca(listProd, asus);
+		int stockHukio = iProductoService.getStockByMarca(listProd, hukio);
+		int stockXperia = iProductoService.getStockByMarca(listProd, xperia);
+		int stockArd = iProductoService.getStockByMarca(listProd, ard);
+		int stockCelet = iProductoService.getStockByMarca(listProd, celet);
+		int stockCisc = iProductoService.getStockByMarca(listProd, cisc);
+		int stockLora = iProductoService.getStockByMarca(listProd, lora);
+		int stockNulib = iProductoService.getStockByMarca(listProd, nulib);
+		int stockJuui = iProductoService.getStockByMarca(listProd, juui);
+		int stockApple = iProductoService.getStockByMarca(listProd, apple);
+		int stockGezat = iProductoService.getStockByMarca(listProd, gezat);
 
 		// --------- SET DE STOCK POR CATEGORIA ------------
 
@@ -427,4 +427,33 @@ public class ProductoController {
 
 	}
 
+	
+	// ========================================
+		// ============= GRÁFICOS ==============
+		// ========================================
+
+		// ---LISTADO DE PRODUCTOS O PRODUCTO POR HORA---
+		@Operation(summary = "Diccionario de Productos en relación al Stock y Marca")
+		@ApiResponses(value = {
+				@ApiResponse(responseCode = "200", description = "Se ha Traído el Diccionario de Productos en relación al Stock y Marca Correctamente", content = {
+						@Content(mediaType = "application/json") }),
+				@ApiResponse(responseCode = "400", description = "No se pudo traer  el  Diccionario de Productos en relación al Stock y Marca. Comprobar la Solicitud", content = @Content),
+				@ApiResponse(responseCode = "404", description = "El Listado de Productos  Diccionario de Productos en relación al Stock y Marca no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+				@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+
+		@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+		@GetMapping("/stock-categoria/{filtro}")
+		public ResponseEntity<?> stockCateg(@PathVariable("filtro") String filtro,Pageable pageable) {
+
+			Page<ProductoEntity> listProd = iProductoService.getByCategoria(filtro,pageable);
+
+
+			// STOCK POR CATEGORIA
+			int stock = iProductoService.getStockByCateg(listProd, filtro);
+
+
+
+			return new ResponseEntity<Integer>(stock, HttpStatus.OK);
+
+		}
 }
