@@ -483,6 +483,34 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock, e);
 		}
 	}
+	
+
+	// ===============================
+	// ===== GET BY STOCK FILTER======
+	// ===============================
+	@Override
+	public Page<ProductoEntity> getByStockFilter(int stock, Pageable pageable) {
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStockFilter(stock, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || stock < 0) {
+				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByStockFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock, e);
+		}
+	}
 
 	// ==========================
 	// ===== GET BY PRECIO =====
@@ -507,6 +535,35 @@ public class ProductoServiceImpl implements I_ProductoService {
 	{
 		logger.error(
 				"ERROR getByPrecio : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
+						+ e);
+		throw new ProductoNotFoundException(
+				"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
+	}
+	}
+
+	// ================================
+	// ===== GET BY PRECIO FILTER =====
+	// ================================
+	@Override
+	public Page<ProductoEntity> getByPrecioFilter(int precio, Pageable pageable) {
+		
+		try {
+			
+		Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecioFilter(precio, pageable);
+
+		// Si esta vacio es nulo
+		if (productosPaginados.isEmpty() || precio < 0) {
+			logger.error("ERROR getByPrecioFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
+					+ " NO EXISTE!!");
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
+		} else {
+			return productosPaginados;
+		}
+	}catch(Exception e)
+	{
+		logger.error(
+				"ERROR getByPrecioFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
 						+ e);
 		throw new ProductoNotFoundException(
 				"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);

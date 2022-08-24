@@ -299,6 +299,23 @@ public class ProductoController {
 	public Page<ProductoEntity> getByStock(@PathVariable("stock") int stock, Pageable pageable) {
 		return iProductoService.getByStock(stock, pageable);
 	}
+	
+	// =============================
+	// ===== GET BY STOCK FILTER ===
+	// =============================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR STOCK CON  FILTRO---
+	@Operation(summary = "Listado de Productos o Producto según su Stock con Filtro")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su STOCK Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su STOCK. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su STOCK no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/stock-filter/{stock}")
+	public Page<ProductoEntity> getByStockFilter(@PathVariable("stock") int stock, Pageable pageable) {
+		return iProductoService.getByStockFilter(stock, pageable);
+	}
 
 	// ======================
 	// ===== GET BY PRECIO ===
@@ -315,6 +332,23 @@ public class ProductoController {
 	@GetMapping("/precio/{precio}")
 	public Page<ProductoEntity> getByPrecio(@PathVariable("precio") int precio, Pageable pageable) {
 		return iProductoService.getByPrecio(precio, pageable);
+	}
+	
+	// =============================
+	// ===== GET BY PRECIO FILTER===
+	// =============================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO CON FILTRO---
+	@Operation(summary = "Listado de Productos o Producto según su Precio con Filtro")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Se ha Traído el Listado de Productos o Producto según su PRECIO Correctamente", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "No se pudo traer  el Listado de Productos o Producto según su PRECIO. Comprobar la Solicitud", content = @Content),
+			@ApiResponse(responseCode = "404", description = "El Listado de Productos o Producto según su PRECIO no está Disponible ya que el recurso pedido no existe. Comprobar solicitud", content = @Content),
+			@ApiResponse(responseCode = "500", description = "Se ha producido un error interno en el Servidor", content = @Content) })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/precio-filter/{precio}")
+	public Page<ProductoEntity> getByPrecioFilter(@PathVariable("precio") int precio, Pageable pageable) {
+		return iProductoService.getByPrecioFilter(precio, pageable);
 	}
 
 	// ======================

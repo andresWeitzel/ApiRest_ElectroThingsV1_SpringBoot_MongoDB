@@ -51,7 +51,11 @@ public interface I_ProductoService {
 
 	public abstract Page<ProductoEntity> getByStock(int stock, Pageable pageable);
 
+	public abstract Page<ProductoEntity> getByStockFilter(int stock, Pageable pageable);
+
 	public abstract Page<ProductoEntity> getByPrecio(int precio, Pageable pageable);
+	
+	public abstract Page<ProductoEntity> getByPrecioFilter(int precio, Pageable pageable);
 	
 	public abstract Page<ProductoEntity> getByFecha(String fecha, Pageable pageable);
 	

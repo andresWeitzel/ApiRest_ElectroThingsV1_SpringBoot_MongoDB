@@ -60,14 +60,24 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 
 	@Query("{'stock': ?0}")
 	Page<ProductoEntity> findByStock(int stock, Pageable pageable);
+	
+	@Query("{'stock': { $gt : 0, $lt : ?0}}")//min y max
+	Page<ProductoEntity> findByStockFilter(int stock, Pageable pageable);
+	 
+	
 
 	@Query("{'precio': ?0}")
 	Page<ProductoEntity> findByPrecio(int precio, Pageable pageable);
-
-	@Query("{'fecha': ?0}")
+	
+	
+	@Query("{'precio': { $gt : 0, $lt : ?0}}")//min y max
+	Page<ProductoEntity> findByPrecioFilter(int precio, Pageable pageable);
+	 
+	
+	@Query(value = "{'fecha': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByFecha(String fecha, Pageable pageable);
 
-	@Query("{'hora': ?0}")
+	@Query(value = "{'hora': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByHora(String hora, Pageable pageable);
 	
 	
