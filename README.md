@@ -125,14 +125,19 @@
 </br>
 
 ### Documentación No Oficial Recomendada
+#### Api Rest con MongoDB/SpringBoot
 * Api Rest Spring Boot Mongodb : https://www.youtube.com/watch?v=OtBukxJy4kg
 * Api Rest Guía Spring Boot Mongodb Codigo :https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/controllers/ProductController.java
 * Tutorial MongoDB con Spring Boot : https://www.mongodb.com/compatibility/spring-boot
+* Config Mongo y Spring Boot : https://hevodata.com/learn/spring-boot-mongodb-config/
+#### Spring Data MongoDB
 * Tutorial Spring Data MongoDB (01) : https://stackabuse.com/spring-data-mongodb-guide-to-the-aggregation-annotation/
 * Tutorial Spring Data MongoDB(02) :  https://blog.marcnuri.com/spring-data-mongodb-implementacion-de-un-repositorio-a-medida
-* Tutorial Uso de Queys en MongoDB : https://www.baeldung.com/queries-in-spring-data-mongodb
+#### Querys MongoRepository
+* Tutorial Uso de Querys en MongoDB : https://www.baeldung.com/queries-in-spring-data-mongodb
+* Tutorial Querys MongoRepository : https://stackabuse.com/spring-data-mongodb-guide-to-the-query-annotation/
 * Código Ejemplo genérico : https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/models/ProductDTO.java
-* Config Mongo y Spring Boot : https://hevodata.com/learn/spring-boot-mongodb-config/
+
 
 </br>
 
