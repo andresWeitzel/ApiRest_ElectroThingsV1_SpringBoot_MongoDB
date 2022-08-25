@@ -14,7 +14,8 @@
 
 </br>
 
-* Repositorio AppTiendaElectronica `migrado`: https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB
+* Repositorio AppTiendaElectronica Original : https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB 
+* Repositorio AppTiendaElectronica `(migrado)`: https://gitlab.com/andres-weitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB
 * Repositorio db_ElectroThings : https://github.com/andresWeitzel/db_ElectroThings_MongoDB
 
 </br>
