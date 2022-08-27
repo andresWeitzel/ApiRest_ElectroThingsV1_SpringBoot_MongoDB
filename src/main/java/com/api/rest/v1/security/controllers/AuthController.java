@@ -82,13 +82,13 @@ public class AuthController {
 			return new ResponseEntity<String>("El Email del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
 		}
 
-		if (signinUsuario.getNombre().isBlank() || signinUsuario.getUsername().isBlank()
+		if (signinUsuario.getNombre().isBlank() || signinUsuario.getApellido().isBlank() || signinUsuario.getUsername().isBlank()
 				|| signinUsuario.getPassword().isBlank() || signinUsuario.getPassword().isBlank()
 				|| signinUsuario.getEmail().isBlank()) {
 			return new ResponseEntity<String>("No se permiten campos vacios", HttpStatus.BAD_REQUEST);
 		}
 
-		Usuario usuario = new Usuario(signinUsuario.getNombre(), signinUsuario.getUsername(),
+		Usuario usuario = new Usuario(signinUsuario.getNombre(),signinUsuario.getApellido(), signinUsuario.getUsername(),
 				passwordEncoder.encode(signinUsuario.getPassword()), signinUsuario.getEmail());
 
 		Set<TipoRol> roles = new HashSet<>();

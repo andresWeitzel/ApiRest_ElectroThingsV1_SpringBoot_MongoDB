@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.apache.logging.log4j.Logger;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.api.rest.v1.entities.ProductoEntity;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.security.dto.SigninUsuarioDTO;
 import com.api.rest.v1.security.entities.Usuario;
@@ -46,8 +48,10 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 				logger.error("ERROR addUsuario : EL USUARIO " + usuarioDTO + " ES NULO!!");
 				throw new UsuarioNotFoundException("EL USUARIO ES NULO");
 			} else {
+				
+	
 
-				Usuario usuarioEncode = new Usuario(usuarioDTO.getNombre(), usuarioDTO.getUsername(),
+				Usuario usuarioEncode = new Usuario(usuarioDTO.getNombre(), usuarioDTO.getApellido() , usuarioDTO.getUsername(),
 						new BCryptPasswordEncoder().encode(usuarioDTO.getPassword()), usuarioDTO.getEmail());
 
 				Set<TipoRol> roles = new HashSet<>();
@@ -67,7 +71,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 			}
 
 		} catch (Exception e) {
-			logger.error("ERROR addUsuario : EL USUARIO " + usuarioDTO + " NO SE HA INSERTADO EN LA DB!!");
+			logger.error("ERROR addUsuario : EL USUARIO " + usuarioDTO + " NO SE HA INSERTADO EN LA DB!!CAUSADO POR "+e);
 			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL USUARIO ", e, false, true);
 		}
 
@@ -97,7 +101,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 			}
 
 		} catch (Exception e) {
-			logger.error("ERROR addUsuario : EL USUARIO " + usuario + " NO SE HA INSERTADO EN LA DB!!");
+			logger.error("ERROR addUsuario : EL USUARIO " + usuario + " NO SE HA INSERTADO EN LA DB!!CAUSADO POR "+e);
 			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL USUARIO ", e, false, true);
 		}
 
@@ -109,6 +113,8 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 	@Override
 	public void updateUsuario(String id, SigninUsuarioDTO usuarioDTO) {
 		try {
+			Optional<Usuario> usuarioDb = this.iUsuarioRepository.findById(id);
+			
 			if (usuarioDTO == null) {
 				logger.error("ERROR updateUsuario : EL USUARIO " + usuarioDTO + " ES NULO!!");
 				throw new UsuarioNotFoundException("EL USUARIO ES NULO");
@@ -124,8 +130,6 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 			
 			}else {
 				
-				Usuario usuarioEncode = new Usuario(id, usuarioDTO.getNombre(), usuarioDTO.getUsername(),
-						new BCryptPasswordEncoder().encode(usuarioDTO.getPassword()), usuarioDTO.getEmail());
 
 				Set<TipoRol> roles = new HashSet<>();
 
@@ -137,15 +141,32 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 					roles.add(TipoRol.ROLE_ADMIN);
 					roles.add(TipoRol.ROLE_USER);
 				}
-
-				usuarioEncode.setRoles(roles);
-
-				iUsuarioRepository.save(usuarioEncode);
 				
-				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL USUARIO " + usuarioDTO);
+				
+				Usuario usuarioUpdate = usuarioDb.get();
+				
+				
+				System.out.println("USUARIO PRE UPDATE "+usuarioUpdate);
+			
+				
+				usuarioUpdate.setId(id);
+				usuarioUpdate.setNombre(usuarioDTO.getNombre());
+				usuarioUpdate.setApellido(usuarioDTO.getApellido());
+				usuarioUpdate.setUsername(usuarioDTO.getUsername());
+				usuarioUpdate.setPassword(new BCryptPasswordEncoder().encode(usuarioDTO.getPassword()));
+				usuarioUpdate.setEmail(usuarioDTO.getEmail());
+				usuarioUpdate.setRoles(roles);
+				
+
+				System.out.println("USUARIO POST UPDATE "+usuarioUpdate);
+
+				
+				iUsuarioRepository.save(usuarioUpdate);
+				
+				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL NUEVO USUARIO " + usuarioUpdate);
 			}
 		} catch (Exception e) {
-			logger.error("ERROR updateUsuario : EL USUARIO " + usuarioDTO + " NO SE HA ACTUALIZADO EN LA DB!!");
+			logger.error("ERROR updateUsuario : EL USUARIO " + usuarioDTO + " NO SE HA ACTUALIZADO EN LA DB!!CAUSADO POR "+e);
 			throw new UsuarioNotFoundException("NO SE PUDO ACTUALIZAR EL USUARIO ", e, false, true);
 		}
 
@@ -167,7 +188,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 				logger.info("SE HA ELIMINADO CORRECTAMENTE EL USUARIO CON EL ID " + id);
 			}
 		} catch (Exception e) {
-			logger.error("ERROR deleteUsuario : EL USUARIO CON EL ID " + id + " NO SE HA ELIMINADO DE LA DB!!");
+			logger.error("ERROR deleteUsuario : EL USUARIO CON EL ID " + id + " NO SE HA ELIMINADO DE LA DB!!CAUSADO POR "+e);
 			throw new UsuarioNotFoundException("NO SE PUDO ELIMINAR EL USUARIO ", e, false, true);
 		}
 

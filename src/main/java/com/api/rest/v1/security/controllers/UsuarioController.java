@@ -109,7 +109,7 @@ public class UsuarioController {
 	})
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> deleteUsuario(@RequestBody String id) {
+	public ResponseEntity<?> deleteUsuario(@PathVariable("id") String id) {
 
 		try {
 			usuarioService.deleteUsuario(id);

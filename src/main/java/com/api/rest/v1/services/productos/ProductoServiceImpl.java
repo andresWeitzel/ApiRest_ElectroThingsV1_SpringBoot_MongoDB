@@ -58,27 +58,24 @@ public class ProductoServiceImpl implements I_ProductoService {
 					|| producto.getMarca() == "" 
 					|| producto.getDescripcion() == "" 
 					|| producto.getCategoria() == "" 
-					|| producto.getPrecio() == 0.0 
-					|| producto.getStock() == 0.0 
+					|| producto.getPrecio() == 0 
+					|| producto.getStock() == 0 
 					) {
 				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
 						+ " NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
-				
-			//}else if( !(producto.getFecha().isEmpty()) || !(producto.getHora().isEmpty())){
-			//	logger.error("ERROR addProducto : LA FECHA/HORA DEL PRODUCTO " + producto 
-			//			+ " NO DEBEN INCLUIRSE. EL SISTEMA LO GESTIONA!!");
-			//	throw new ProductoNotFoundException("FECHA/HORA INCLUIDAS. EL SISTEMA GESTIONA ESTOS CAMPOS");
 			}else {
 				
 				System.out.println("\n PRODUCTO PRE:"+producto);
 				
 				String id = new ObjectId().toString();
+				String fechaStr = String.valueOf(fecha.format(formatoFecha));
+				String horaStr = String.valueOf(hora.format(formatoHora));
 		
 
 				producto.setId(id);
-				producto.setFecha(fecha.format(formatoFecha));
-				producto.setHora(hora.format(formatoHora));
+				producto.setFecha(fechaStr);
+				producto.setHora(horaStr);
 				
 				System.out.println("\n PRODUCTO MODIFICADO:"+producto);
 				
@@ -87,7 +84,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 				logger.info("SE HA INSERTADO CORRECTAMENTE EL PRODUCTO CON EL ID " + producto.getId());
 			}
 		} catch (Exception e) {
-			logger.error("ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!!");
+			logger.error("ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!! CAUSADO POR "+e);
 			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO. ", e, false, true);
 		}
 
@@ -130,6 +127,9 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 					ProductoEntity productoUpdate = productoDb.get();
 					
+					String fechaStr = String.valueOf(fecha.format(formatoFecha));
+					String horaStr = String.valueOf(hora.format(formatoHora));
+					
 					System.out.println(productoUpdate);
 				
 					productoUpdate.setId(id);
@@ -142,8 +142,8 @@ public class ProductoServiceImpl implements I_ProductoService {
 					productoUpdate.setHojaDatos(producto.getHojaDatos());
 					productoUpdate.setStock(producto.getStock());
 					productoUpdate.setPrecio(producto.getPrecio());
-					productoUpdate.setFecha(fecha.format(formatoFecha));
-					productoUpdate.setHora(hora.format(formatoHora));
+					productoUpdate.setFecha(fechaStr);
+					productoUpdate.setHora(horaStr);
 					
 					System.out.println(productoUpdate);
 					
@@ -155,7 +155,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	
 			}
 		} catch (Exception e) {
-			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!");
+			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!CAUSADO POR "+e);
 			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. CÓDIGO/NOMBRE REPETIDO O PRODUCTO NO ENCONTRADO! ", e, true, true);
 		}
 	}
