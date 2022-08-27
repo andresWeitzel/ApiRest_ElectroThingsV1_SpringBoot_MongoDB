@@ -11,14 +11,13 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.api.rest.v1.entities.ProductoEntity;
 import com.api.rest.v1.exceptions.producto.ProductoIdMismatchException;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
-import com.api.rest.v1.security.entities.Usuario;
+
 
 @Service
 public class ProductoServiceImpl implements I_ProductoService {
@@ -625,45 +624,6 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora, e);
 		}
 	}
-	
-	// =============== MÉTODOS PARA GRAFICO ====================
-
-		// ===============
-		// ===== GET =====
-		// ===============
-		// ------ STOCK POR MARCA ------
-		public int getStockByMarca(Page<ProductoEntity> listComp, String marca) {
-
-			try {
-				return (int) (listComp.stream().filter(obj -> obj.getMarca().equalsIgnoreCase(marca))
-						.mapToInt(obj -> obj.getStock()).sum());	
-			} catch (Exception e) {
-			    logger.error("ERROR getStockPorMarca : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS CON EL STOCK POR MARCA SOLICITADO. CAUSADO POR "+e);
-				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS CON EL STOCK POR MARCA SOLICITADO ", e);
-			}
-			
-		}
-		
-		// ===============
-		// ===== GET =====
-		// ===============
-		// ------ STOCK POR CATEGORIA ------
-		public int getStockByCateg(Page<ProductoEntity> listComp, String categoria) {
-
-			try {
-				return (int) (listComp.stream().filter(obj -> obj.getCategoria().equalsIgnoreCase(categoria))
-						.mapToInt(obj -> obj.getStock()).sum());	
-			} catch (Exception e) {
-			    logger.error("ERROR getStockPorMarca : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS CON EL STOCK POR CATEGORIA SOLICITADO. CAUSADO POR "+e);
-				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS CON EL STOCK POR CATEGORIA SOLICITADO ", e);
-			}
-			
-		}
-	
-	
-	
-	
-	
 	
 	
 	

@@ -39,9 +39,20 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- SPRING BOOT TEST, EXCLUIMOS JUNIT4 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+
+		<!-- SPRING SECURITY TEST -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -60,13 +71,6 @@
 		</dependency>
 
 
-		<!-- SPRING SECURITY TEST -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- SPRING SECURITY -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -80,24 +84,24 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version>
 		</dependency>
-		
-			<!-- REFRESH TOKEN -->
+
+		<!-- REFRESH TOKEN -->
 		<!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
 		<dependency>
 			<groupId>com.nimbusds</groupId>
 			<artifactId>nimbus-jose-jwt</artifactId>
 			<version>9.22</version>
 		</dependency>
-		
-		
-			<!-- SWAGGER -->
+
+
+		<!-- SWAGGER -->
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
+
 		<!-- SWAGGER -->
 		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
 		<dependency>
@@ -105,8 +109,8 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>3.0.0</version>
 		</dependency>
-		
-		
+
+
 		<!-- CONVERTIR OBJETOS JAVA EN OBJETOS XML -->
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 		<dependency>
