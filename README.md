@@ -85,8 +85,31 @@
 ### Búsqueda del Producto Eliminado según su Id
     ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png)
     ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png)
-    
-  
+ 
+ 
+ 
+</br>
+
+### Prueba de Funcionalidad de la ApiRest
+
+
+### Login de Usuarios
+[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/01.00_Login.png)](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1) 
+
+
+### Signin de Usuarios y Refresh Token
+[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/01.01_SigninTokRefresh.png)](https://www.youtube.com/watch?v=mQGu5QntgQA&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=2) 
+
+### Comprobación Usuario Controller
+[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/02.00_UsuarioController.png)](https://www.youtube.com/watch?v=l32x3TX_Gcs&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=3) 
+
+### Operaciones de Búsqueda para Producto Controller
+[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/03.00_ProductoControllerGetBy.png)](https://www.youtube.com/watch?v=lBltAUMeMlw&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=4) 
+
+### Operaciones CRUD para Producto Controller
+[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/03.01_ProductoControllerCRUD.png)](https://www.youtube.com/watch?v=Pdulm99Qhnk&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=5) 
+
+</hr>
 
 </br>
 
