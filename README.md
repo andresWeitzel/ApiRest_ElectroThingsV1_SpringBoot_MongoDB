@@ -23,7 +23,7 @@
 
 </br>
 
-### EndPoints y Recursos. Vista Swagger UI
+## EndPoints y Recursos. Vista Swagger UI
 
 ### EndPoints
 * http://localhost:8098/api/v1/productos/
@@ -34,7 +34,7 @@
 
 </br>
 
-### Documentación Gráfica de algunos Recursos la Api.
+## Documentación Gráfica de algunos Recursos la Api.
 
 </br>
 
@@ -46,49 +46,46 @@
 
 ### Recursos por Endpoint
 
-#### Documentación con Swagger-UI `auth-controller`
+### Documentación con Swagger-UI `auth-controller`
 ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/authController.png)
 
-#### Documentación con Swagger-UI `producto-controller`
+### Documentación con Swagger-UI `producto-controller`
 ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/productosController.png)
 
-#### Documentación con Swagger-UI `usuario-controller`
+### Documentación con Swagger-UI `usuario-controller`
 ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/usuarioController.png)
 
-
- #### Listado de Productos Paginados
+### Listado de Productos Paginados
  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAll.png)
  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAllResponse.png)
 
 
-  #### Listado de Productos o Producto Paginado/s por Fecha
-   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png" />
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png" />
-  
- #### Inserción de un Producto Método Post
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png" />
-  
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png" />
-
-  #### Búsqueda del Producto Insertado según su Código
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png" />
-    <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png" />
-  
- #### Actualización de un Producto Método Put
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png" />
-<img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/putResponse.png" />
-
-  #### Eliminación de un Producto Método Delete
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/delete.png" />
-    <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/deleteResponse.png" />
- 
-  
-  
- #### Búsqueda del Producto Eliminado según su Id
-   <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png" />
-     <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png" />
+### Listado de Productos o Producto Paginado/s por Fecha
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png)
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png)
 
   
+### Inserción de un Producto Método Post
+  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png)
+  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png)
+
+### Búsqueda del Producto Insertado según su Código
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png)
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png)
+  
+### Actualización de un Producto Método Put
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png)
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/putResponse.png)
+  
+
+### Eliminación de un Producto Método Delete
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/delete.png)
+   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/deleteResponse.png)
+  
+### Búsqueda del Producto Eliminado según su Id
+    ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png)
+    ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png)
+    
   
 
 </br>
@@ -101,6 +98,9 @@
 | Spring Tool Suite 4 | 4.9.0  | IDE |
 | Spring Boot |   2.6.4  | Framework |
 | Spring Boot Data JPA  | 2.6.3 | Mapeo de objetos y persistencia en la db |
+| Spring Validation  | 2.7 | Anotations para Validaciones |
+| Spring Security  | 2.6.7 | Módulo de Seguridad de Spring |
+| Json Web Token  | 0.9.1 | Manejo de Token's de Seguridad |
 | Lombok | 1.18.22 | Automatización de Código | 
 | Open-Api y UI Swagger | 1.6.4 | Documentación de la Api | 
 | UI Swagger | 1.6.4 | Visualización y Gestión de la Api | 
@@ -135,6 +135,10 @@
 | ------------- | ------------- |
 | DAO | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
 | MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| DTO | Transferencia de objectos separando la capa de acceso a datos  |
+| Dependency Inyection | Uso de funcionalidades requeridas de clases a través de inyección |
+| Otros | Otros |
+
 
 </br>
 
@@ -144,8 +148,17 @@
 | ------------- | ------------- | ------------- |
 | spring-boot-starter-data-jpa | 2.6.7 | Api de JpaRepository para el manejo de métodos | 
 | spring-boot-starter-test | 2.6.7 | Para Testing | 
-| spring-boot-starter-web | 2.6.7 | Se agrega toda la configuración web automáticamente de Maven a Spring |
-| spring-boot-starter-validation | 2.6.7 | Uso de Validacion desde nuestro Bean |
+| spring-boot-starter-web | 2.6.7 | Se agrega toda la configuración web automáticamente de Maven a Spring | 
+| spring-boot-starter-validation | 2.7.0 | Validación de Annotations |
+| spring-boot-devtools | 2.6.7 | Herramientas para el Manejo de Spring Boot | 
+| spring-boot-starter-security | 2.6.7 | Módulo de Seguridad de Spring |
+| jjwt | 0.9.1 | Manejo de Token's |
+| nimbus-jose-jwt | 9.22 | Refresh Token |
+| jaxb-api | 4.0 | Serialización de Objetos Java a XML |
+| jackson-databind | 4.0 | Serialización de Objetos Java a JSON |
+| javax-annotation-api | 4.0 | Api para la lectura de annotations|
+| springfox-boot-starter | 3.0.0 | Doc Api |
+| springfox-swagger-ui | 3.0.0 | Doc Api |
 | spring-boot-starter-data-mongodb | 2.6.7 | Manejo de SpringDataMongoDB con los métodos del Repository y anotations  |
 | springdoc-openapi-ui | 1.6.4 | Plantillas para el Front |
 | spring-boot-devtools | 2.6.7 | Herramientas para el Manejo de Spring Boot | 
@@ -156,7 +169,7 @@
 
 </br>
 
-### Documentación No Oficial Recomendada
+### Doc No Oficial Recomendada
 #### Api Rest con MongoDB/SpringBoot
 * Api Rest Spring Boot Mongodb : https://www.youtube.com/watch?v=OtBukxJy4kg
 * Api Rest Guía Spring Boot Mongodb Codigo :https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/controllers/ProductController.java
@@ -169,9 +182,20 @@
 * Tutorial Uso de Querys en MongoDB : https://www.baeldung.com/queries-in-spring-data-mongodb
 * Tutorial Querys MongoRepository : https://stackabuse.com/spring-data-mongodb-guide-to-the-query-annotation/
 * Código Ejemplo genérico : https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/models/ProductDTO.java
+#### Swagger UI y SpringFox
+* Config Swagger: https://www.baeldung.com/swagger-set-example-description
+* Generar doc con swagger : https://howtodoinjava.com/swagger2/swagger-spring-mvc-rest-example/
+* Api Response con swagger : https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiResponse.html
+* Códigos HTTP de respuestas desarrollar en apis :https://www.ibm.com/docs/es/odm/8.5.1?topic=api-rest-response-codes-error-messages
+
+### Doc Gráfica No Oficial Recomendada
+* Implementación de Spring Security y JWT Youtube : https://www.youtube.com/watch?v=_91iKzsKdqY&list=PL4bT56Uw3S4z9rtwwGvuk1Mjhu5sdLSwX&index=12
+* Implementación Spring Security : https://www.youtube.com/watch?v=tDZPdovCH4I
+* Tutorial doc open-api : https://www.youtube.com/watch?v=iaVBleTf88U
+
 
 
 </br>
 
-## Documentación de Desarrollo del Repositorio No Disponible Momentáneamente
+## Documentación de Desarrollo de la Api No Disponible Momentáneamente
 
