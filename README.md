@@ -61,30 +61,30 @@
 
 
 ### Listado de Productos o Producto Paginado/s por Fecha
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png)
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png)
 
   
 ### Inserción de un Producto Método Post
-  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png)
-  ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png)
 
 ### Búsqueda del Producto Insertado según su Código
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png)
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png)
   
 ### Actualización de un Producto Método Put
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png)
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/putResponse.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/putResponse.png)
   
 
 ### Eliminación de un Producto Método Delete
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/delete.png)
-   ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/deleteResponse.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/delete.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/deleteResponse.png)
   
 ### Búsqueda del Producto Eliminado según su Id
-    ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png)
-    ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png)
  
  
  
