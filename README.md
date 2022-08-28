@@ -17,18 +17,49 @@
 * Repositorio AppTiendaElectronica Original : https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB 
 * Repositorio AppTiendaElectronica `(migrado a..)`: https://gitlab.com/andres-weitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB
 * Repositorio db_ElectroThings : https://github.com/andresWeitzel/db_ElectroThings_MongoDB
+* PlayList Proyecto : https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1
+
+
+
+</br>
+
+### EndPoints y Recursos. Vista Swagger UI
+
+### EndPoints
+* http://localhost:8098/api/v1/productos/
+* http://localhost:8098/api/v1/admin/usuarios/
+* http://localhost:8098/api/v1/auth/
+
+* Algunos de los recursos de cada endpoint se muestran en las siguientes imágenes respectivas a cada controller
 
 </br>
 
 ### Documentación Gráfica de algunos Recursos la Api.
 
+</br>
+
+### Descripción de la Api Rest
+![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/inicioDocSwagger.png)
+
+### Modelo de Respuesta Métodos Http Code
+![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/httpResponses.png)
+
+### Recursos por Endpoint
+
+#### Documentación con Swagger-UI `auth-controller`
+![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/authController.png)
 
 #### Documentación con Swagger-UI `producto-controller`
- <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/productosController.png" />
- 
+![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/productosController.png)
+
+#### Documentación con Swagger-UI `usuario-controller`
+![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/usuarioController.png)
+
+
  #### Listado de Productos Paginados
- <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAll.png" />
-  <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAllResponse.png" />
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAll.png)
+ ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAllResponse.png)
+
 
   #### Listado de Productos o Producto Paginado/s por Fecha
    <img width="70%" height="50%"  src="https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png" />
