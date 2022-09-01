@@ -48,8 +48,17 @@ public class UsuarioController {
 			@ApiResponse(code = 401,  message = "No está autorizado para insertar un Usuario. Verificar credenciales"),
 			@ApiResponse(code = 403,  message = "No se ha podido insertar el Usuario. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404,  message = "La Inserción del Usuario no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PostMapping("/")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> addUsuario(@RequestBody SigninUsuarioDTO usuarioDTO) {
@@ -76,8 +85,17 @@ public class UsuarioController {
 			@ApiResponse(code = 401,  message = "No está autorizado para actualizar el Usuario. Verificar credenciales"),
 			@ApiResponse(code = 403,  message = "No se ha podido Actualizar el Usuario. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404,  message = "La Actualización del Usuario no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> updateUsuario(@PathVariable("id") String id,@RequestBody SigninUsuarioDTO usuarioDTO) {
@@ -105,8 +123,17 @@ public class UsuarioController {
 			@ApiResponse(code = 401,  message = "No está autorizado para Eliminar el Usuario. Verificar credenciales"),
 			@ApiResponse(code = 403,  message = "No se ha podido Eliminar el Usuario. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404,  message = "La Eliminacion del Usuario no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> deleteUsuario(@PathVariable("id") String id) {
@@ -133,8 +160,17 @@ public class UsuarioController {
 			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Usuarios. Verificar credenciales"),
 			@ApiResponse(code = 403,  message = "No se ha podido Listar los Usuarios. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404,  message = "El Listado de Usuarios no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@GetMapping("/listado")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Page<Usuario> getAllUsuario(Pageable pageable) {

@@ -3,6 +3,8 @@ package com.api.rest.v1.services.productos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -18,7 +20,6 @@ import com.api.rest.v1.exceptions.producto.ProductoIdMismatchException;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
 
-
 @Service
 public class ProductoServiceImpl implements I_ProductoService {
 
@@ -26,10 +27,8 @@ public class ProductoServiceImpl implements I_ProductoService {
 	I_ProductoRepository iProductoRepository;
 
 	// =============== LOGS ====================
-	private static final Logger logger = org.apache.logging.log4j.LogManager
-			.getLogger(ProductoServiceImpl.class);
-	
-	
+	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(ProductoServiceImpl.class);
+
 	// ================ AUTOGENERATE ====================
 
 	// Fecha y Hora Formateado
@@ -53,38 +52,33 @@ public class ProductoServiceImpl implements I_ProductoService {
 			if (producto == null) {
 				logger.error("ERROR addProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
-			} else if( producto.getCodigo() == "" 
-					|| producto.getNombre() == "" 
-					|| producto.getMarca() == "" 
-					|| producto.getDescripcion() == "" 
-					|| producto.getCategoria() == "" 
-					|| producto.getPrecio() == 0 
-					|| producto.getStock() == 0 
-					) {
-				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
-						+ " NO SON VÁLIDOS!!");
+			} else if (producto.getCodigo() == "" || producto.getNombre() == "" || producto.getMarca() == ""
+					|| producto.getDescripcion() == "" || producto.getCategoria() == "" || producto.getPrecio() == 0
+					|| producto.getStock() == 0) {
+				logger.error(
+						"ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto + " NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
-			}else {
-				
-				System.out.println("\n PRODUCTO PRE:"+producto);
-				
+			} else {
+
+				System.out.println("\n PRODUCTO PRE:" + producto);
+
 				String id = new ObjectId().toString();
 				String fechaStr = String.valueOf(fecha.format(formatoFecha));
 				String horaStr = String.valueOf(hora.format(formatoHora));
-		
 
 				producto.setId(id);
 				producto.setFecha(fechaStr);
 				producto.setHora(horaStr);
-				
-				System.out.println("\n PRODUCTO MODIFICADO:"+producto);
-				
+
+				System.out.println("\n PRODUCTO MODIFICADO:" + producto);
+
 				iProductoRepository.save(producto);
 
 				logger.info("SE HA INSERTADO CORRECTAMENTE EL PRODUCTO CON EL ID " + producto.getId());
 			}
 		} catch (Exception e) {
-			logger.error("ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!! CAUSADO POR "+e);
+			logger.error(
+					"ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!! CAUSADO POR " + e);
 			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO. ", e, false, true);
 		}
 
@@ -98,65 +92,63 @@ public class ProductoServiceImpl implements I_ProductoService {
 		try {
 
 			Optional<ProductoEntity> productoDb = this.iProductoRepository.findById(id);
-			
+
 			System.out.println(producto);
-			
+
 			System.out.println(producto.getId());
-			
+
 			System.out.println(productoDb);
-			
-			if(id.isBlank() || id.isEmpty() || id==null) {
+
+			if (id.isBlank() || id.isEmpty() || id == null) {
 				logger.error("ERROR updateProducto : EL ID  ES NULO O VACIO!!");
 				throw new ProductoNotFoundException("EL ID ES NULO O VACIO");
-			
-			}else if (productoDb.isEmpty()  || productoDb.get() == null) {
+
+			} else if (productoDb.isEmpty() || productoDb.get() == null) {
 				logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " ES NULO O VACIO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO O VACIO");
 
-			}else if( producto.getCodigo() == "" 
-					|| producto.getNombre() == "" || producto.getMarca() == "" 
-					|| producto.getDescripcion() == "" || producto.getCategoria() == "" 
-					|| producto.getPrecio() == 0 
-					|| producto.getStock() == 0 || producto.getFecha() == ""
-					) {
-				logger.error("ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto 
-						+ " NO SON VÁLIDOS!!");
+			} else if (producto.getCodigo() == "" || producto.getNombre() == "" || producto.getMarca() == ""
+					|| producto.getDescripcion() == "" || producto.getCategoria() == "" || producto.getPrecio() == 0
+					|| producto.getStock() == 0 || producto.getFecha() == "") {
+				logger.error(
+						"ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto + " NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
-				
+
 			} else {
 
-					ProductoEntity productoUpdate = productoDb.get();
-					
-					String fechaStr = String.valueOf(fecha.format(formatoFecha));
-					String horaStr = String.valueOf(hora.format(formatoHora));
-					
-					System.out.println(productoUpdate);
-				
-					productoUpdate.setId(id);
-					productoUpdate.setCodigo(producto.getCodigo());
-					productoUpdate.setNombre(producto.getNombre());
-					productoUpdate.setDescripcion(producto.getDescripcion());
-					productoUpdate.setCategoria(producto.getCategoria());
-					productoUpdate.setMarca(producto.getMarca());
-					productoUpdate.setImagen(producto.getImagen());
-					productoUpdate.setHojaDatos(producto.getHojaDatos());
-					productoUpdate.setStock(producto.getStock());
-					productoUpdate.setPrecio(producto.getPrecio());
-					productoUpdate.setFecha(fechaStr);
-					productoUpdate.setHora(horaStr);
-					
-					System.out.println(productoUpdate);
-					
-		
-					iProductoRepository.save(productoUpdate);
-					
-					logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO  " + productoUpdate);
+				ProductoEntity productoUpdate = productoDb.get();
 
-	
+				String fechaStr = String.valueOf(fecha.format(formatoFecha));
+				String horaStr = String.valueOf(hora.format(formatoHora));
+
+				System.out.println(productoUpdate);
+
+				productoUpdate.setId(id);
+				productoUpdate.setCodigo(producto.getCodigo());
+				productoUpdate.setNombre(producto.getNombre());
+				productoUpdate.setDescripcion(producto.getDescripcion());
+				productoUpdate.setCategoria(producto.getCategoria());
+				productoUpdate.setMarca(producto.getMarca());
+				productoUpdate.setImagen(producto.getImagen());
+				productoUpdate.setHojaDatos(producto.getHojaDatos());
+				productoUpdate.setStock(producto.getStock());
+				productoUpdate.setPrecio(producto.getPrecio());
+				productoUpdate.setFecha(fechaStr);
+				productoUpdate.setHora(horaStr);
+
+				System.out.println(productoUpdate);
+
+				iProductoRepository.save(productoUpdate);
+
+				logger.info("SE HA ACTUALIZADO CORRECTAMENTE EL PRODUCTO  " + productoUpdate);
+
 			}
 		} catch (Exception e) {
-			logger.error("ERROR updateProducto : EL PRODUCTO " + producto + " NO SE HA ACTUALIZADO EN LA DB!!CAUSADO POR "+e);
-			throw new ProductoNotFoundException("NO SE PUDO ACTUALIZAR EL PRODUCTO. CÓDIGO/NOMBRE REPETIDO O PRODUCTO NO ENCONTRADO! ", e, true, true);
+			logger.error("ERROR updateProducto : EL PRODUCTO " + producto
+					+ " NO SE HA ACTUALIZADO EN LA DB!!CAUSADO POR " + e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ACTUALIZAR EL PRODUCTO. CÓDIGO/NOMBRE REPETIDO O PRODUCTO NO ENCONTRADO! ", e, true,
+					true);
 		}
 	}
 
@@ -166,8 +158,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public void deleteProducto(String id) {
 		try {
-			
-	
+
 			Optional<ProductoEntity> productoDb = iProductoRepository.findById(id);
 
 			// Si esta vacio es nulo
@@ -195,7 +186,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 		try {
 
 			Page<ProductoEntity> productosPaginados = iProductoRepository.findAll(pageable);
-		
+
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty()) {
 				logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS!!");
@@ -210,9 +201,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 			throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS ", e);
 		}
 	}
-	
-	
-	
+
 	// ========================
 	// ===== GET ALL FILTER====
 	// ========================
@@ -222,7 +211,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 		try {
 
 			Page<ProductoEntity> productosPaginados = iProductoRepository.findAllFilter(filtro, pageable);
-		
+
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty()) {
 				logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS!!");
@@ -399,7 +388,6 @@ public class ProductoServiceImpl implements I_ProductoService {
 		}
 
 	}
-	
 
 	// =========================
 	// ===== GET BY IMAGEN =====
@@ -411,8 +399,8 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || imagen == " ") {
-				logger.error("ERROR getByImagen : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN "
-						+ imagen + " NO EXISTE!!");
+				logger.error("ERROR getByImagen : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN " + imagen
+						+ " NO EXISTE!!");
 				throw new ProductoNotFoundException(
 						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN " + imagen);
 			} else {
@@ -427,7 +415,6 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN LA IMAGEN " + imagen, e);
 		}
 	}
-	
 
 	// =================================
 	// ===== GET BY HOJA DE DATOS =====
@@ -482,7 +469,6 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock, e);
 		}
 	}
-	
 
 	// ===============================
 	// ===== GET BY STOCK FILTER======
@@ -516,28 +502,27 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByPrecio(int precio, Pageable pageable) {
-		
-		try {
-			
-		Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecio(precio, pageable);
 
-		// Si esta vacio es nulo
-		if (productosPaginados.isEmpty() || precio < 0) {
-			logger.error("ERROR getByPrecio : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
-					+ " NO EXISTE!!");
+		try {
+
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecio(precio, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || precio < 0) {
+				logger.error("ERROR getByPrecio : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
+			} else {
+				return productosPaginados;
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByPrecio : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
+							+ e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
-		} else {
-			return productosPaginados;
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
 		}
-	}catch(Exception e)
-	{
-		logger.error(
-				"ERROR getByPrecio : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
-						+ e);
-		throw new ProductoNotFoundException(
-				"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
-	}
 	}
 
 	// ================================
@@ -545,28 +530,27 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ================================
 	@Override
 	public Page<ProductoEntity> getByPrecioFilter(int precio, Pageable pageable) {
-		
-		try {
-			
-		Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecioFilter(precio, pageable);
 
-		// Si esta vacio es nulo
-		if (productosPaginados.isEmpty() || precio < 0) {
-			logger.error("ERROR getByPrecioFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
-					+ " NO EXISTE!!");
+		try {
+
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecioFilter(precio, pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || precio < 0) {
+				logger.error("ERROR getByPrecioFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
+						+ " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
+			} else {
+				return productosPaginados;
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByPrecioFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
+							+ e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
-		} else {
-			return productosPaginados;
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
 		}
-	}catch(Exception e)
-	{
-		logger.error(
-				"ERROR getByPrecioFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
-						+ e);
-		throw new ProductoNotFoundException(
-				"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
-	}
 	}
 
 	// ==========================
@@ -575,7 +559,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByFecha(String fecha, Pageable pageable) {
 		try {
-			
+
 			Page<ProductoEntity> productosPaginados = iProductoRepository.findByFecha(fecha, pageable);
 
 			// Si esta vacio es nulo
@@ -587,8 +571,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 			} else {
 				return productosPaginados;
 			}
-		}catch(Exception e)
-		{
+		} catch (Exception e) {
 			logger.error(
 					"ERROR getByFecha : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA SOLICITADO. CAUSADO POR "
 							+ e);
@@ -602,21 +585,20 @@ public class ProductoServiceImpl implements I_ProductoService {
 	// ==========================
 	@Override
 	public Page<ProductoEntity> getByHora(String hora, Pageable pageable) {
-	try {
-			
+		try {
+
 			Page<ProductoEntity> productosPaginados = iProductoRepository.findByHora(hora, pageable);
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || hora == " ") {
-				logger.error("ERROR getByHora : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora
-						+ " NO EXISTE!!");
+				logger.error(
+						"ERROR getByHora : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora + " NO EXISTE!!");
 				throw new ProductoNotFoundException(
 						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora);
 			} else {
 				return productosPaginados;
 			}
-		}catch(Exception e)
-		{
+		} catch (Exception e) {
 			logger.error(
 					"ERROR getByHora : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA SOLICITADO. CAUSADO POR "
 							+ e);
@@ -624,8 +606,75 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora, e);
 		}
 	}
+
+	// ===============================================
+	// ========= MÉTODOS PARA GRAFICO ==============
+	// ===============================================
+
+	// ===============
+	// ===== GET =====
+	// ===============
+	// ------ STOCK POR CATEGORIA ------
+	public int getStockByCategory(String categoria, Pageable pageable) {
+
+		try {
+
+			Page<ProductoEntity> listComp = iProductoRepository.findByCategoria(categoria, pageable);
+
+			return (int) (listComp.stream().filter(comp -> comp.getCategoria().equalsIgnoreCase(categoria))
+					.mapToInt(comp -> comp.getStock()).sum());
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getStockByCategory : NO SE HA ENCONTRADO EL STOCK DE PRODUCTOS O PRODUCTO CON EL STOCK SEGÚN LA CATEGORIA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL STOCK DE PRODUCTOS O PRODUCTO CON EL STOCK SEGÚN LA CATEGORIA " + hora, e);
+		}
+
+	}
+
+	// ===============
+	// ===== GET =====
+	// ===============
+	// ------ STOCK POR MARCA ------
+	public int getStockByMarca(String marca, Pageable pageable) {
+
+		try {
+
+			Page<ProductoEntity> listComp = iProductoRepository.findByMarca(marca, pageable);
+
+			return (int) (listComp.stream().filter(comp -> comp.getMarca().equalsIgnoreCase(marca))
+					.mapToInt(comp -> comp.getStock()).sum());
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getStockByMarca : NO SE HA ENCONTRADO EL STOCK DE PRODUCTOS O PRODUCTO CON EL STOCK SEGÚN LA MARCA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL STOCK DE PRODUCTOS O PRODUCTO CON EL STOCK SEGÚN LA MARCA " + hora, e);
+		}
+
+	}
 	
-	
-	
+	// ===============
+	// ===== GET =====
+	// ===============
+	// ------ STOCK POR FECHA ------
+	public int getStockByFecha(String fecha, Pageable pageable) {
+
+		try {
+
+			Page<ProductoEntity> listComp = iProductoRepository.findByFecha(fecha, pageable);
+
+			return (int) (listComp.stream().filter(comp -> comp.getFecha().equalsIgnoreCase(fecha))
+					.mapToInt(comp -> comp.getStock()).sum());
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getStockByFecha : NO SE HA ENCONTRADO EL STOCK DE PRODUCTOS O PRODUCTO CON EL STOCK SEGÚN LA FECHA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL STOCK DE PRODUCTOS O PRODUCTO CON EL STOCK SEGÚN LA FECHA " + hora, e);
+		}
+
+	}
 
 }

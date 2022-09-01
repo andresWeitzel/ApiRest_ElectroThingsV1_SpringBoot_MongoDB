@@ -56,7 +56,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 
 				Set<TipoRol> roles = new HashSet<>();
 
-				if (usuarioDTO.getRoles().contains("user")) {
+				if (usuarioDTO.getRoles().contains("user") || usuarioDTO.getRoles().isEmpty()) {
 					roles.add(TipoRol.ROLE_USER);
 				}
 
@@ -133,7 +133,7 @@ public class UsuarioServiceImpl implements I_UsuarioService {
 
 				Set<TipoRol> roles = new HashSet<>();
 
-				if (usuarioDTO.getRoles().contains("user")) {
+				if (usuarioDTO.getRoles().contains("user") || usuarioDTO.getRoles().isEmpty()) {
 					roles.add(TipoRol.ROLE_USER);
 				}
 

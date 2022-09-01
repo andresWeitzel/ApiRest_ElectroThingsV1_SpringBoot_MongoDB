@@ -39,16 +39,24 @@ public class ProductoController {
 	// ================
 	// ===== POST =====
 	// =================
-	@ApiOperation(value = "Inserción de un Producto", notes="Devolución del producto agregado")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se ha Insertado el Producto Correctamente"),
+	@ApiOperation(value = "Inserción de un Producto", notes = "Devolución del producto agregado")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se ha Insertado el Producto Correctamente"),
 			@ApiResponse(code = 201, message = "Se ha Insertado el Producto Correctamente"),
-			@ApiResponse(code = 400,  message = "No se pudo Insertar el Producto. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para insertar un producto. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido insertar el producto. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "La Inserción del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se pudo Insertar el Producto. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para insertar un producto. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido insertar el producto. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "La Inserción del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PostMapping("/")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> addProducto(@RequestBody ProductoEntity producto) {
@@ -64,21 +72,29 @@ public class ProductoController {
 	// ==============
 	// ===== PUT=====
 	// ==============
-	@ApiOperation(value = "Actualización de un Producto", notes="Devolución del producto Actualizado")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se ha Actualizado el Producto Correctamente"),
+	@ApiOperation(value = "Actualización de un Producto", notes = "Devolución del producto Actualizado")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se ha Actualizado el Producto Correctamente"),
 			@ApiResponse(code = 201, message = "Se ha Actualizado el Producto Correctamente"),
-			@ApiResponse(code = 400,  message = "No se pudo Actualizar el Producto. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para actualizar el producto. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Actualizar el producto. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se pudo Actualizar el Producto. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para actualizar el producto. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Actualizar el producto. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PutMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> updateProducto(@PathVariable String id, @RequestBody ProductoEntity producto) {
 		try {
-			iProductoService.updateProducto(id,producto);
+			iProductoService.updateProducto(id, producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
@@ -89,22 +105,30 @@ public class ProductoController {
 	// ==================
 	// ===== DELETE =====
 	// ==================
-	@ApiOperation(value = "Eliminación de un Producto", notes="Devolución del producto Eliminado")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se ha Eliminado el Producto Correctamente"),
+	@ApiOperation(value = "Eliminación de un Producto", notes = "Devolución del producto Eliminado")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se ha Eliminado el Producto Correctamente"),
 			@ApiResponse(code = 201, message = "Se ha Eliminado el Producto Correctamente"),
-			@ApiResponse(code = 400,  message = "No se pudo Eliminar el Producto. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Eliminar el producto. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Eliminar el producto. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "La Eliminacion del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se pudo Eliminar el Producto. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Eliminar el producto. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Eliminar el producto. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "La Eliminacion del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> deleteProducto(@PathVariable("id") String id) {
 		try {
 			iProductoService.deleteProducto(id);
-			return new ResponseEntity<String>("Se ha eliminado correctamente el Producto",HttpStatus.OK);
+			return new ResponseEntity<String>("Se ha eliminado correctamente el Producto", HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 
@@ -115,39 +139,52 @@ public class ProductoController {
 	// ===== GET ALL =====
 	// ===================
 	// ---LISTADO PAGINADO---
-	@ApiOperation(value = "Listado Paginado de Productos", notes="Devolución del Listado Paginado de Productos")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se han Listado los Productos Correctamente"),
+	@ApiOperation(value = "Listado Paginado de Productos", notes = "Devolución del Listado Paginado de Productos")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se han Listado los Productos Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos Correctamente"),
-			@ApiResponse(code = 400,  message = "No se ha podido Listar los Productos. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se ha podido Listar los Productos. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/listado")
 	public Page<ProductoEntity> getAll(Pageable pageable) {
 		return iProductoService.getAllProductos(pageable);
 	}
-	
-	
-	
 
 	// =========================
 	// ===== GET ALL FILTER =====
 	// ==========================
 	// ---LISTADO PAGINADO FILTROS---
-	@ApiOperation(value = "Listado Paginado de Productos con Filtro", notes="Devolución del Listado Paginado de Productos con Filtro")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se han Listado los Productos con Filtro Correctamente"),
+	@ApiOperation(value = "Listado Paginado de Productos con Filtro", notes = "Devolución del Listado Paginado de Productos con Filtro")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se han Listado los Productos con Filtro Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos con Filtro Correctamente"),
-			@ApiResponse(code = 400,  message = "No se ha podido Listar los Productos con Filtro. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos con Filtro. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos con Filtro. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se ha podido Listar los Productos con Filtro. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos con Filtro. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos con Filtro. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/listado-filter/{filtro}")
 	public Page<ProductoEntity> getAllFilter(@PathVariable String filtro, Pageable pageable) {
@@ -162,16 +199,24 @@ public class ProductoController {
 	// ===== GET BY ID ===
 	// ===================
 	// ---PRODUCTO POR ID---
-	@ApiOperation(value = "Producto según su ID", notes="Devolución del Producto  según su ID")
-	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se ha Listado el Producto según su ID Correctamente"),
+	@ApiOperation(value = "Producto según su ID", notes = "Devolución del Producto  según su ID")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se ha Listado el Producto según su ID Correctamente"),
 			@ApiResponse(code = 201, message = "Se ha Listado el Producto según su ID Correctamente"),
-			@ApiResponse(code = 400,  message = "No se ha podido Listar el Producto  según su ID. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar el Producto según su ID. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar el Producto según su ID. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Producto según su ID no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se ha podido Listar el Producto  según su ID. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar el Producto según su ID. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar el Producto según su ID. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Producto según su ID no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@GetMapping("/id/{id}")
 	public ProductoEntity getById(@PathVariable("id") String id) {
 		return iProductoService.getById(id);
@@ -181,16 +226,25 @@ public class ProductoController {
 	// ===== GET BY CODIGO ===
 	// =======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR CODIGO---
-	@ApiOperation(value = "Listado Paginado de Productos según su Código", notes="Devolución del Listado Paginado de Productos según su Código")
+	@ApiOperation(value = "Listado Paginado de Productos según su Código", notes = "Devolución del Listado Paginado de Productos según su Código")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Código Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Código Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Código. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Código. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Código. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Código. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Código. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Código. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/codigo/{codigo}")
 	public Page<ProductoEntity> getByCodigo(@PathVariable("codigo") String codigo, Pageable pageable) {
@@ -201,16 +255,25 @@ public class ProductoController {
 	// ===== GET BY NOMBRE ===
 	// =======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR NOMBRE---
-	@ApiOperation(value = "Listado Paginado de Productos según su Nombre", notes="Devolución del Listado Paginado de Productos según su Nombre")
+	@ApiOperation(value = "Listado Paginado de Productos según su Nombre", notes = "Devolución del Listado Paginado de Productos según su Nombre")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Nombre Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Nombre Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Nombre. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Nombre. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Nombre. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Nombre. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Nombre. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Nombre. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/nombre/{nombre}")
 	public Page<ProductoEntity> getByNombre(@PathVariable("nombre") String nombre, Pageable pageable) {
@@ -221,36 +284,54 @@ public class ProductoController {
 	// ===== GET BY DESCRIPCION ===
 	// ============================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR DESCRIPCION---
-	@ApiOperation(value = "Listado Paginado de Productos según su Descripción", notes="Devolución del Listado Paginado de Productos según su Descripción")
+	@ApiOperation(value = "Listado Paginado de Productos según su Descripción", notes = "Devolución del Listado Paginado de Productos según su Descripción")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Descripción Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Descripción Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Descripción. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Descripción. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Descripción. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Descripción. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Descripción. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Descripción. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/descripcion/{descripcion}")
 	public Page<ProductoEntity> getByDescripcion(@PathVariable("descripcion") String descripcion, Pageable pageable) {
 		return iProductoService.getByDescripcion(descripcion, pageable);
 	}
-	
+
 	// ============================
 	// ===== GET BY CATEGORIA ===
 	// ============================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR CATEGORIA---
-	@ApiOperation(value = "Listado Paginado de Productos según su Categoría", notes="Devolución del Listado Paginado de Productos según su Categoría")
+	@ApiOperation(value = "Listado Paginado de Productos según su Categoría", notes = "Devolución del Listado Paginado de Productos según su Categoría")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Categoría Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Categoría Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Categoría. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Categoría. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Categoría. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Categoría. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Categoría. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Categoría. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/categoria/{categoria}")
 	public Page<ProductoEntity> getByCategoria(@PathVariable("categoria") String categoria, Pageable pageable) {
@@ -261,16 +342,25 @@ public class ProductoController {
 	// ===== GET BY MARCA ===
 	// ============================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR MARCA---
-	@ApiOperation(value = "Listado Paginado de Productos según su Marca", notes="Devolución del Listado Paginado de Productos según su Marca")
+	@ApiOperation(value = "Listado Paginado de Productos según su Marca", notes = "Devolución del Listado Paginado de Productos según su Marca")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Marca Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Marca Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Marca. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Marca. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Marca. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Marca. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Marca. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Marca. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@GetMapping("/marca/{marca}")
 	public Page<ProductoEntity> getByMarca(@PathVariable("marca") String marca, Pageable pageable) {
 		return iProductoService.getByMarca(marca, pageable);
@@ -280,16 +370,25 @@ public class ProductoController {
 	// ===== GET BY IMAGEN ===
 	// =======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR IMAGEN---
-	@ApiOperation(value = "Listado Paginado de Productos según su Imagen", notes="Devolución del Listado Paginado de Productos según su Marca")
+	@ApiOperation(value = "Listado Paginado de Productos según su Imagen", notes = "Devolución del Listado Paginado de Productos según su Marca")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Imagen Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Imagen Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Imagen. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Imagen. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Imagen. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Imagen. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Imagen. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Imagen. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/imagen/{imagen}")
 	public Page<ProductoEntity> getByImagen(@PathVariable("imagen") String imagen, Pageable pageable) {
@@ -300,16 +399,25 @@ public class ProductoController {
 	// ===== GET BY HOJA DE DATOS ===
 	// ==============================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR HOJA DE DATOS---
-	@ApiOperation(value = "Listado Paginado de Productos según su Hoja de Datos", notes="Devolución del Listado Paginado de Productos según su Hoja de Datos")
+	@ApiOperation(value = "Listado Paginado de Productos según su Hoja de Datos", notes = "Devolución del Listado Paginado de Productos según su Hoja de Datos")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Hoja de Datos Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Hoja de Datos Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Hoja de Datos. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Hoja de Datos. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Hoja de Datos. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Hoja de Datos. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Hoja de Datos. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Hoja de Datos. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/hoja-datos/{hojaDatos}")
 	public Page<ProductoEntity> getByHojaDatos(@PathVariable("hojaDatos") String hojaDatos, Pageable pageable) {
@@ -320,36 +428,54 @@ public class ProductoController {
 	// ===== GET BY STOCK ===
 	// ======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR STOCK---
-	@ApiOperation(value = "Listado Paginado de Productos según su Stock", notes="Devolución del Listado Paginado de Productos según su Stock")
+	@ApiOperation(value = "Listado Paginado de Productos según su Stock", notes = "Devolución del Listado Paginado de Productos según su Stock")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Stock Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Stock Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Stock. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Stock. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Stock. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Stock. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Stock. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Stock. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/stock/{stock}")
 	public Page<ProductoEntity> getByStock(@PathVariable("stock") int stock, Pageable pageable) {
 		return iProductoService.getByStock(stock, pageable);
 	}
-	
+
 	// =============================
 	// ===== GET BY STOCK FILTER ===
 	// =============================
-	// ---LISTADO DE PRODUCTOS O PRODUCTO POR STOCK CON  FILTRO---
-	@ApiOperation(value = "Listado Paginado de Productos según su Stock con Filtro", notes="Devolución del Listado Paginado de Productos según su Stock con Filtro")
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR STOCK CON FILTRO---
+	@ApiOperation(value = "Listado Paginado de Productos según su Stock con Filtro", notes = "Devolución del Listado Paginado de Productos según su Stock con Filtro")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Stock con Filtro Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Stock con Filtro Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Stock con Filtro. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Stock con Filtro. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Stock con Filtro. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Stock con Filtro. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Stock con Filtro. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Stock con Filtro. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/stock-filter/{stock}")
 	public Page<ProductoEntity> getByStockFilter(@PathVariable("stock") int stock, Pageable pageable) {
@@ -360,36 +486,54 @@ public class ProductoController {
 	// ===== GET BY PRECIO ===
 	// ======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO---
-	@ApiOperation(value = "Listado Paginado de Productos según su Precio", notes="Devolución del Listado Paginado de Productos según su Precio")
+	@ApiOperation(value = "Listado Paginado de Productos según su Precio", notes = "Devolución del Listado Paginado de Productos según su Precio")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Precio Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Precio Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Precio. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Precio. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Precio. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Precio. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Precio. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Precio. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/precio/{precio}")
 	public Page<ProductoEntity> getByPrecio(@PathVariable("precio") int precio, Pageable pageable) {
 		return iProductoService.getByPrecio(precio, pageable);
 	}
-	
+
 	// =============================
 	// ===== GET BY PRECIO FILTER===
 	// =============================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO CON FILTRO---
-	@ApiOperation(value = "Listado Paginado de Productos según su Precio con Filtro", notes="Devolución del Listado Paginado de Productos según su Precio con Filtro")
+	@ApiOperation(value = "Listado Paginado de Productos según su Precio con Filtro", notes = "Devolución del Listado Paginado de Productos según su Precio con Filtro")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Precio con Filtro Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Precio con Filtro Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Precio con Filtro. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Precio con Filtro. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según su Precio con Filtro. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Precio con Filtro. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Precio con Filtro. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Precio con Filtro. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/precio-filter/{precio}")
 	public Page<ProductoEntity> getByPrecioFilter(@PathVariable("precio") int precio, Pageable pageable) {
@@ -400,16 +544,25 @@ public class ProductoController {
 	// ===== GET BY FECHA ===
 	// ======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR FECHA---
-	@ApiOperation(value = "Listado Paginado de Productos según su Fecha", notes="Devolución del Listado Paginado de Productos según su Fecha")
+	@ApiOperation(value = "Listado Paginado de Productos según su Fecha", notes = "Devolución del Listado Paginado de Productos según su Fecha")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Fecha Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Fecha Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Fecha. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Fecha. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según Fecha. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Fecha. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Fecha. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según Fecha. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/fecha/{fecha}")
 	public Page<ProductoEntity> getByFecha(@PathVariable("fecha") String fecha, Pageable pageable) {
@@ -420,22 +573,129 @@ public class ProductoController {
 	// ===== GET BY HORA ===
 	// ======================
 	// ---LISTADO DE PRODUCTOS O PRODUCTO POR HORA---
-	@ApiOperation(value = "Listado Paginado de Productos según su Hora", notes="Devolución del Listado Paginado de Productos según su Hora")
+	@ApiOperation(value = "Listado Paginado de Productos según su Hora", notes = "Devolución del Listado Paginado de Productos según su Hora")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Hora Correctamente"),
 			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Hora Correctamente"),
-			@ApiResponse(code = 400,  message = "No se han podido Listar los Productos según su Hora. Comprobar la Solicitud"),
-			@ApiResponse(code = 401,  message = "No está autorizado para Listar los Productos según su Hora. Verificar credenciales"),
-			@ApiResponse(code = 403,  message = "No se ha podido Listar los Productos según Hora. El servidor ha denegado esta operación"),
-			@ApiResponse(code = 404,  message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Hora. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Hora. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según Hora. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	@GetMapping("/hora/{hora}")
 	public Page<ProductoEntity> getByHora(@PathVariable("hora") String hora, Pageable pageable) {
 		return iProductoService.getByHora(hora, pageable);
 	}
 
+	// ===============================================
+	// ========= MÉTODOS PARA GRAFICO ==============
+	// ===============================================
+
+	// ============================
+	// ===== GET BY STOCK-CATEG ===
+	// ============================
+	
+	// ------ STOCK POR CATEGORIA ------
+	@ApiOperation(value = "Stock de Productos según su categoría", notes = "Devolución del Stock de Productos según su Categoría")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Se ha devuelto el Stock de Productos según su Categoría Correctamente"),
+			@ApiResponse(code = 201, message = "Se ha devuelto el Stock de Productos según su Categoría Correctamente"),
+			@ApiResponse(code = 400, message = "No se ha podido devolver el Stock de Productos según su Categoría. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para obtener el Stock de Productos según su Categoría. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido devolver el Stock de Productos según su Categoría. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Stock de Productos según su Categoría no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/stock-por-categoria/{categoria}")
+	public int getStockByCategory(@PathVariable("categoria") String categoria, Pageable pageable) {
+		return iProductoService.getStockByCategory(categoria, pageable);
+	
+	}
+	
+	
+	// ============================
+	// ===== GET BY STOCK-MARCA ===
+	// ============================
+	
+	// ------ STOCK POR MARCA ------
+	@ApiOperation(value = "Stock de Productos según su marca", notes = "Devolución del Stock de Productos según su marca")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Se ha devuelto el Stock de Productos según su marca Correctamente"),
+			@ApiResponse(code = 201, message = "Se ha devuelto el Stock de Productos según su marca Correctamente"),
+			@ApiResponse(code = 400, message = "No se ha podido devolver el Stock de Productos según su marca. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para obtener el Stock de Productos según su marca. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido devolver el Stock de Productos según su marca. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Stock de Productos según su marca no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/stock-por-marca/{marca}")
+	public int getStockByMarca(@PathVariable("marca") String marca, Pageable pageable) {
+		return iProductoService.getStockByMarca(marca, pageable);
+	
+	}
+	
+	
+	// ============================
+	// ===== GET BY STOCK-FECHA ===
+	// ============================
+	
+	// ------ STOCK POR FECHA ------
+	@ApiOperation(value = "Stock de Productos según su fecha", notes = "Devolución del Stock de Productos según su fecha")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Se ha devuelto el Stock de Productos según su fecha Correctamente"),
+			@ApiResponse(code = 201, message = "Se ha devuelto el Stock de Productos según su fecha Correctamente"),
+			@ApiResponse(code = 400, message = "No se ha podido devolver el Stock de Productos según su fecha. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para obtener el Stock de Productos según su fecha. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido devolver el Stock de Productos según su fecha. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Stock de Productos según su fecha no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/stock-por-fecha/{fecha}")
+	public int getStockByFecha(@PathVariable("fecha") String fecha, Pageable pageable) {
+		return iProductoService.getStockByFecha(fecha, pageable);
+	
+	}
 
 	
 

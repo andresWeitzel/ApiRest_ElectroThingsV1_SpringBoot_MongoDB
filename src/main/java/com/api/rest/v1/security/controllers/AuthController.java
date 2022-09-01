@@ -65,8 +65,17 @@ public class AuthController {
 			@ApiResponse(code = 401, message = "No está autorizado para Registrar el Usuario. Verificar credenciales"),
 			@ApiResponse(code = 403, message = "No se ha podido registrar el usuario correctamente. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "La Inserción del Usuario no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500, message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PostMapping("/signin")
 	public ResponseEntity<?> signin(@Valid @RequestBody SigninUsuarioDTO signinUsuario, BindingResult bindingResult) {
 
@@ -123,8 +132,17 @@ public class AuthController {
 			@ApiResponse(code = 401, message = "No está autorizado para acceder al sistema. Verificar credenciales"),
 			@ApiResponse(code = 403, message = "No se ha podido acceder al sistema correctamente. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El acceso al sistema no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500, message = "Se ha producido un error interno en el Servidor") 
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@Valid @RequestBody LoginUsuarioDTO loginUsuario, BindingResult bindingResult) {
 
@@ -164,8 +182,17 @@ public class AuthController {
 			@ApiResponse(code = 401, message = "No está autorizado para Registrar el Actualizado el Token. Verificar credenciales"),
 			@ApiResponse(code = 403, message = "No se ha podido Actualizar el Token correctamente. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "La Actualización del Token no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
-			@ApiResponse(code = 500, message = "Se ha producido un error interno en el Servidor")
-	})
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
 	@PostMapping("/refresh-token")
 	public ResponseEntity<?> refreshToken(@RequestBody JwtDTO jwtDto) throws ParseException {
 
