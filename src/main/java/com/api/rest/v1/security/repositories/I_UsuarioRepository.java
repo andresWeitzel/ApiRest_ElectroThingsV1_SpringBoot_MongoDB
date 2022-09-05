@@ -2,9 +2,9 @@ package com.api.rest.v1.security.repositories;
 
 import java.util.Optional;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.ExistsQuery;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -31,6 +31,7 @@ public interface I_UsuarioRepository extends MongoRepository<Usuario, String> {
 	
 	@Query(value = "{'username': {$regex : ?0, $options: 'i'}}")
 	Optional<Usuario> findByUsername(String username);
+
 	
 	@Query(value = "{'password': {$regex : ?0, $options: 'i'}}")
 	Page<Usuario> findByPassword(String password, Pageable pageable);
@@ -49,6 +50,8 @@ public interface I_UsuarioRepository extends MongoRepository<Usuario, String> {
 
 
     boolean existsByUsername(String username);
+    
+    boolean existsByPassword(String password);
     
     boolean existsByEmail(String email);
 	

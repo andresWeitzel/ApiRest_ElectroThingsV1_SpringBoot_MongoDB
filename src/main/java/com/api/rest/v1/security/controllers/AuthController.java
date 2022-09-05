@@ -79,44 +79,46 @@ public class AuthController {
 	@PostMapping("/signin")
 	public ResponseEntity<?> signin(@Valid @RequestBody SigninUsuarioDTO signinUsuario, BindingResult bindingResult) {
 
-		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<String>("Campos o Email Inválidos", HttpStatus.BAD_REQUEST);
+		if (signinUsuario.getNombre().isBlank() 
+				|| signinUsuario.getApellido().isBlank() 
+				|| signinUsuario.getUsername().isBlank()
+				|| signinUsuario.getPassword().isBlank()
+				|| signinUsuario.getEmail().isBlank()) {
+			return new ResponseEntity<String>("No se permiten campos vacios!!", HttpStatus.BAD_REQUEST);
 		}
 
 		if (usuarioServiceImpl.existsByUsername(signinUsuario.getUsername())) {
-			return new ResponseEntity<String>("El Username del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("El Username ya existe en la DB!!", HttpStatus.BAD_REQUEST);
 		}
 
 		if (usuarioServiceImpl.existsByEmail(signinUsuario.getEmail())) {
-			return new ResponseEntity<String>("El Email del Usuario ya existe en la DB", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("El Email ya existe en la DB!!", HttpStatus.BAD_REQUEST);
 		}
 
-		if (signinUsuario.getNombre().isBlank() || signinUsuario.getApellido().isBlank() || signinUsuario.getUsername().isBlank()
-				|| signinUsuario.getPassword().isBlank() || signinUsuario.getPassword().isBlank()
-				|| signinUsuario.getEmail().isBlank()) {
-			return new ResponseEntity<String>("No se permiten campos vacios", HttpStatus.BAD_REQUEST);
+	
+		if (bindingResult.hasErrors()) {
+			return new ResponseEntity<String>("Campos o Email Inválidos!!", HttpStatus.BAD_REQUEST);
 		}
 
-		Usuario usuario = new Usuario(signinUsuario.getNombre(),signinUsuario.getApellido(), signinUsuario.getUsername(),
-				passwordEncoder.encode(signinUsuario.getPassword()), signinUsuario.getEmail());
+		Usuario usuario = new Usuario(signinUsuario.getNombre(),signinUsuario.getApellido()
+				, signinUsuario.getUsername(), passwordEncoder.encode(signinUsuario.getPassword())
+				, signinUsuario.getEmail());
 
 		Set<TipoRol> roles = new HashSet<>();
 
-		if (signinUsuario.getRoles().contains("user") || signinUsuario.getRoles().contains("admin")
-				|| signinUsuario.getRoles().contains("")) {
-
-			roles.add(TipoRol.ROLE_USER);
-		}
-
-		if (signinUsuario.getRoles().contains("admin")) {
+	
+		if (signinUsuario.getRoles().contains("admin") || signinUsuario.getRoles().contains("ROLE_ADMIN")) {
 			roles.add(TipoRol.ROLE_ADMIN);
+			roles.add(TipoRol.ROLE_USER);
+		}else {
+			roles.add(TipoRol.ROLE_USER);
 		}
 
 		usuario.setRoles(roles);
 
 		usuarioServiceImpl.addUsuario(usuario);
 
-		return new ResponseEntity<String>("Usuario Insertado Correctamente", HttpStatus.CREATED);
+		return new ResponseEntity<SigninUsuarioDTO>(signinUsuario, HttpStatus.CREATED);
 	}
 	
 	
@@ -147,11 +149,11 @@ public class AuthController {
 	public ResponseEntity<?> login(@Valid @RequestBody LoginUsuarioDTO loginUsuario, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			return new ResponseEntity<String>("Campos Inválidos", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("Campos Inválidos.!!", HttpStatus.BAD_REQUEST);
 		}
 
 		if (!(usuarioServiceImpl.existsByUsername(loginUsuario.getUsername()))) {
-			return new ResponseEntity<String>("El Usuario no existe. Comprobar username y password!!",
+			return new ResponseEntity<String>("Usuario Inexistente. Verificar campos!!",
 					HttpStatus.BAD_REQUEST);
 		}
 
