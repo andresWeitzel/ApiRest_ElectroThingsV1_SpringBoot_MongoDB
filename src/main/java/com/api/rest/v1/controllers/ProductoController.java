@@ -128,7 +128,7 @@ public class ProductoController {
 	public ResponseEntity<?> deleteProducto(@PathVariable("id") String id) {
 		try {
 			iProductoService.deleteProducto(id);
-			return new ResponseEntity<String>("Se ha eliminado correctamente el Producto", HttpStatus.OK);
+			return new ResponseEntity<ProductoEntity>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
 

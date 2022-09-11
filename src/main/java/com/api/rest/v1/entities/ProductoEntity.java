@@ -68,7 +68,7 @@ public class ProductoEntity {
 	@NotNull(message="La Marca no puede ser null")
 	@NotEmpty(message="La Marca no puede ser vacía")
 	@NotBlank(message="La Marca no puede estar en blanco")
-	@Size(min = 4, max = 100, message = "La Marca debe ser mayor o igual a 4 caracteres y menor o igual a 100 caracteres")
+	@Size(min = 2, max = 100, message = "La Marca debe ser mayor o igual a 4 caracteres y menor o igual a 100 caracteres")
 	private String marca;
 	
 	@Field("imagen")
