@@ -93,7 +93,7 @@ public class ProductoEntity {
 	@Field("precio")
 	@NotNull(message="El Precio no puede ser null")
 	@Min(value = 200, message = "El Precio debe ser mayor o igual a $200")
-    @Max(value = 10000, message = "El Precio debe ser menor o igual a $100000")
+    @Max(value = 100000, message = "El Precio debe ser menor o igual a $100000")
 	//No podemos validar con mas opciones los enteros
 	private int precio;
 	
