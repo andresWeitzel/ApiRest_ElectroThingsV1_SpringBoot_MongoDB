@@ -109,9 +109,9 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 			} else if (producto.getCodigo() == "" || producto.getNombre() == "" || producto.getMarca() == ""
 					|| producto.getDescripcion() == "" || producto.getCategoria() == "" || producto.getPrecio() == 0
-					|| producto.getStock() == 0 || producto.getFecha() == "") {
+					|| producto.getStock() == 0 ) {
 				logger.error(
-						"ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto + " NO SON VÁLIDOS!!");
+						"ERROR updateProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto + " NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
 
 			} else {
