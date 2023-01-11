@@ -14,7 +14,7 @@
 
 </br>
 
-* [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB] 
+* [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
 * [Repositorio AppTiendaElectronica `(migrado a..)`](https://gitlab.com/andres-weitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
 * [Repositorio db_ElectroThings](https://github.com/andresWeitzel/db_ElectroThings_MongoDB)
 * [PlayList Proyecto](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1)
@@ -194,27 +194,27 @@
 
 ### Doc No Oficial Recomendada
 #### Api Rest con MongoDB/SpringBoot
-* Api Rest Spring Boot Mongodb : https://www.youtube.com/watch?v=OtBukxJy4kg
-* Api Rest Guía Spring Boot Mongodb Codigo :https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/controllers/ProductController.java
-* Tutorial MongoDB con Spring Boot : https://www.mongodb.com/compatibility/spring-boot
-* Config Mongo y Spring Boot : https://hevodata.com/learn/spring-boot-mongodb-config/
+* [Api Rest Spring Boot Mongodb](https://www.youtube.com/watch?v=OtBukxJy4kg)
+* [Api Rest Guía Spring Boot Mongodb Codigo](https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/controllers/ProductController.java)
+* [Tutorial MongoDB con Spring Boot](https://www.mongodb.com/compatibility/spring-boot)
+* [Config Mongo y Spring Boot](https://hevodata.com/learn/spring-boot-mongodb-config/)
 #### Spring Data MongoDB
-* Tutorial Spring Data MongoDB (01) : https://stackabuse.com/spring-data-mongodb-guide-to-the-aggregation-annotation/
-* Tutorial Spring Data MongoDB(02) :  https://blog.marcnuri.com/spring-data-mongodb-implementacion-de-un-repositorio-a-medida
+* [Tutorial Spring Data MongoDB (01)](https://stackabuse.com/spring-data-mongodb-guide-to-the-aggregation-annotation/)
+* [Tutorial Spring Data MongoDB(02)](https://blog.marcnuri.com/spring-data-mongodb-implementacion-de-un-repositorio-a-medida)
 #### Querys MongoRepository
-* Tutorial Uso de Querys en MongoDB : https://www.baeldung.com/queries-in-spring-data-mongodb
-* Tutorial Querys MongoRepository : https://stackabuse.com/spring-data-mongodb-guide-to-the-query-annotation/
-* Código Ejemplo genérico : https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/models/ProductDTO.java
+* [Tutorial Uso de Querys en MongoDB](https://www.baeldung.com/queries-in-spring-data-mongodb)
+* [Tutorial Querys MongoRepository](https://stackabuse.com/spring-data-mongodb-guide-to-the-query-annotation/)
+* [Código Ejemplo genérico](https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/models/ProductDTO.java)
 #### Swagger UI y SpringFox
-* Config Swagger: https://www.baeldung.com/swagger-set-example-description
-* Generar doc con swagger : https://howtodoinjava.com/swagger2/swagger-spring-mvc-rest-example/
-* Api Response con swagger : https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiResponse.html
-* Códigos HTTP de respuestas desarrollar en apis :https://www.ibm.com/docs/es/odm/8.5.1?topic=api-rest-response-codes-error-messages
+* [Config Swagger](https://www.baeldung.com/swagger-set-example-description)
+* [Generar doc con swagger](https://howtodoinjava.com/swagger2/swagger-spring-mvc-rest-example/)
+* [Api Response con swagger](https://docs.swagger.io/swagger-core/v1.5.0/apidocs/io/swagger/annotations/ApiResponse.html)
+* [Códigos HTTP de respuestas desarrollar en apis](https://www.ibm.com/docs/es/odm/8.5.1?topic=api-rest-response-codes-error-messages)
 
 ### Doc Gráfica No Oficial Recomendada
-* Implementación de Spring Security y JWT Youtube : https://www.youtube.com/watch?v=_91iKzsKdqY&list=PL4bT56Uw3S4z9rtwwGvuk1Mjhu5sdLSwX&index=12
-* Implementación Spring Security : https://www.youtube.com/watch?v=tDZPdovCH4I
-* Tutorial doc open-api : https://www.youtube.com/watch?v=iaVBleTf88U
+* [Implementación de Spring Security y JWT Youtube](https://www.youtube.com/watch?v=_91iKzsKdqY&list=PL4bT56Uw3S4z9rtwwGvuk1Mjhu5sdLSwX&index=12)
+* [Implementación Spring Security](https://www.youtube.com/watch?v=tDZPdovCH4I)
+* [Tutorial doc open-api](https://www.youtube.com/watch?v=iaVBleTf88U)
 
 
 
