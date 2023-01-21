@@ -1,6 +1,19 @@
 # ApiRest ElectroThings V1
+Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC, Spring Security, JWT, Spring Data MongoDB, SpringFox, Swagger UI, Api Highchart, Maven, Lombok, Log4j, Git, MongoDBCompass, MongoDB y Otras Tecnologías.
 
-* Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC, Spring Security, JWT, Spring Data MongoDB, SpringFox, Swagger UI, Api Highchart, Maven, Lombok, Log4j, Git, MongoDBCompass, MongoDB y Otras Tecnologías.
+
+## Índice
+<details>
+ <summary>Ver📜</summary>
+ 
+ - [Descripción del Proyecto.](#descripción)
+ 
+</details>
+
+<br>
+
+## Descripción
+
 * Se Desarrollan Clases Específicas para el Manejo de Excepciones para cada Servicio , como también un manejador de excepciones y validaciones por campos de beans.
 * Todas las funcionalidades tienen generación de logs en el Server para los errores y excepciones personalizadas.
 * Se incluye documentación completa de la Api con open-api para la visualización con swagger-ui, las anotaciones de open-api se aplican junto con los códigos de 
@@ -12,7 +25,7 @@
 * Entre Otros.
 * Se pone a disposición todos los recursos anteriores para productos y usuarios.
 
-</br>
+<br>
 
 * [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
 * [Repositorio AppTiendaElectronica](https://github.com/andresWeitzel/AppElectroThings_Angular_Bootstrap_SpringBoot_MongoDB)
