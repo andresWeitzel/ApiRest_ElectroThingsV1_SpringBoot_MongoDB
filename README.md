@@ -6,7 +6,8 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ## Índice
 
 <details>
- <summary>Ver📜</summary>
+
+## asd <summary>Ver📜</summary>
  
  <br>
  
