@@ -16,10 +16,10 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 <br>
 
-## Descripción
+## Descripción 🔝
 
 <details>
- <summary>Ver📜</summary>
+ <summary>Ver</summary>
  
  <br>
 
