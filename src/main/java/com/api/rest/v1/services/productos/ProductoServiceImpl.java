@@ -201,6 +201,29 @@ public class ProductoServiceImpl implements I_ProductoService {
 			throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS ", e);
 		}
 	}
+	
+	
+	// ------- LISTADO PAGINADO ---------
+		@Override
+		public ProductoEntity getLastProducto() {
+			try {
+
+				ProductoEntity producto = iProductoRepository.findLast();
+
+				// Si esta vacio es nulo
+				if (producto.getId()=="") {
+					logger.error("ERROR getLastProducto : NO SE HAN LISTADO LOS PRODUCTOS!!");
+					throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS");
+				} else {
+					return producto;
+
+				}
+
+			} catch (Exception e) {
+				logger.error("ERROR getLastProducto : NO SE HAN LISTADO LOS PRODUCTOS. CAUSADO POR " + e);
+				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS ", e);
+			}
+		}
 
 	// ========================
 	// ===== GET ALL FILTER====

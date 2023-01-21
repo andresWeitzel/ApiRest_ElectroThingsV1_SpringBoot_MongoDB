@@ -83,6 +83,9 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	
 	Page<ProductoEntity> findAll(Pageable pageable);
 	
+	@Query(value = "{$last}")
+	ProductoEntity findLast();
+	
 	
 	//Filtro personalizado fast match
 	@Query(value="{ $or : [ {'codigo': {$regex : ?0, $options: 'i'}}"

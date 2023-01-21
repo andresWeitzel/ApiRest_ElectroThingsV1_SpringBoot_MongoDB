@@ -27,6 +27,8 @@ public interface I_ProductoService {
 
 	public abstract Page<ProductoEntity> getAllProductos(Pageable pageable);
 	
+	public abstract ProductoEntity getLastProducto();
+	
 	public abstract Page<ProductoEntity> getAllProductosFilter(String filtro, Pageable pageable);
 
 	// ==================================================

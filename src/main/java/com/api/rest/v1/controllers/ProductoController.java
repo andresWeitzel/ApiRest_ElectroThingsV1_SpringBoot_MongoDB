@@ -162,6 +162,35 @@ public class ProductoController {
 	public Page<ProductoEntity> getAll(Pageable pageable) {
 		return iProductoService.getAllProductos(pageable);
 	}
+	
+	
+	// ===================
+	// ===== GET ALL =====
+	// ===================
+	// ---LISTADO PAGINADO---
+	@ApiOperation(value = "Listado Paginado de Productos", notes = "Devolución del Listado Paginado de Productos")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se han Listado los Productos Correctamente"),
+			@ApiResponse(code = 201, message = "Se han Listado los Productos Correctamente"),
+			@ApiResponse(code = 400, message = "No se ha podido Listar los Productos. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405,  message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407,  message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 408,  message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409,  message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410,  message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422,  message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500,  message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503,  message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505,  message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507,  message = "Almacenamiento Insuficiente por parte del Servidor.")
+			})
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/last-producto")
+	public ProductoEntity getLastProducto() {
+		return iProductoService.getLastProducto();
+	}
 
 	// =========================
 	// ===== GET ALL FILTER =====
