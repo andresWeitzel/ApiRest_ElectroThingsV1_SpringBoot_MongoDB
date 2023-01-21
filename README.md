@@ -3,10 +3,10 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 <br>
 
-## Índice
+## Índice 📜
 
 <details>
- <summary> Ver 📜</summary>
+ <summary> Ver </summary>
  
  <br>
  
@@ -20,7 +20,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ## Descripción [🔝](#índice) 
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
  <br>
 
