@@ -39,7 +39,7 @@
 </br>
 
 ### Descripción de la Api Rest
-![Index app](./src/doc/controllers/inicioDocSwagger.png)
+![Index app](./doc/controllers/inicioDocSwagger.png)
 
 ### Modelo de Respuesta Métodos Http Code
 ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/httpResponses.png)
