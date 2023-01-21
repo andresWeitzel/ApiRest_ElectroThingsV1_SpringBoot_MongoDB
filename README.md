@@ -12,6 +12,9 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  
  - [Descripción del Proyecto.](#descripción-)
  - [Repositorios.](#repositorios-)
+ - [EndPoints y Recursos.](#endpoints-y-recursos-)
+     - [EndPoints.](#endpoints) 
+ 
  
 </details>
 
@@ -40,7 +43,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
  
  
-## Repositorios 🔝 
+## Repositorios [🔝](#índice) 
 
 <details>
  <summary>Ver</summary>
@@ -57,18 +60,27 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-## EndPoints y Recursos. Vista Swagger UI
+## EndPoints y Recursos [🔝](#índice)
 
 ### EndPoints
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
 * http://localhost:8098/api/v1/productos/
 * http://localhost:8098/api/v1/admin/usuarios/
 * http://localhost:8098/api/v1/auth/
 
-* Algunos de los recursos de cada endpoint se muestran en las siguientes imágenes respectivas a cada controller
+* Algunos de los recursos de cada endpoint se muestran en las siguientes imágenes respectivas a cada controller.
 
 <br>
 
-## Documentación Gráfica de algunos Recursos la Api.
+</details>
+
+
+## Documentación Gráfica de algunos Recursos la Api. Vista Swagger UI
 
 
 ### Descripción de la Api Rest
