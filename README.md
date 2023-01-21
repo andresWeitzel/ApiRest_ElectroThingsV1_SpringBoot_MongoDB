@@ -32,17 +32,18 @@
 
 * Algunos de los recursos de cada endpoint se muestran en las siguientes imágenes respectivas a cada controller
 
-</br>
+<br>
 
 ## Documentación Gráfica de algunos Recursos la Api.
 
-</br>
 
 ### Descripción de la Api Rest
 ![Index app](./doc/controllers/inicioDocSwagger.png)
 
 ### Modelo de Respuesta Métodos Http Code
 ![Index app](./doc/controllers/httpResponses.png)
+
+<br>
 
 ### Recursos por Endpoint
 
@@ -66,35 +67,35 @@
 
   
 ### Inserción de un Producto Método Post
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/post.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/postResponse.png)
+ ![Index app](./doc/post/post.png)
+ ![Index app](./doc/post/postResponse.png)
 
 ### Búsqueda del Producto Insertado según su Código
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigo.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/post/getByCodigoResponse.png)
+ ![Index app](./doc/post/getByCodigo.png)
+ ![Index app](./doc/post/getByCodigoResponse.png)
   
 ### Actualización de un Producto Método Put
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/put.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/put/putResponse.png)
+ ![Index app](./doc/put/put.png)
+ ![Index app](./doc/put/putResponse.png)
   
 
 ### Eliminación de un Producto Método Delete
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/delete.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/deleteResponse.png)
+ ![Index app](./doc/delete/delete.png)
+ ![Index app](./doc/delete/deleteResponse.png)
   
 ### Búsqueda del Producto Eliminado según su Id
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getById.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/delete/getByIdResponse.png)
+ ![Index app](./doc/delete/getById.png)
+ ![Index app](./doc/delete/getByIdResponse.png)
  
  
  
-</br>
+<br>
 
 ### Prueba de Funcionalidad de la ApiRest
 
 
 ### Login de Usuarios
-[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/01.00_Login.png)](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1) 
+[![Alt text](./doc/Yt/01.00_Login.png)](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1) 
 
 
 ### Signin de Usuarios y Refresh Token
