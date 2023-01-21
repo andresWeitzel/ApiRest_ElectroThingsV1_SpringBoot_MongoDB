@@ -10,7 +10,12 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  
  <br>
  
- - [Descripción del Proyecto.](#descripción-)
+ 
+### Sección 1) Descripción, Tecnologías y Dependencias 
+ 
+ - [1.0) Descripción del Proyecto.](#10-descripción-)
+ - [1.1) Tecnologías.](#11-tecnologías-)
+ - [1.2) Descargas.](#12-descargas-)
  - [Repositorios.](#repositorios-)
  - [EndPoints y Recursos.](#endpoints-y-recursos-)
      - [EndPoints.](#endpoints)
@@ -25,7 +30,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 <br>
 
-## Descripción [🔝](#índice) 
+## 1.0) Descripción [🔝](#índice) 
 
 <details>
  <summary>Ver</summary>
@@ -46,6 +51,116 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 <br>
 
 </details>
+
+
+
+
+
+
+
+### 1.1) Tecnologías [🔝](#índice)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+| **Tecnologías** | **Versión** | **Finalidad** |           
+| ------------- | ------------- | ------------- |
+| [Java](https://docs.oracle.com/en/) |  12.0.2 | JDK |
+| [Spring Tool Suite 4] | 4.9.0  | IDE |
+| [Spring Boot] |   2.6.4  | Framework |
+| [Spring Boot Data JPA]  | 2.6.3 | Mapeo de objetos y persistencia en la db |
+| [Spring Validation]  | 2.7 | Anotations para Validaciones |
+| [Spring Security]  | 2.6.7 | Módulo de Seguridad de Spring |
+| [Json Web Token]  | 0.9.1 | Manejo de Token's de Seguridad |
+| [Lombok] | 1.18.22 | Automatización de Código | 
+| [Open-Api y UI Swagger] | 1.6.4 | Documentación de la Api | 
+| [UI Swagger] | 1.6.4 | Visualización y Gestión de la Api | 
+| [Maven] |  4.0.0 | Gestor de Proyectos |
+| [MongoDB] | 5.0 | Base de Datos |
+| [MongoDB Compass]	| 1.31.2 |	Gestor para MongoDB |
+| [CMD] | 10 | Símbolo del Sistema para linea de comandos | 
+| [GNU bash / Terminal] | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
+| [Git] | 2.29.1  | Control de Versiones |
+
+<br>
+
+</details>
+
+### 1.2) Descargas [🔝](#índice)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+* [Java-JDK 12]([https://docs.oracle.com/en/](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
+* [Spring Tool Suite 4](https://spring.io/tools)
+* [Lombok](https://projectlombok.org/download )
+* [Open UI](https://open-ui.org/)
+* [MongoDB](https://www.mongodb.com/try/download/community)
+* [MongoDB Compass](https://www.mongodb.com/try/download/compass)
+* [Git](https://git-scm.com/downloads)
+
+<br>
+
+</details>
+
+
+### Patrones de Diseño Implementados
+
+| **Patrón de Diseño** | **Finalidad** |               
+| ------------- | ------------- |
+| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
+| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
+| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
+| Otros | Otros |
+
+
+</br>
+
+### Dependencias Implementadas
+
+| **Dependencia Maven**  | **Versión** | **Finalidad** |             
+| ------------- | ------------- | ------------- |
+| spring-boot-starter-data-jpa | 2.6.7 | Api de JpaRepository para el manejo de métodos | 
+| spring-boot-starter-test | 2.6.7 | Para Testing | 
+| spring-boot-starter-web | 2.6.7 | Se agrega toda la configuración web automáticamente de Maven a Spring | 
+| spring-boot-starter-validation | 2.7.0 | Validación de Annotations |
+| spring-boot-devtools | 2.6.7 | Herramientas para el Manejo de Spring Boot | 
+| spring-boot-starter-security | 2.6.7 | Módulo de Seguridad de Spring |
+| jjwt | 0.9.1 | Manejo de Token's |
+| nimbus-jose-jwt | 9.22 | Refresh Token |
+| jaxb-api | 4.0 | Serialización de Objetos Java a XML |
+| jackson-databind | 4.0 | Serialización de Objetos Java a JSON |
+| javax-annotation-api | 4.0 | Api para la lectura de annotations|
+| springfox-boot-starter | 3.0.0 | Doc Api |
+| springfox-swagger-ui | 3.0.0 | Doc Api |
+| spring-boot-starter-data-mongodb | 2.6.7 | Manejo de SpringDataMongoDB con los métodos del Repository y anotations  |
+| springdoc-openapi-ui | 1.6.4 | Plantillas para el Front |
+| spring-boot-devtools | 2.6.7 | Herramientas para el Manejo de Spring Boot | 
+| lombok | 1.18.22 |  Dependencia para la automatización de Código |
+
+
+
+
+</br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
  
 ## Repositorios [🔝](#índice) 
@@ -166,85 +281,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-
-### Tecnologías Implementadas
-
-| **Tecnologías** | **Versión** | **Finalidad** |               
-| ------------- | ------------- | ------------- |
-| Java |   12.0.2 | JDK |
-| Spring Tool Suite 4 | 4.9.0  | IDE |
-| Spring Boot |   2.6.4  | Framework |
-| Spring Boot Data JPA  | 2.6.3 | Mapeo de objetos y persistencia en la db |
-| Spring Validation  | 2.7 | Anotations para Validaciones |
-| Spring Security  | 2.6.7 | Módulo de Seguridad de Spring |
-| Json Web Token  | 0.9.1 | Manejo de Token's de Seguridad |
-| Lombok | 1.18.22 | Automatización de Código | 
-| Open-Api y UI Swagger | 1.6.4 | Documentación de la Api | 
-| UI Swagger | 1.6.4 | Visualización y Gestión de la Api | 
-| Maven |  4.0.0 | Gestor de Proyectos |
-| MongoDB | 5.0 | Base de Datos |
-| MongoDB Compass	| 1.31.2 |	Gestor para MongoDB |
-| CMD | 10 | Símbolo del Sistema para linea de comandos | 
-| GNU bash / Terminal | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
-| Git | 2.29.1  | Control de Versiones |
-
-
-</br>
-
-### Descarga y Documentación de las Tecnologías Implementadas
-
-| **Documentación**  | **Descarga** | 
-| ------------- | ------------- | 
-| [Java-JDK 12](https://docs.oracle.com/en/) | https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html |
-| [Spring Tool Suite 4](https://spring.io/guides) | https://spring.io/tools |
-| [Lombok](https://projectlombok.org/download) | https://projectlombok.org/download |
-| [Open UI](https://open-ui.org/) | https://open-ui.org/ |
-| [Maven Repository](https://mvnrepository.com/) | https://mvnrepository.com/ |
-| [MongoDB](https://www.mongodb.com/try/download/community) |	https://www.mongodb.com/try/download/community |
-| [MongoDB Compass](https://www.mongodb.com/try/download/compass)	|https://www.mongodb.com/try/download/compass	|
-| [Git](https://git-scm.com/docs)  | https://git-scm.com/downloads |
-
-</br>
-
-### Patrones de Diseño Implementados
-
-| **Patrón de Diseño** | **Finalidad** |               
-| ------------- | ------------- |
-| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
-| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
-| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
-| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
-| Otros | Otros |
-
-
-</br>
-
-### Dependencias Implementadas
-
-| **Dependencia Maven**  | **Versión** | **Finalidad** |             
-| ------------- | ------------- | ------------- |
-| spring-boot-starter-data-jpa | 2.6.7 | Api de JpaRepository para el manejo de métodos | 
-| spring-boot-starter-test | 2.6.7 | Para Testing | 
-| spring-boot-starter-web | 2.6.7 | Se agrega toda la configuración web automáticamente de Maven a Spring | 
-| spring-boot-starter-validation | 2.7.0 | Validación de Annotations |
-| spring-boot-devtools | 2.6.7 | Herramientas para el Manejo de Spring Boot | 
-| spring-boot-starter-security | 2.6.7 | Módulo de Seguridad de Spring |
-| jjwt | 0.9.1 | Manejo de Token's |
-| nimbus-jose-jwt | 9.22 | Refresh Token |
-| jaxb-api | 4.0 | Serialización de Objetos Java a XML |
-| jackson-databind | 4.0 | Serialización de Objetos Java a JSON |
-| javax-annotation-api | 4.0 | Api para la lectura de annotations|
-| springfox-boot-starter | 3.0.0 | Doc Api |
-| springfox-swagger-ui | 3.0.0 | Doc Api |
-| spring-boot-starter-data-mongodb | 2.6.7 | Manejo de SpringDataMongoDB con los métodos del Repository y anotations  |
-| springdoc-openapi-ui | 1.6.4 | Plantillas para el Front |
-| spring-boot-devtools | 2.6.7 | Herramientas para el Manejo de Spring Boot | 
-| lombok | 1.18.22 |  Dependencia para la automatización de Código |
-
-
-
-
-</br>
 
 ### Doc No Oficial Recomendada
 #### Api Rest con MongoDB/SpringBoot
