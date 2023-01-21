@@ -13,7 +13,10 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  - [Descripción del Proyecto.](#descripción-)
  - [Repositorios.](#repositorios-)
  - [EndPoints y Recursos.](#endpoints-y-recursos-)
-     - [EndPoints.](#endpoints) 
+     - [EndPoints.](#endpoints)
+     - [Documentación Gráfica de Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+ 
+
  
  
 </details>
@@ -71,15 +74,15 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 * http://localhost:8098/api/v1/admin/usuarios/
 * http://localhost:8098/api/v1/auth/
 
-* Algunos de los recursos de cada endpoint se muestran en las siguientes imágenes respectivas a cada controller.
-
 <br>
 
 </details>
 
+## Documentación Gráfica de Recursos por Endpoints. (Swagger UI) [🔝](#índice)
+### Se representan algunos recursos de los endpoints descritos.
 
-## Documentación Gráfica de algunos Recursos la Api. Vista Swagger UI
-
+<details>
+ <summary>Ver</summary>
 
 ### Descripción de la Api Rest
 ![Index app](./doc/controllers/inicioDocSwagger.png)
@@ -104,12 +107,10 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  ![Index app](./doc/get/getAll.png)
  ![Index app](./doc/get/getAllResponse.png)
 
-
 ### Listado de Productos o Producto Paginado/s por Fecha
  ![Index app](./doc/get/getByFecha.png)
  ![Index app](./doc/get/getByFechaResponse.png)
 
-  
 ### Inserción de un Producto Método Post
  ![Index app](./doc/post/post.png)
  ![Index app](./doc/post/postResponse.png)
@@ -131,7 +132,9 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  ![Index app](./doc/delete/getById.png)
  ![Index app](./doc/delete/getByIdResponse.png)
  
- 
+ <br>
+
+</details>
  
 <br>
 
