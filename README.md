@@ -67,8 +67,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 <details>
  <summary>Ver</summary>
  
- <br>
-
 * http://localhost:8098/api/v1/productos/
 * http://localhost:8098/api/v1/admin/usuarios/
 * http://localhost:8098/api/v1/auth/
