@@ -14,7 +14,9 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  - [Repositorios.](#repositorios-)
  - [EndPoints y Recursos.](#endpoints-y-recursos-)
      - [EndPoints.](#endpoints)
-     - [Documentación Gráfica de Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+     - [Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+ - [Prueba de Funcionalidad.](#prueba-de-funcionalidad-)
+ 
  
 
  
@@ -78,7 +80,8 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-## Documentación Gráfica de Recursos por Endpoints. (Swagger UI) [🔝](#índice)
+
+## Recursos por Endpoints. (Swagger UI) [🔝](#índice)
 ### Se representan algunos recursos de los endpoints descritos.
 
 <details>
@@ -136,14 +139,14 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
  
-<br>
 
-### Prueba de Funcionalidad de la ApiRest
+## Prueba de Funcionalidad [🔝](#índice)
 
+<details>
+ <summary>Ver</summary>
 
 ### Login de Usuarios
 [![Alt text](./doc/Yt/01.00_Login.png)](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1) 
-
 
 ### Signin de Usuarios y Refresh Token
 [![Alt text](./doc/Yt/01.01_SigninTokRefresh.png)](https://www.youtube.com/watch?v=mQGu5QntgQA&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=2) 
@@ -157,9 +160,12 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### Operaciones CRUD para Producto Controller
 [![Alt text](./doc/Yt/03.01_ProductoControllerCRUD.png)](https://www.youtube.com/watch?v=Pdulm99Qhnk&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=5) 
 
-</hr>
+ <br>
 
-</br>
+</details>
+
+
+
 
 ### Tecnologías Implementadas
 
