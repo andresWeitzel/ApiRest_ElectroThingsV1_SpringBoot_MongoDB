@@ -42,27 +42,27 @@
 ![Index app](./doc/controllers/inicioDocSwagger.png)
 
 ### Modelo de Respuesta Métodos Http Code
-![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/httpResponses.png)
+![Index app](./doc/controllers/httpResponses.png)
 
 ### Recursos por Endpoint
 
 ### Documentación con Swagger-UI `auth-controller`
-![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/authController.png)
+![Index app](./doc/controllers/authController.png)
 
 ### Documentación con Swagger-UI `producto-controller`
-![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/productosController.png)
+![Index app](./doc/controllers/productosController.png)
 
 ### Documentación con Swagger-UI `usuario-controller`
-![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/controllers/usuarioController.png)
+![Index app](./doc/controllers/usuarioController.png)
 
 ### Listado de Productos Paginados
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAll.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getAllResponse.png)
+ ![Index app](./doc/get/getAll.png)
+ ![Index app](./doc/get/getAllResponse.png)
 
 
 ### Listado de Productos o Producto Paginado/s por Fecha
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFecha.png)
- ![Index app](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/get/getByFechaResponse.png)
+ ![Index app](./doc/get/getByFecha.png)
+ ![Index app](./doc/get/getByFechaResponse.png)
 
   
 ### Inserción de un Producto Método Post
