@@ -6,7 +6,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ## Índice
 
 <details>
-#### <summary>Ver📜</summary>
+ <summary>Ver📜</summary>
  
  <br>
  
@@ -18,6 +18,11 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 ## Descripción
 
+<details>
+ <summary>Ver📜</summary>
+ 
+ <br>
+
 * Se Desarrollan Clases Específicas para el Manejo de Excepciones para cada Servicio , como también un manejador de excepciones y validaciones por campos de beans.
 * Todas las funcionalidades tienen generación de logs en el Server para los errores y excepciones personalizadas.
 * Se incluye documentación completa de la Api con open-api para la visualización con swagger-ui, las anotaciones de open-api se aplican junto con los códigos de 
@@ -28,7 +33,12 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 * Los objetos de tipo getBy se manipulan como paginados, salvo los getById y Optional que se requiere un response por objeto y no una E.D como de tipo lista, stream, etc.
 * Entre Otros.
 * Se pone a disposición todos los recursos anteriores para productos y usuarios.
+ 
+<br>
 
+</details>
+ 
+ 
 <br>
 
 * [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
