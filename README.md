@@ -11,12 +11,13 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  <br>
  
  - [Descripción del Proyecto.](#descripción-)
+ - [Repositorios.](#repositorios-)
  
 </details>
 
 <br>
 
-## Descripción 🔝
+## Descripción 🔝 
 
 <details>
  <summary>Ver</summary>
@@ -39,16 +40,22 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
  
  
-<br>
+## Repositorios 🔝 
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
 
 * [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
 * [Repositorio AppTiendaElectronica](https://github.com/andresWeitzel/AppElectroThings_Angular_Bootstrap_SpringBoot_MongoDB)
 * [Repositorio db_ElectroThings](https://github.com/andresWeitzel/db_ElectroThings_MongoDB)
 * [PlayList Proyecto](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1)
 
+<br>
 
+</details>
 
-</br>
 
 ## EndPoints y Recursos. Vista Swagger UI
 
