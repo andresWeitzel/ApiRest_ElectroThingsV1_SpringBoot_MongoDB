@@ -14,23 +14,28 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### Sección 1) Descripción, Tecnologías y Dependencias 
  
  - [1.0) Descripción del Proyecto.](#10-descripción-)
- - [1.1) Tecnologías.](#11-tecnologías-)
- - [1.2) Descargas.](#12-descargas-)
- - [Repositorios.](#repositorios-)
+ - [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
+ - [1.2) Tecnologías.](#12-tecnologías-)
+ - [1.3) Descarga de Tecnologías.](#13-descarga-de-tecnologías-)
+ - [1.4) Dependencias Maven.](#14-dependencias-maven-)
+ - [1.5) Repositorios del Proyecto.](#repositorios-del-proyecto-)
+ 
  - [EndPoints y Recursos.](#endpoints-y-recursos-)
      - [EndPoints.](#endpoints)
      - [Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
  - [Prueba de Funcionalidad.](#prueba-de-funcionalidad-)
- 
- 
 
- 
- 
 </details>
 
 <br>
 
-## 1.0) Descripción [🔝](#índice) 
+## Sección 1) Descripción, Tecnologías y Dependencias 
+
+<br>
+
+
+
+### 1.0) Descripción [🔝](#índice) 
 
 <details>
  <summary>Ver</summary>
@@ -55,10 +60,28 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
+### 1.1) Patrones de Diseño [🔝](#índice)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+| **Patrón de Diseño** | **Finalidad** |               
+| ------------- | ------------- |
+| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
+| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
+| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
+| Otros | Otros |
+
+<br>
+
+</details>
 
 
 
-### 1.1) Tecnologías [🔝](#índice)
+### 1.2) Tecnologías [🔝](#índice)
 
 <details>
  <summary>Ver</summary>
@@ -88,7 +111,9 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-### 1.2) Descargas [🔝](#índice)
+
+
+### 1.3) Descarga de Tecnologías [🔝](#índice)
 
 <details>
  <summary>Ver</summary>
@@ -108,20 +133,12 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-### Patrones de Diseño Implementados
+### 1.4) Dependencias Maven [🔝](#índice)
 
-| **Patrón de Diseño** | **Finalidad** |               
-| ------------- | ------------- |
-| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
-| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
-| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
-| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
-| Otros | Otros |
-
-
-</br>
-
-### Dependencias Implementadas
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
 
 | **Dependencia Maven**  | **Versión** | **Finalidad** |             
 | ------------- | ------------- | ------------- |
@@ -144,26 +161,13 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 | lombok | 1.18.22 |  Dependencia para la automatización de Código |
 
 
+<br>
 
-
-</br>
-
-
-
+</details>
 
 
 
-
-
-
-
-
-
-
-
- 
- 
-## Repositorios [🔝](#índice) 
+## 1.5) Repositorios del Proyecto [🔝](#índice) 
 
 <details>
  <summary>Ver</summary>
