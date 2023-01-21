@@ -99,16 +99,16 @@
 
 
 ### Signin de Usuarios y Refresh Token
-[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/01.01_SigninTokRefresh.png)](https://www.youtube.com/watch?v=mQGu5QntgQA&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=2) 
+[![Alt text](./doc/Yt/01.01_SigninTokRefresh.png)](https://www.youtube.com/watch?v=mQGu5QntgQA&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=2) 
 
 ### Comprobación Usuario Controller
-[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/02.00_UsuarioController.png)](https://www.youtube.com/watch?v=l32x3TX_Gcs&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=3) 
+[![Alt text](./doc/Yt/02.00_UsuarioController.png)](https://www.youtube.com/watch?v=l32x3TX_Gcs&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=3) 
 
 ### Operaciones de Búsqueda para Producto Controller
-[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/03.00_ProductoControllerGetBy.png)](https://www.youtube.com/watch?v=lBltAUMeMlw&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=4) 
+[![Alt text](./doc/Yt/03.00_ProductoControllerGetBy.png)](https://www.youtube.com/watch?v=lBltAUMeMlw&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=4) 
 
 ### Operaciones CRUD para Producto Controller
-[![Alt text](https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB/blob/master/documentation/Yt/03.01_ProductoControllerCRUD.png)](https://www.youtube.com/watch?v=Pdulm99Qhnk&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=5) 
+[![Alt text](./doc/Yt/03.01_ProductoControllerCRUD.png)](https://www.youtube.com/watch?v=Pdulm99Qhnk&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=5) 
 
 </hr>
 
@@ -138,18 +138,18 @@
 
 </br>
 
-### Descarga y Documentacion de las Tecnologías Implementadas
+### Descarga y Documentación de las Tecnologías Implementadas
 
-| **Tecnología**  | **Descarga** | **Documentación** |               
-| ------------- | ------------- | ------------- |
-| Java-JDK 12 | https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html |  https://docs.oracle.com/en/ |
-| Spring Tool Suite 4 |https://spring.io/tools | https://spring.io/guides |
-| Lombok | https://projectlombok.org/download | https://projectlombok.org/download |
-| Open UI |https://open-ui.org/ | https://open-ui.org/ |
-| Maven Repository | https://mvnrepository.com/ | https://mvnrepository.com/ | 
-| MongoDB |	https://www.mongodb.com/try/download/community |	https://www.mongodb.com/try/download/community |
-| MongoDB Compass	|https://www.mongodb.com/try/download/compass	| https://www.mongodb.com/try/download/compass |
-| Git  | https://git-scm.com/downloads |  https://git-scm.com/docs |
+| **Documentación**  | **Descarga** | 
+| ------------- | ------------- | 
+| [Java-JDK 12](https://docs.oracle.com/en/) | https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html |
+| [Spring Tool Suite 4](https://spring.io/guides) | https://spring.io/tools |
+| [Lombok](https://projectlombok.org/download) | https://projectlombok.org/download |
+| [Open UI](https://open-ui.org/) | https://open-ui.org/ |
+| [Maven Repository](https://mvnrepository.com/) | https://mvnrepository.com/ |
+| [MongoDB](https://www.mongodb.com/try/download/community) |	https://www.mongodb.com/try/download/community |
+| [MongoDB Compass](https://www.mongodb.com/try/download/compass)	|https://www.mongodb.com/try/download/compass	|
+| [Git](https://git-scm.com/docs)  | https://git-scm.com/downloads |
 
 </br>
 
@@ -157,10 +157,10 @@
 
 | **Patrón de Diseño** | **Finalidad** |               
 | ------------- | ------------- |
-| DAO | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
-| MVC | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
-| DTO | Transferencia de objectos separando la capa de acceso a datos  |
-| Dependency Inyection | Uso de funcionalidades requeridas de clases a través de inyección |
+| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
+| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
+| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
 | Otros | Otros |
 
 
