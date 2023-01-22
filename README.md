@@ -261,7 +261,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 3.0) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
 
 ### Login de Usuarios
 [![Alt text](./doc/Yt/01.00_Login.png)](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1) 
@@ -286,7 +286,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 3.1) Referencias [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
 
 ### Doc No Oficial Recomendada
  
