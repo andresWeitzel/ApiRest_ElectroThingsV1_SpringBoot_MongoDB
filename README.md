@@ -58,7 +58,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-<br>
 
 
 ### 1.1) Patrones de Diseño [🔝](#índice)
