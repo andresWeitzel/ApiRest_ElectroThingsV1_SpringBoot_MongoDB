@@ -26,7 +26,10 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  - [2.1) Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
  
  
- - [Prueba de Funcionalidad.](#prueba-de-funcionalidad-)
+### Sección 3) Prueba de Funcionalidad y Referencias
+ 
+ - [3.0) Prueba de Funcionalidad.](#30-prueba-de-funcionalidad-)
+ - [3.1) Referencias.](#31-referencias-)
 
 </details>
 
@@ -73,7 +76,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 | [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
 | [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
 | [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
-| Otros | Otros |
 
 <br>
 
@@ -261,9 +263,17 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  <br>
 
 </details>
+
+
+<br>
+
+## Sección 3) Prueba de Funcionalidad y Referencias
+ 
+<br>
+
  
 
-## Prueba de Funcionalidad [🔝](#índice-)
+### 3.0) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
  <summary>Ver</summary>
@@ -288,9 +298,13 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
+### 3.1) Referencias [🔝](#índice-)
 
+<details>
+ <summary>Ver</summary>
 
 ### Doc No Oficial Recomendada
+ 
 #### Api Rest con MongoDB/SpringBoot
 * [Api Rest Spring Boot Mongodb](https://www.youtube.com/watch?v=OtBukxJy4kg)
 * [Api Rest Guía Spring Boot Mongodb Codigo](https://github.com/heroe-geek/rest-api-springboot-mvc/blob/master/src/main/java/com/hg/crud/controllers/ProductController.java)
@@ -314,9 +328,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 * [Implementación Spring Security](https://www.youtube.com/watch?v=tDZPdovCH4I)
 * [Tutorial doc open-api](https://www.youtube.com/watch?v=iaVBleTf88U)
 
+ <br>
 
-
-</br>
-
-## Documentación de Desarrollo de la Api No Disponible Momentáneamente
-
+</details>
