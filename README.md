@@ -1,4 +1,4 @@
-<img src="./doc/controllers/index.png" style="width: 50%; height: 50%"/>
+<img src="./doc/controllers/index.png" style="width: 100%; height: 50%"/>
 
 # ApiRest ElectroThings V1
 Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC, Spring Security, JWT, Spring Data MongoDB, SpringFox, Swagger UI, Api Highchart, Maven, Lombok, Log4j, Git, MongoDBCompass, MongoDB y Otras Tecnologías.
