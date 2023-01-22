@@ -22,7 +22,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  - [1.2) Tecnologías.](#12-tecnologías-)
     - [1.2.1) Descargas.](#121-descargas)
  - [1.3) Dependencias Maven.](#13-dependencias-maven-)
- - [1.4) Repositorios del Proyecto.](#14-repositorios-del-proyecto-)
  
 ### Sección 2) Endpoints y Recursos 
  
@@ -60,6 +59,13 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 * Los objetos de tipo getBy se manipulan como paginados, salvo los getById y Optional que se requiere un response por objeto y no una E.D como de tipo lista, stream, etc.
 * Entre Otros.
 * Se pone a disposición todos los recursos anteriores para productos y usuarios.
+ 
+ <br>
+
+* [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
+* [Repositorio AppTiendaElectronica](https://github.com/andresWeitzel/AppElectroThings_Angular_Bootstrap_SpringBoot_MongoDB)
+* [Repositorio db_ElectroThings](https://github.com/andresWeitzel/db_ElectroThings_MongoDB)
+* [PlayList Proyecto](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1)
  
 <br>
 
@@ -170,23 +176,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-
-
-### 1.4) Repositorios del Proyecto [🔝](#índice-) 
-
-<details>
- <summary></summary>
- 
- <br>
-
-* [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
-* [Repositorio AppTiendaElectronica](https://github.com/andresWeitzel/AppElectroThings_Angular_Bootstrap_SpringBoot_MongoDB)
-* [Repositorio db_ElectroThings](https://github.com/andresWeitzel/db_ElectroThings_MongoDB)
-* [PlayList Proyecto](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1)
-
-<br>
-
-</details>
 
 <br>
 
