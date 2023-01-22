@@ -18,11 +18,11 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  
 ### Sección 1) Descripción, Tecnologías y Dependencias 
  
- * [1.0) Descripción del Proyecto.](#10-descripción-)
- * [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
- * [1.2) Tecnologías.](#12-tecnologías-)
-     * [1.2.1) Descargas.](#121-descargas)
- * [1.3) Dependencias Maven.](#13-dependencias-maven-)
+ - [1.0) Descripción del Proyecto.](#10-descripción-)
+ - [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
+ - [1.2) Tecnologías.](#12-tecnologías-)
+     - [1.2.1) Descargas.](#121-descargas)
+ - [1.3) Dependencias Maven.](#13-dependencias-maven-)
  
 ### Sección 2) Endpoints y Recursos 
  
