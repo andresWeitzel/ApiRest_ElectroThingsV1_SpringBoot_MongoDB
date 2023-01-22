@@ -112,9 +112,11 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
+<br>
 
 
-#### 1.2.1) Descargas [🔝](#índice)
+
+### 1.2.1) Descargas [🔝](#índice)
 
 <details>
  <summary>Ver</summary>
@@ -132,6 +134,8 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 <br>
 
 </details>
+
+<br>
 
 
 ### 1.3) Dependencias Maven [🔝](#índice)
@@ -166,6 +170,8 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
+<br>
+
 
 
 ### 1.4) Repositorios del Proyecto [🔝](#índice) 
@@ -184,7 +190,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-
+<br>
 
 
 
