@@ -79,12 +79,11 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-<br>
 
 ### 1.2) Tecnologías [🔝](#índice)
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
  
  <br>
 
@@ -111,14 +110,11 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-<br>
-
-
 
 ### 1.2.1) Descargas [🔝](#índice)
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
  
  <br>
 
@@ -134,13 +130,12 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-<br>
 
 
 ### 1.3) Dependencias Maven [🔝](#índice)
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
  
  <br>
 
@@ -169,14 +164,12 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-<br>
-
 
 
 ### 1.4) Repositorios del Proyecto [🔝](#índice) 
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
  
  <br>
 
@@ -200,7 +193,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 2.0) EndPoints [🔝](#índice)
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
  
 * http://localhost:8098/api/v1/productos/
 * http://localhost:8098/api/v1/admin/usuarios/
@@ -215,7 +208,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ##### Se representan algunos recursos de los endpoints descritos.
 
 <details>
- <summary>Ver</summary>
+ <summary></summary>
 
 ### Descripción de la Api Rest
 ![Index app](./doc/controllers/inicioDocSwagger.png)
