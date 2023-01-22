@@ -202,7 +202,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-## 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
+### 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
 
 <details>
  <summary></summary>
