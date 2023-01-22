@@ -36,7 +36,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ## Sección 1) Descripción, Tecnologías y Dependencias 
 
 
-### 1.0) Descripción [🔝](#índice) 
+### 1.0) Descripción [🔝](#índice-) 
 
 <details>
  <summary></summary>
@@ -60,7 +60,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-### 1.1) Patrones de Diseño [🔝](#índice)
+### 1.1) Patrones de Diseño [🔝](#índice-)
 
 <details>
  <summary></summary>
@@ -80,7 +80,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-### 1.2) Tecnologías [🔝](#índice)
+### 1.2) Tecnologías [🔝](#índice-)
 
 <details>
  <summary></summary>
@@ -111,7 +111,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-### 1.2.1) Descargas [🔝](#índice)
+### 1.2.1) Descargas [🔝](#índice-)
 
 <details>
  <summary></summary>
@@ -132,7 +132,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-### 1.3) Dependencias Maven [🔝](#índice)
+### 1.3) Dependencias Maven [🔝](#índice-)
 
 <details>
  <summary></summary>
@@ -166,7 +166,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-### 1.4) Repositorios del Proyecto [🔝](#índice) 
+### 1.4) Repositorios del Proyecto [🔝](#índice-) 
 
 <details>
  <summary></summary>
@@ -190,7 +190,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 ## Sección 2) EndPoints y Recursos
 
-### 2.0) EndPoints [🔝](#índice)
+### 2.0) EndPoints [🔝](#índice-)
 
 <details>
  <summary></summary>
@@ -204,7 +204,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-## 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice)
+## 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
 ##### Se representan algunos recursos de los endpoints descritos.
 
 <details>
@@ -263,7 +263,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
  
 
-## Prueba de Funcionalidad [🔝](#índice)
+## Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
  <summary>Ver</summary>
