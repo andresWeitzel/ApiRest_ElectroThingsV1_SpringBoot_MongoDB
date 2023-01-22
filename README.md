@@ -113,6 +113,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 | [Open-Api y UI Swagger](https://www.openapis.org/) | 1.6.4 | Documentación de la Api | 
 | [UI Swagger](https://swagger.io/tools/swagger-ui/) | 1.6.4 | Visualización y Gestión de la Api | 
 | [Maven](https://maven.apache.org/) |  4.0.0 | Gestor de Proyectos |
+| [Postman](https://www.postman.com/) | 9.1.1 | Visualización y Gestión de la Api | 
 | [MongoDB](https://www.mongodb.com/) | 5.0 | Base de Datos |
 | [MongoDB Compass](https://www.mongodb.com/products/compass)	| 1.31.2 |	Gestor para MongoDB |
 | [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
