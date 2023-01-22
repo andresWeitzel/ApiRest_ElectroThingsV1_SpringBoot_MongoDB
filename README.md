@@ -136,6 +136,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 * [Spring Tool Suite 4](https://spring.io/tools)
 * [Lombok](https://projectlombok.org/download )
 * [Open UI](https://open-ui.org/)
+* [Postman](https://www.postman.com/downloads/)
 * [MongoDB](https://www.mongodb.com/try/download/community)
 * [MongoDB Compass](https://www.mongodb.com/try/download/compass)
 * [Git](https://git-scm.com/downloads)
