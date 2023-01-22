@@ -20,12 +20,16 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  - [1.3) Dependencias Maven.](#13-dependencias-maven-)
  - [1.4) Repositorios del Proyecto.](#14-repositorios-del-proyecto-)
  
- - [EndPoints y Recursos.](#endpoints-y-recursos-)
-     - [EndPoints.](#endpoints)
-     - [Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+### Sección 2) Endpoints y Recursos 
+ 
+ - [2.0) EndPoints.](#endpoints-)
+ - [2.1) Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
+ 
+ 
  - [Prueba de Funcionalidad.](#prueba-de-funcionalidad-)
 
 </details>
+
 
 <br>
 
@@ -113,7 +117,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-### 1.2.1) Descargas 
+#### 1.2.1) Descargas [🔝](#índice)
 
 <details>
  <summary>Ver</summary>
@@ -184,9 +188,16 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-## EndPoints y Recursos [🔝](#índice)
 
-### EndPoints
+<br>
+
+## Sección 2) EndPoints y Recursos
+
+<br>
+
+
+
+### 2.0) EndPoints [🔝](#índice)
 
 <details>
  <summary>Ver</summary>
@@ -200,8 +211,8 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-## Recursos por Endpoints. (Swagger UI) [🔝](#índice)
-### Se representan algunos recursos de los endpoints descritos.
+## 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice)
+##### Se representan algunos recursos de los endpoints descritos.
 
 <details>
  <summary>Ver</summary>
