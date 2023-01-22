@@ -16,9 +16,9 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  - [1.0) Descripción del Proyecto.](#10-descripción-)
  - [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
  - [1.2) Tecnologías.](#12-tecnologías-)
- - [1.3) Descarga de Tecnologías.](#13-descarga-de-tecnologías-)
- - [1.4) Dependencias Maven.](#14-dependencias-maven-)
- - [1.5) Repositorios del Proyecto.](#repositorios-del-proyecto-)
+    - [1.2.1) Descargas.](#121-descargas)
+ - [1.3) Dependencias Maven.](#13-dependencias-maven-)
+ - [1.4) Repositorios del Proyecto.](#14-repositorios-del-proyecto-)
  
  - [EndPoints y Recursos.](#endpoints-y-recursos-)
      - [EndPoints.](#endpoints)
@@ -91,21 +91,21 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 | **Tecnologías** | **Versión** | **Finalidad** |           
 | ------------- | ------------- | ------------- |
 | [Java](https://docs.oracle.com/en/) |  12.0.2 | JDK |
-| [Spring Tool Suite 4] | 4.9.0  | IDE |
-| [Spring Boot] |   2.6.4  | Framework |
-| [Spring Boot Data JPA]  | 2.6.3 | Mapeo de objetos y persistencia en la db |
-| [Spring Validation]  | 2.7 | Anotations para Validaciones |
-| [Spring Security]  | 2.6.7 | Módulo de Seguridad de Spring |
-| [Json Web Token]  | 0.9.1 | Manejo de Token's de Seguridad |
-| [Lombok] | 1.18.22 | Automatización de Código | 
-| [Open-Api y UI Swagger] | 1.6.4 | Documentación de la Api | 
-| [UI Swagger] | 1.6.4 | Visualización y Gestión de la Api | 
-| [Maven] |  4.0.0 | Gestor de Proyectos |
-| [MongoDB] | 5.0 | Base de Datos |
-| [MongoDB Compass]	| 1.31.2 |	Gestor para MongoDB |
-| [CMD] | 10 | Símbolo del Sistema para linea de comandos | 
-| [GNU bash / Terminal] | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
-| [Git] | 2.29.1  | Control de Versiones |
+| [Spring Tool Suite 4](https://spring.io/blog/2021/06/21/spring-tools-4-11-0-released) | 4.9.0  | IDE |
+| [Spring Boot](https://spring.io/) |  2.6.4  | Framework |
+| [Spring Boot Data JPA](https://spring.io/projects/spring-data-jpa)  | 2.6.3 | Mapeo de objetos y persistencia en la db |
+| [Spring Validation](https://www.baeldung.com/spring-boot-bean-validation)  | 2.7 | Anotations para Validaciones |
+| [Spring Security](https://spring.io/projects/spring-security)  | 2.6.7 | Módulo de Seguridad de Spring |
+| [Json Web Token](https://jwt.io/)  | 0.9.1 | Manejo de Token's de Seguridad |
+| [Lombok](https://projectlombok.org/) | 1.18.22 | Automatización de Código | 
+| [Open-Api y UI Swagger](https://www.openapis.org/) | 1.6.4 | Documentación de la Api | 
+| [UI Swagger](https://swagger.io/tools/swagger-ui/) | 1.6.4 | Visualización y Gestión de la Api | 
+| [Maven](https://maven.apache.org/) |  4.0.0 | Gestor de Proyectos |
+| [MongoDB](https://www.mongodb.com/) | 5.0 | Base de Datos |
+| [MongoDB Compass](https://www.mongodb.com/products/compass)	| 1.31.2 |	Gestor para MongoDB |
+| [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
+| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
+| [Git](https://git-scm.com/) | 2.29.1  | Control de Versiones |
 
 <br>
 
@@ -113,14 +113,14 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-### 1.3) Descarga de Tecnologías [🔝](#índice)
+### 1.2.1) Descargas 
 
 <details>
  <summary>Ver</summary>
  
  <br>
 
-* [Java-JDK 12]([https://docs.oracle.com/en/](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
+* [Java-JDK 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
 * [Spring Tool Suite 4](https://spring.io/tools)
 * [Lombok](https://projectlombok.org/download )
 * [Open UI](https://open-ui.org/)
@@ -133,7 +133,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-### 1.4) Dependencias Maven [🔝](#índice)
+### 1.3) Dependencias Maven [🔝](#índice)
 
 <details>
  <summary>Ver</summary>
@@ -167,7 +167,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-## 1.5) Repositorios del Proyecto [🔝](#índice) 
+### 1.4) Repositorios del Proyecto [🔝](#índice) 
 
 <details>
  <summary>Ver</summary>
