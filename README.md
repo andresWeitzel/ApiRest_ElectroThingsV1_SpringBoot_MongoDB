@@ -186,10 +186,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 <br>
 
-
-
-<br>
-
 ## Sección 2) EndPoints y Recursos
 
 ### 2.0) EndPoints [🔝](#índice-)
@@ -207,7 +203,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 ## 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
-##### Se representan algunos recursos de los endpoints descritos.
 
 <details>
  <summary></summary>
@@ -268,10 +263,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 <br>
 
 ## Sección 3) Prueba de Funcionalidad y Referencias
- 
-<br>
 
- 
 
 ### 3.0) Prueba de Funcionalidad [🔝](#índice-)
 
