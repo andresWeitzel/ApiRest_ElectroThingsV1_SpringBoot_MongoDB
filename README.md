@@ -35,9 +35,6 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 ## Sección 1) Descripción, Tecnologías y Dependencias 
 
-<br>
-
-
 
 ### 1.0) Descripción [🔝](#índice) 
 
@@ -61,7 +58,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-
+<br>
 
 
 ### 1.1) Patrones de Diseño [🔝](#índice)
@@ -83,7 +80,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 </details>
 
-
+<br>
 
 ### 1.2) Tecnologías [🔝](#índice)
 
@@ -189,13 +186,11 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
+
+
 <br>
 
 ## Sección 2) EndPoints y Recursos
-
-<br>
-
-
 
 ### 2.0) EndPoints [🔝](#índice)
 
