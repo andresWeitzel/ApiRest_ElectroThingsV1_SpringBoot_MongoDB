@@ -46,7 +46,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 1.0) Descripción [🔝](#índice-) 
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
  <br>
 
@@ -77,7 +77,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 1.1) Patrones de Diseño [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
  <br>
 
@@ -96,7 +96,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 1.2) Tecnologías [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
  <br>
 
@@ -128,7 +128,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 1.2.1) Descargas [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
  <br>
 
@@ -150,7 +150,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 1.3) Dependencias Maven [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
  <br>
 
@@ -187,7 +187,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 2.0) EndPoints [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
  
 * http://localhost:8098/api/v1/productos/
 * http://localhost:8098/api/v1/admin/usuarios/
@@ -201,7 +201,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
 
 ### Descripción de la Api Rest
 ![Index app](./doc/controllers/inicioDocSwagger.png)
@@ -264,7 +264,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 3.0) Prueba de Funcionalidad [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
 
 ### Login de Usuarios
 [![Alt text](./doc/Yt/01.00_Login.png)](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1) 
@@ -289,7 +289,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 ### 3.1) Referencias [🔝](#índice-)
 
 <details>
- <summary></summary>
+ <summary>Ver</summary>
 
 ### Doc No Oficial Recomendada
  
