@@ -189,9 +189,30 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 <details>
  <summary>Ver</summary>
  
-* http://localhost:8098/api/v1/productos/
-* http://localhost:8098/api/v1/admin/usuarios/
-* http://localhost:8098/api/v1/auth/
+#### Autenticación
+* http://localhost:8098/api/v1/auth/login (Autenticación)
+* http://localhost:8098/api/v1/auth/signin (Registro)
+  
+#### Gestión de Productos
+* http://localhost:8098/api/v1/productos/ (Agregar)
+* http://localhost:8098/api/v1/productos/{id} (Editar)
+* http://localhost:8098/api/v1/productos/{id} (Eliminar)
+* http://localhost:8098/api/v1/productos/listado (Listado Paginado)
+* http://localhost:8098/api/v1/productos/last-producto (Último Producto)
+* http://localhost:8098/api/v1/productos/listado-filter/{filtro} (Listado paginado con filtro)
+* http://localhost:8098/api/v1/productos/codigo/{codigo} (Listado paginado según su código)
+* http://localhost:8098/api/v1/productos/nombre/{nombre} (Listado paginado según su nombre)
+* http://localhost:8098/api/v1/productos/descripcion/{descripcion} (Listado paginado según su descripción)
+* http://localhost:8098/api/v1/productos/categoria/{categoria} (Listado paginado según su categoria)
+* Revisar Swagger para visualizar el resto de los endpoints 
+
+#### Administración de Usuarios  
+* http://localhost:8098/api/v1/admin/usuarios/ (Agregar)
+* http://localhost:8098/api/v1/admin/usuarios/{id} (Editar)
+* http://localhost:8098/api/v1/admin/usuarios/{id} (Eliminar)
+* http://localhost:8098/api/v1/admin/usuarios/listado (Listado)
+  
+
 
 <br>
 
