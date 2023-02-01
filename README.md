@@ -117,7 +117,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 | [MongoDB](https://www.mongodb.com/) | 5.0 | Base de Datos |
 | [MongoDB Compass](https://www.mongodb.com/products/compass)	| 1.31.2 |	Gestor para MongoDB |
 | [CMD](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cmd) | 10 | Símbolo del Sistema para linea de comandos | 
-| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git integrado al Spring Tool Suite |
+| [GNU bash / Terminal](https://www.gnu.org/software/bash/) | 4.4.23  | Bash / Terminal para el manejo e implementación de Git. |
 | [Git](https://git-scm.com/) | 2.29.1  | Control de Versiones |
 
 <br>
