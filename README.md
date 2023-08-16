@@ -5,6 +5,9 @@
 
 # ApiRest ElectroThings V1
 Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos con Spring Boot, Spring MVC, Spring Security, JWT, Spring Data MongoDB, SpringFox, Swagger UI, Api Highchart, Maven, Lombok, Log4j, Git, MongoDBCompass, MongoDB y Otras Tecnologías.
+* [Repositorio AppElectroThings_Angular_SpringBoot_MongoDB](https://github.com/andresWeitzel/AppElectroThings_Angular_SpringBoot_MongoDB)
+* [Repositorio db_ElectroThings_MongoDB](https://github.com/andresWeitzel/db_ElectroThings_MongoDB)
+* [PlayList del Proyecto](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1)
 
 <br>
 
@@ -17,23 +20,23 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  
  
 ### Sección 1) Descripción, Tecnologías y Dependencias 
- 
+
  - [1.0) Descripción del Proyecto.](#10-descripción-)
- - [1.1) Patrones de Diseño.](#11-patrones-de-diseño-)
+ - [1.1) Ejecución del Proyecto.](#11-ejecución-del-proyecto-)
  - [1.2) Tecnologías.](#12-tecnologías-)
-     - [1.2.1) Descargas.](#121-descargas)
- - [1.3) Dependencias Maven.](#13-dependencias-maven-)
- 
+
+  
 ### Sección 2) Endpoints y Recursos 
  
  - [2.0) EndPoints.](#endpoints-)
- - [2.1) Recursos por Endpoints.](#documentación-gráfica-de-recursos-por-endpoints-swagger-ui-)
- 
- 
+ - [2.1) Recursos y Servicios.](#recursos-y-servicios-)
+  
+  
 ### Sección 3) Prueba de Funcionalidad y Referencias
  
  - [3.0) Prueba de Funcionalidad.](#30-prueba-de-funcionalidad-)
  - [3.1) Referencias.](#31-referencias-)
+	  
 
 </details>
 
@@ -61,36 +64,35 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 * Entre Otros.
 * Se pone a disposición todos los recursos anteriores para productos y usuarios.
  
- <br>
-
-* [Repositorio AppTiendaElectronica Original](https://github.com/andresWeitzel/AppTiendaElectronica_Angular_Bootstrap_SpringBoot_MongoDB)
-* [Repositorio AppTiendaElectronica](https://github.com/andresWeitzel/AppElectroThings_Angular_Bootstrap_SpringBoot_MongoDB)
-* [Repositorio db_ElectroThings](https://github.com/andresWeitzel/db_ElectroThings_MongoDB)
-* [PlayList Proyecto](https://www.youtube.com/watch?v=wrl32hijoqo&list=PLCl11UFjHurCMBTbTNCGQerdF9LBXgX15&index=1)
- 
 <br>
 
 </details>
 
 
-
-### 1.1) Patrones de Diseño [🔝](#índice-)
+### 1.1) Ejecución del Proyecto [🔝](#índice-)
 
 <details>
- <summary>Ver</summary>
- 
- <br>
-
-| **Patrón de Diseño** | **Finalidad** |               
-| ------------- | ------------- |
-| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
-| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
-| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
-| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
+  <summary>Ver</summary>
+  
+ <br>  
+  
+* Descargamos [MongoDB compass](https://www.mongodb.com/it-it/products/compass) para ejecutar los servicios de Mongodb.
+* Abrimos una terminal y clonamos el [repo de base de datos](https://github.com/andresWeitzel/db_ElectroThings_MongoDB).
+* Creamos una collection e importamos el doc json (toda la data de nuestra db). Para más info. consultar repositorio respectivo
+* Descargamos [Spring tool suite 4](https://spring.io/tools)
+* Desde sts u otro ide abrimos una terminal y creamos un entorno de trabajo o workspace.
+* Clonar el Proyecto
+```git
+git clone https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB
+```
+* Click der sobre el proyecto --> Run as --> Spring Boot App
+* Ya tenemos corriendo nuestra api desde tomcat. El endpoint lo visualizamos desde consola.
 
 <br>
 
 </details>
+
+
 
 
 ### 1.2) Tecnologías [🔝](#índice-)
@@ -125,7 +127,26 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-### 1.2.1) Descargas [🔝](#índice-)
+#### 1.2.1) Patrones de Diseño
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+| **Patrón de Diseño** | **Finalidad** |               
+| ------------- | ------------- |
+| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
+| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
+| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
+
+<br>
+
+</details>
+
+
+#### 1.2.2) Descargas
 
 <details>
  <summary>Ver</summary>
@@ -147,7 +168,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
 
 
-### 1.3) Dependencias Maven [🔝](#índice-)
+#### 1.2.3) Dependencias Maven
 
 <details>
  <summary>Ver</summary>
@@ -219,7 +240,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 </details>
 
 
-### 2.1) Recursos por Endpoints. (Swagger UI) [🔝](#índice-)
+### 2.1) Recursos y Servicios [🔝](#índice-)
 
 <details>
  <summary>Ver</summary>
@@ -272,7 +293,10 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
  ![Index app](./doc/delete/getById.png)
  ![Index app](./doc/delete/getByIdResponse.png)
  
- <br>
+</br>
+
+#### Documentación Gráfica Acotada por razones de simplificación de documentación. Visualizar los videos desde la PlayList acerca de las Pruebas de Funcionalidad de la aplicación.
+
 
 </details>
 

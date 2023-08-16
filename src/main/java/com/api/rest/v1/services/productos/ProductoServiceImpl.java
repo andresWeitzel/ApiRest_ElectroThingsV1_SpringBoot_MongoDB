@@ -109,9 +109,9 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 			} else if (producto.getCodigo() == "" || producto.getNombre() == "" || producto.getMarca() == ""
 					|| producto.getDescripcion() == "" || producto.getCategoria() == "" || producto.getPrecio() == 0
-					|| producto.getStock() == 0 ) {
-				logger.error(
-						"ERROR updateProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto + " NO SON VÁLIDOS!!");
+					|| producto.getStock() == 0) {
+				logger.error("ERROR updateProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto
+						+ " NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
 
 			} else {
@@ -201,29 +201,6 @@ public class ProductoServiceImpl implements I_ProductoService {
 			throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS ", e);
 		}
 	}
-	
-	
-	// ------- LISTADO PAGINADO ---------
-		@Override
-		public ProductoEntity getLastProducto() {
-			try {
-
-				ProductoEntity producto = iProductoRepository.findLast();
-
-				// Si esta vacio es nulo
-				if (producto.getId()=="") {
-					logger.error("ERROR getLastProducto : NO SE HAN LISTADO LOS PRODUCTOS!!");
-					throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS");
-				} else {
-					return producto;
-
-				}
-
-			} catch (Exception e) {
-				logger.error("ERROR getLastProducto : NO SE HAN LISTADO LOS PRODUCTOS. CAUSADO POR " + e);
-				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS ", e);
-			}
-		}
 
 	// ========================
 	// ===== GET ALL FILTER====
@@ -493,30 +470,57 @@ public class ProductoServiceImpl implements I_ProductoService {
 		}
 	}
 
-	// ===============================
-	// ===== GET BY STOCK FILTER======
-	// ===============================
+	// =====================================
+	// ===== GET BY STOCK FILTER (MAX)======
+	// =====================================
 	@Override
-	public Page<ProductoEntity> getByStockFilter(int stock, Pageable pageable) {
+	public Page<ProductoEntity> getByStockFilter(int maxStock, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStockFilter(stock, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStockFilter(maxStock, pageable);
 
 			// Si esta vacio es nulo
-			if (productosPaginados.isEmpty() || stock < 0) {
-				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock
+			if (productosPaginados.isEmpty() || maxStock < 0) {
+				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE " + maxStock
 						+ " NO EXISTE!!");
 				throw new ProductoNotFoundException(
-						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock);
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE  " + maxStock);
 			} else {
 				return productosPaginados;
 
 			}
 		} catch (Exception e) {
 			logger.error(
-					"ERROR getByStockFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK SOLICITADO. CAUSADO POR "
+					"ERROR getByStockFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO SOLICITADO. CAUSADO POR "
 							+ e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK " + stock, e);
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE  " + maxStock, e);
+		}
+	}
+
+	// ===========================================
+	// ===== GET BY STOCK FILTER (MIN & MAX)======
+	// ===========================================
+	@Override
+	public Page<ProductoEntity> getByStockFilter(int minStock, int maxStock, Pageable pageable) {
+		try {
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStockFilter(minStock, maxStock, pageable);
+
+			if (productosPaginados.isEmpty() || minStock < 0 || maxStock < minStock) {
+				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE " + minStock
+						+ " Y SU STOCK MÁXIMO DE "+ maxStock+" NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE " + minStock
+						+ " Y SU STOCK MÁXIMO DE "+ maxStock);
+			} else {
+				return productosPaginados;
+
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByStockFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MIN. Y MÁX. SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE "+minStock+" Y SU STOCK MÁXIMO DE "+ maxStock, e);
 		}
 	}
 
@@ -677,7 +681,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 		}
 
 	}
-	
+
 	// ===============
 	// ===== GET =====
 	// ===============
