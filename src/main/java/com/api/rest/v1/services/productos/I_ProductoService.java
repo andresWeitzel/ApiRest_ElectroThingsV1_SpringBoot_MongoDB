@@ -24,13 +24,16 @@ public interface I_ProductoService {
 
 	public abstract void deleteProducto(String id);
 
-	public abstract Page<ProductoEntity> getAllProductos(Pageable pageable);
-
-	public abstract Page<ProductoEntity> getAllProductosFilter(String filtro, Pageable pageable);
 
 	// ==================================================
 	// ============= MÉTODOS HTTP BÚSQUEDA =============
 	// ==================================================
+	
+	public abstract Page<ProductoEntity> getAllProductos(Pageable pageable);
+
+	public abstract Page<ProductoEntity> getAllProductosFilter(String filtro, Pageable pageable);
+	
+	public abstract Page<ProductoEntity> getAllProductosExcludeFilter(String excluirFiltro, Pageable pageable);
 
 	public abstract ProductoEntity getById(String id);
 
@@ -56,11 +59,15 @@ public interface I_ProductoService {
 
 	public abstract Page<ProductoEntity> getByPrecio(int precio, Pageable pageable);
 
-	public abstract Page<ProductoEntity> getByPrecioFilter(int precio, Pageable pageable);
+	public abstract Page<ProductoEntity> getByPrecioFilter(int maxPrecio, Pageable pageable);
+	
+	public abstract Page<ProductoEntity> getByPrecioFilter(int minPrecio, int maxPrecio, Pageable pageable);
 
 	public abstract Page<ProductoEntity> getByFecha(String fecha, Pageable pageable);
 
 	public abstract Page<ProductoEntity> getByHora(String hora, Pageable pageable);
+	
+	public abstract Page<ProductoEntity> getByFechaHora(String fecha, String hora, Pageable pageable);
 
 	// ============================================================
 	// ============= MÉTODOS GRAFICOS/ANALYTICS ===================

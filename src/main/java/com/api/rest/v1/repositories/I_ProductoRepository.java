@@ -29,6 +29,18 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 
 	// ==================== METODOS DE BUSQUEDA =======================
 
+	Page<ProductoEntity> findAll(Pageable pageable);
+
+	@Query(value = "{ $or : [ {'codigo': {$regex : ?0, $options: 'i'}}" + ",{'nombre': {$regex : ?0, $options: 'i'}}"
+			+ ",{'descripcion': {$regex : ?0, $options: 'i'}}" + ",{'categoria': {$regex : ?0, $options: 'i'}}"
+			+ ",{'marca': {$regex : ?0, $options: 'i'}} ] }")
+	Page<ProductoEntity> findAllFilter(String filtro, Pageable pageable);
+
+	@Query(value = "{ $nor : [ {'codigo': {$regex : ?0, $options: 'i'}}"
+			+ ",{'nombre': {$regex : ?0, $options: 'i'}}" + ",{'descripcion': {$regex : ?0, $options: 'i'}}"
+			+ ",{'categoria': {$regex : ?0, $options: 'i'}}" + ",{'marca': {$regex : ?0, $options: 'i'}} ] }")
+	Page<ProductoEntity> findAllExcludeFilter(String excluirFiltro, Pageable pageable);
+
 	@Query("{'id': ?0}")
 	Optional<ProductoEntity> findById(String id);
 
@@ -56,17 +68,20 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	@Query("{'stock': ?0}")
 	Page<ProductoEntity> findByStock(int stock, Pageable pageable);
 
-	@Query("{'stock': { $gt : 0, $lt : ?0}}") // max
+	@Query("{'stock': { $gt : 0, $lt : ?0}}")
 	Page<ProductoEntity> findByStockFilter(int maxStock, Pageable pageable);
-	
-	@Query("{'stock': { $gt : ?0, $lt : ?1}}") // min y max
+
+	@Query("{'stock': { $gt : ?0, $lt : ?1}}")
 	Page<ProductoEntity> findByStockFilter(int minStock, int maxStock, Pageable pageable);
 
 	@Query("{'precio': ?0}")
 	Page<ProductoEntity> findByPrecio(int precio, Pageable pageable);
 
-	@Query("{'precio': { $gt : 0, $lt : ?0}}") // min y max
-	Page<ProductoEntity> findByPrecioFilter(int precio, Pageable pageable);
+	@Query("{'precio': { $gt : 0, $lt : ?0}}")
+	Page<ProductoEntity> findByPrecioFilter(int maxPrecio, Pageable pageable);
+
+	@Query("{'precio': { $gt : ?0, $lt : ?1}}")
+	Page<ProductoEntity> findByPrecioFilter(int minPrecio, int maxPrecio, Pageable pageable);
 
 	@Query(value = "{'fecha': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByFecha(String fecha, Pageable pageable);
@@ -74,12 +89,7 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	@Query(value = "{'hora': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByHora(String hora, Pageable pageable);
 
-	Page<ProductoEntity> findAll(Pageable pageable);
-
-	// Filtro personalizado fast match
-	@Query(value = "{ $or : [ {'codigo': {$regex : ?0, $options: 'i'}}" + ",{'nombre': {$regex : ?0, $options: 'i'}}"
-			+ ",{'descripcion': {$regex : ?0, $options: 'i'}}" + ",{'categoria': {$regex : ?0, $options: 'i'}}"
-			+ ",{'marca': {$regex : ?0, $options: 'i'}} ] }")
-	Page<ProductoEntity> findAllFilter(String filtro, Pageable pageable);
+	@Query(value = "{'fecha': {$regex : ?0, $options: 'i'}, 'hora': {$regex : ?1, $options: 'i'}}")
+	Page<ProductoEntity> findByFechaHora(String fecha, String hora, Pageable pageable);
 
 }

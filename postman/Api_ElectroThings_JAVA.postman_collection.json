@@ -1,0 +1,1100 @@
+{
+	"info": {
+		"_postman_id": "b8299bc3-7fff-421a-b305-196d9352b638",
+		"name": "Api_ElectroThings_JAVA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18757319"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/productos/listado?page=0&size=20&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"listado"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllFilter",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/listado-filter/notebook?page=0&size=5&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"listado-filter",
+										"notebook"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllExcludeFilter",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/listado-excluir-filtro/placas?page=0&size=100&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"listado-excluir-filtro",
+										"placas"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByCodigo",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/codigo/2788-JSSAS-2928?page=0&size=5&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"codigo",
+										"2788-JSSAS-2928"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByName",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/nombre/monitor?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"nombre",
+										"monitor"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByDescripcion",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/descripcion/monitor?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"descripcion",
+										"monitor"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByCategoria",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/categoria/microcontroladores?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"categoria",
+										"microcontroladores"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByMarca",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/marca/hp?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"marca",
+										"hp"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByImagen",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/imagen/http?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"imagen",
+										"http"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByHojaDatos",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/hoja-datos/http?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"hoja-datos",
+										"http"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByPrecio",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/precio/2700?page=0&size=5&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"precio",
+										"2700"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByPrecioFilterMax",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/precio-filter/10000?page=0&size=100&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"precio-filter",
+										"10000"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByPrecioFilterMinMax",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/precio-filter/10000?page=0&size=100&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"precio-filter",
+										"10000"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByFecha",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/fecha/22?page=0&size=100&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"fecha",
+										"22"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByHora",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/hora/10?page=0&size=100&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"hora",
+										"10"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByFechaHora",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/fecha-hora/24-02-22/10?page=0&size=100&sort=id,asca",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"fecha-hora",
+										"24-02-22",
+										"10"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asca"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getById",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/id/63096c8b51b2f04b3171c9ab",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"id",
+										"63096c8b51b2f04b3171c9ab"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByStockFilterMinMax",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/stock-filter/20/100?page=0&size=100&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"stock-filter",
+										"20",
+										"100"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByStock",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/stock/50?page=0&size=100&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"stock",
+										"50"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "100"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getByStockFilterMax",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/stock-filter/40?page=0&size=5&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"stock-filter",
+										"40"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/signin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"admin\",\r\n    \"username\":\"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8098/api/v1"
+		},
+		{
+			"key": "bearer-token",
+			"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjkyMjkwMTIyLCJleHAiOjE2OTIyOTM3MjJ9.bA1jCSgQvZ9_J97-Xppmq-eIDd2mVreR4-GIqTICubgDvQpnM4wzPO87l_aBxfVgtLur7sYmKZeHGqF_FY7kJw"
+		}
+	]
+}

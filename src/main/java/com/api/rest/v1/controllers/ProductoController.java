@@ -47,7 +47,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido insertar el producto. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "La Inserción del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -79,7 +79,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Actualizar el producto. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "La Actualización del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -111,7 +111,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Eliminar el producto. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "La Eliminacion del Producto no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -144,7 +144,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -171,7 +171,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos con Filtro. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -184,6 +184,33 @@ public class ProductoController {
 	@GetMapping("/listado-filter/{filtro}")
 	public Page<ProductoEntity> getAllFilter(@PathVariable String filtro, Pageable pageable) {
 		return iProductoService.getAllProductosFilter(filtro, pageable);
+	}
+	
+	// ==================================
+	// ===== GET ALL EXCLUDE FILTER =====
+	// ==================================
+	// ---LISTADO PAGINADO CON FILTROS EXCLUIDOS---
+	@ApiOperation(value = "Listado Paginado de Productos con Filtro excluido", notes = "Devolución del Listado Paginado de Productos con Filtro")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Se han Listado los Productos con Filtro excluido Correctamente"),
+			@ApiResponse(code = 201, message = "Se han Listado los Productos con Filtro excluido Correctamente"),
+			@ApiResponse(code = 400, message = "No se ha podido Listar los Productos con Filtro excluido. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos con Filtro excluido. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos con Filtro excluido. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
+			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422, message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500, message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503, message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505, message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507, message = "Almacenamiento Insuficiente por parte del Servidor.") })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/listado-excluir-filtro/{excluirFiltro}")
+	public Page<ProductoEntity> getAllExcludeFilter(@PathVariable String excluirFiltro, Pageable pageable) {
+		return iProductoService.getAllProductosExcludeFilter(excluirFiltro, pageable);
 	}
 
 	// ==================================================
@@ -202,7 +229,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar el Producto según su ID. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Producto según su ID no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -229,7 +256,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Código. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -257,7 +284,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Nombre. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -285,7 +312,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Descripción. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -313,7 +340,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Categoría. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -341,7 +368,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Marca. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -368,7 +395,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Imagen. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -396,7 +423,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Hoja de Datos. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -424,7 +451,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Stock. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -452,7 +479,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Stock Máximo. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -480,7 +507,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Stock Mínimo y Máximo. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -508,7 +535,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Precio. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -523,20 +550,20 @@ public class ProductoController {
 		return iProductoService.getByPrecio(precio, pageable);
 	}
 
-	// =============================
-	// ===== GET BY PRECIO FILTER===
-	// =============================
-	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO CON FILTRO---
-	@ApiOperation(value = "Listado Paginado de Productos según su Precio con Filtro", notes = "Devolución del Listado Paginado de Productos según su Precio con Filtro")
+	// ===================================
+	// ===== GET BY PRECIO FILTER (MÁX)===
+	// ===================================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO MÁX---
+	@ApiOperation(value = "Listado Paginado de Productos según su Precio Máximo", notes = "Devolución del Listado Paginado de Productos según su Precio Máximo")
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Precio con Filtro Correctamente"),
-			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Precio con Filtro Correctamente"),
-			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Precio con Filtro. Comprobar la Solicitud"),
-			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Precio con Filtro. Verificar credenciales"),
-			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Precio con Filtro. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Precio Máximo con Filtro Correctamente"),
+			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Precio Máximo con Filtro Correctamente"),
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Precio Máximo con Filtro. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Precio Máximo con Filtro. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Precio Máximo con Filtro. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -546,9 +573,38 @@ public class ProductoController {
 			@ApiResponse(code = 505, message = "Versión HTTP no es soportada por el Servidor."),
 			@ApiResponse(code = 507, message = "Almacenamiento Insuficiente por parte del Servidor.") })
 	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
-	@GetMapping("/precio-filter/{precio}")
-	public Page<ProductoEntity> getByPrecioFilter(@PathVariable("precio") int precio, Pageable pageable) {
-		return iProductoService.getByPrecioFilter(precio, pageable);
+	@GetMapping("/precio-filter/{maxPrecio}")
+	public Page<ProductoEntity> getByPrecioFilter(@PathVariable("maxPrecio") int maxPrecio, Pageable pageable) {
+		return iProductoService.getByPrecioFilter(maxPrecio, pageable);
+	}
+	
+
+	// =========================================
+	// ===== GET BY PRECIO FILTER (MÍN & MÁX)===
+	// =========================================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR PRECIO MÍN Y MÁX---
+	@ApiOperation(value = "Listado Paginado de Productos según su Precio Mínimo y Máximo", notes = "Devolución del Listado Paginado de Productos según su Precio Mínimo y Máximo")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Precio Mínimo y Máximo con Filtro Correctamente"),
+			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Precio Mínimo y Máximo con Filtro Correctamente"),
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Precio Mínimo y Máximo con Filtro. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Precio Mínimo y Máximo con Filtro. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según su Precio Mínimo y Máximo con Filtro. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
+			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422, message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500, message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503, message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505, message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507, message = "Almacenamiento Insuficiente por parte del Servidor.") })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/precio-filter/{minPrecio}/{maxPrecio}")
+	public Page<ProductoEntity> getByPrecioFilter(@PathVariable("minPrecio") int minPrecio, @PathVariable("maxPrecio") int maxPrecio, Pageable pageable) {
+		return iProductoService.getByPrecioFilter(minPrecio, maxPrecio, pageable);
 	}
 
 	// ======================
@@ -564,7 +620,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según Fecha. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -592,7 +648,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según Hora. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -605,6 +661,35 @@ public class ProductoController {
 	@GetMapping("/hora/{hora}")
 	public Page<ProductoEntity> getByHora(@PathVariable("hora") String hora, Pageable pageable) {
 		return iProductoService.getByHora(hora, pageable);
+	}
+	
+	
+	// =============================
+	// ===== GET BY FECHA & HORA ===
+	// =============================
+	// ---LISTADO DE PRODUCTOS O PRODUCTO POR FECHA Y HORA---
+	@ApiOperation(value = "Listado Paginado de Productos según su Fecha y Hora", notes = "Devolución del Listado Paginado de Productos según su Fecha y Hora")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Se han Listado los Productos según su Fecha y Hora Correctamente"),
+			@ApiResponse(code = 201, message = "Se han Listado los Productos según su Fecha y Hora Correctamente"),
+			@ApiResponse(code = 400, message = "No se han podido Listar los Productos según su Fecha y Hora. Comprobar la Solicitud"),
+			@ApiResponse(code = 401, message = "No está autorizado para Listar los Productos según su Fecha y Hora. Verificar credenciales"),
+			@ApiResponse(code = 403, message = "No se ha podido Listar los Productos según Fecha y Hora. El servidor ha denegado esta operación"),
+			@ApiResponse(code = 404, message = "El Listado de Productos no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
+			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
+			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
+			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
+			@ApiResponse(code = 422, message = "Se ha producido un error ya que los valores pasados no son correctos. Verificar campos"),
+			@ApiResponse(code = 500, message = "Se ha producido un error interno en el Servidor"),
+			@ApiResponse(code = 503, message = "Se ha producido un error de sobrecarga o mantenimiento en el Servidor. Intentar luego."),
+			@ApiResponse(code = 505, message = "Versión HTTP no es soportada por el Servidor."),
+			@ApiResponse(code = 507, message = "Almacenamiento Insuficiente por parte del Servidor.") })
+	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+	@GetMapping("/fecha-hora/{fecha}/{hora}")
+	public Page<ProductoEntity> getByFechaHora(@PathVariable("fecha") String fecha, @PathVariable("hora") String hora, Pageable pageable) {
+		return iProductoService.getByFechaHora(fecha, hora, pageable);
 	}
 
 	// ===============================================
@@ -625,7 +710,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido devolver el Stock de Productos según su Categoría. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Stock de Productos según su Categoría no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -655,7 +740,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido devolver el Stock de Productos según su marca. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Stock de Productos según su marca no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),
@@ -685,7 +770,7 @@ public class ProductoController {
 			@ApiResponse(code = 403, message = "No se ha podido devolver el Stock de Productos según su fecha. El servidor ha denegado esta operación"),
 			@ApiResponse(code = 404, message = "El Stock de Productos según su fecha no está Disponible ya que el recurso pedido no existe. Comprobar solicitud"),
 			@ApiResponse(code = 405, message = "El recurso ha sido deshabilitado."),
-			@ApiResponse(code = 407, message = "La autenticación debe estar hecha a partir de un proxy."),
+			@ApiResponse(code = 407, message = "La autenticación debe estar realizada a partir de un proxy."),
 			@ApiResponse(code = 408, message = "Se ha superado el tiempo de espera entre la solicitud y el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 409, message = "Se ha generado un conflicto en el servidor. Intentar nuevamente"),
 			@ApiResponse(code = 410, message = "El Contenido solicitado se ha Eliminado del Servidor."),

@@ -3,8 +3,6 @@ package com.api.rest.v1.services.productos;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -214,7 +212,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty()) {
-				logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS!!");
+				logger.error("ERROR getAllProductoFilter : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS!!");
 				throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS FILTRADOS");
 			} else {
 				return productosPaginados;
@@ -222,8 +220,40 @@ public class ProductoServiceImpl implements I_ProductoService {
 			}
 
 		} catch (Exception e) {
-			logger.error("ERROR getAllProducto : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS. CAUSADO POR " + e);
+			logger.error("ERROR getAllProductoFilter : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS. CAUSADO POR " + e);
 			throw new ProductoNotFoundException("NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS FILTRADOS ", e);
+		}
+	}
+
+	// ================================
+	// ===== GET ALL EXCLUDE FILTER====
+	// ================================
+	// ------- LISTADO PAGINADO CON FILTRO EXCLUIDO---------
+	@Override
+	public Page<ProductoEntity> getAllProductosExcludeFilter(String excluirFiltro, Pageable pageable) {
+		try {
+
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findAllExcludeFilter(excluirFiltro, pageable);
+			if (productosPaginados.isEmpty()) {
+				logger.error(
+						"ERROR getAllProductosExcludeFilter : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS SEGÚN EL TIPO DE FILTRO EXCLUIDO "
+								+ excluirFiltro);
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS FILTRADOS SEGÚN EL TIPO DE FILTRO EXCLUIDO "
+								+ excluirFiltro);
+			} else {
+				return productosPaginados;
+
+			}
+
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getAllProductosExcludeFilter : NO SE HAN LISTADO LOS PRODUCTOS FILTRADOS SEGÚN EL TIPO DE FILTRO EXCLUIDO "
+							+ excluirFiltro + ". CAUSADO POR " + e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS FILTRADOS SEGÚN EL TIPO DE FILTRO EXCLUIDO "
+							+ excluirFiltro,
+					e);
 		}
 	}
 
@@ -480,10 +510,11 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 			// Si esta vacio es nulo
 			if (productosPaginados.isEmpty() || maxStock < 0) {
-				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE " + maxStock
-						+ " NO EXISTE!!");
+				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE "
+						+ maxStock + " NO EXISTE!!");
 				throw new ProductoNotFoundException(
-						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE  " + maxStock);
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÁXIMO DE  "
+								+ maxStock);
 			} else {
 				return productosPaginados;
 
@@ -503,14 +534,15 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Override
 	public Page<ProductoEntity> getByStockFilter(int minStock, int maxStock, Pageable pageable) {
 		try {
-			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStockFilter(minStock, maxStock, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByStockFilter(minStock, maxStock,
+					pageable);
 
-			if (productosPaginados.isEmpty() || minStock < 0 || maxStock < minStock) {
-				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE " + minStock
-						+ " Y SU STOCK MÁXIMO DE "+ maxStock+" NO EXISTE!!");
+			if (productosPaginados.isEmpty() || minStock < 0 || maxStock < 0 || maxStock < minStock) {
+				logger.error("ERROR getByStockFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE "
+						+ minStock + " Y SU STOCK MÁXIMO DE " + maxStock + " NO EXISTE!!");
 				throw new ProductoNotFoundException(
 						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE " + minStock
-						+ " Y SU STOCK MÁXIMO DE "+ maxStock);
+								+ " Y SU STOCK MÁXIMO DE " + maxStock);
 			} else {
 				return productosPaginados;
 
@@ -520,7 +552,9 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"ERROR getByStockFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MIN. Y MÁX. SOLICITADO. CAUSADO POR "
 							+ e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE "+minStock+" Y SU STOCK MÁXIMO DE "+ maxStock, e);
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU STOCK MÍNIMO DE " + minStock
+							+ " Y SU STOCK MÁXIMO DE " + maxStock,
+					e);
 		}
 	}
 
@@ -552,22 +586,23 @@ public class ProductoServiceImpl implements I_ProductoService {
 		}
 	}
 
-	// ================================
-	// ===== GET BY PRECIO FILTER =====
-	// ================================
+	// ======================================
+	// ===== GET BY PRECIO FILTER (MAX) =====
+	// ======================================
 	@Override
-	public Page<ProductoEntity> getByPrecioFilter(int precio, Pageable pageable) {
+	public Page<ProductoEntity> getByPrecioFilter(int maxPrecio, Pageable pageable) {
 
 		try {
 
-			Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecioFilter(precio, pageable);
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecioFilter(maxPrecio, pageable);
 
 			// Si esta vacio es nulo
-			if (productosPaginados.isEmpty() || precio < 0) {
-				logger.error("ERROR getByPrecioFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio
-						+ " NO EXISTE!!");
+			if (productosPaginados.isEmpty() || maxPrecio < 0) {
+				logger.error("ERROR getByPrecioFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO MÁXIMO DE "
+						+ maxPrecio + " NO EXISTE!!");
 				throw new ProductoNotFoundException(
-						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio);
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO MÁXIMO DE "
+								+ maxPrecio);
 			} else {
 				return productosPaginados;
 			}
@@ -576,7 +611,40 @@ public class ProductoServiceImpl implements I_ProductoService {
 					"ERROR getByPrecioFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
 							+ e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO " + precio, e);
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO MÁXIMO DE " + maxPrecio,
+					e);
+		}
+	}
+
+	// ============================================
+	// ===== GET BY PRECIO FILTER (MIN & MAX) =====
+	// ============================================
+	@Override
+	public Page<ProductoEntity> getByPrecioFilter(int minPrecio, int maxPrecio, Pageable pageable) {
+
+		try {
+
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByPrecioFilter(minPrecio, maxPrecio,
+					pageable);
+
+			// Si esta vacio es nulo
+			if (productosPaginados.isEmpty() || maxPrecio < 0 || minPrecio < 0 || minPrecio > maxPrecio) {
+				logger.error("ERROR getByPrecioFilter : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO MÍNIMO DE "
+						+ minPrecio + " Y PRECIO MÁXIMO DE " + maxPrecio + " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO MÍNIMO DE " + minPrecio
+								+ " Y PRECIO MÁXIMO DE " + maxPrecio);
+			} else {
+				return productosPaginados;
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByPrecioFilter : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU PRECIO MÍNIMO DE " + minPrecio
+							+ " Y PRECIO MÁXIMO DE " + maxPrecio,
+					e);
 		}
 	}
 
@@ -631,6 +699,35 @@ public class ProductoServiceImpl implements I_ProductoService {
 							+ e);
 			throw new ProductoNotFoundException(
 					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA " + hora, e);
+		}
+	}
+
+	// ===============================
+	// ===== GET BY FECHA & HORA =====
+	// ===============================
+	@Override
+	public Page<ProductoEntity> getByFechaHora(String fecha, String hora, Pageable pageable) {
+		try {
+
+			Page<ProductoEntity> productosPaginados = iProductoRepository.findByFechaHora(fecha, hora, pageable);
+
+			if (productosPaginados.isEmpty() || hora == " " || fecha == " ") {
+				logger.error("ERROR getByFechaHora : EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA " + fecha
+						+ " Y SU HORA " + hora + " NO EXISTE!!");
+				throw new ProductoNotFoundException(
+						"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA " + fecha
+								+ " Y SU HORA " + hora);
+			} else {
+				return productosPaginados;
+			}
+		} catch (Exception e) {
+			logger.error(
+					"ERROR getByHora : NO SE HA ENCONTRADO EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU HORA SOLICITADO. CAUSADO POR "
+							+ e);
+			throw new ProductoNotFoundException(
+					"NO SE PUDO ENCONTRAR EL LISTADO DE PRODUCTOS O PRODUCTO SEGÚN SU FECHA " + fecha + " Y SU HORA "
+							+ hora,
+					e);
 		}
 	}
 
