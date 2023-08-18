@@ -23,13 +23,17 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 
  - [1.0) Descripción del Proyecto.](#10-descripción-)
  - [1.1) Ejecución del Proyecto.](#11-ejecución-del-proyecto-)
- - [1.2) Tecnologías.](#12-tecnologías-)
+ - [1.2) Patrones de Diseño.](#12-patrones-de-diseño-)
+ - [1.3) Tecnologías.](#13-tecnologías-)
+ - [1.4) Dependencias Maven.](#14-dependencias-maven-)
+ - [1.5) Descargas.](#15-descargas-)
 
+  
   
 ### Sección 2) Endpoints y Recursos 
  
- - [2.0) EndPoints.](#endpoints-)
- - [2.1) Recursos y Servicios.](#recursos-y-servicios-)
+ - [2.0) EndPoints.](#20-endpoints-)
+ - [2.1) Recursos por endpoints.](#21-recursos-por-endpoints-)
   
   
 ### Sección 3) Prueba de Funcionalidad y Referencias
@@ -93,9 +97,28 @@ git clone https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_Mo
 </details>
 
 
+### 1.2) Patrones de Diseño [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+| **Patrón de Diseño** | **Finalidad** |               
+| ------------- | ------------- |
+| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
+| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
+| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
+| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
+
+<br>
+
+</details>
 
 
-### 1.2) Tecnologías [🔝](#índice-)
+
+
+### 1.3) Tecnologías [🔝](#índice-)
 
 <details>
  <summary>Ver</summary>
@@ -127,48 +150,10 @@ git clone https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_Mo
 </details>
 
 
-#### 1.2.1) Patrones de Diseño
-
-<details>
- <summary>Ver</summary>
- 
- <br>
-
-| **Patrón de Diseño** | **Finalidad** |               
-| ------------- | ------------- |
-| [DAO](https://www.oscarblancarteblog.com/2018/12/10/data-access-object-dao-pattern/) | Uso de interfaces entre la aplicación y el almacenamiento de datos. |
-| [MVC](https://keepcoding.io/blog/que-es-el-patron-de-arquitectura-mvvm/) | Separación y Representación de los Datos, Manejo de errores, Escalabilidad, etc  |
-| [DTO](https://www.oscarblancarteblog.com/2018/11/30/data-transfer-object-dto-patron-diseno/) | Transferencia de objectos separando la capa de acceso a datos  |
-| [Dependency Inyection](https://stackify.com/dependency-injection/) | Uso de funcionalidades requeridas de clases a través de inyección |
-
-<br>
-
-</details>
-
-
-#### 1.2.2) Descargas
-
-<details>
- <summary>Ver</summary>
- 
- <br>
-
-* [Java-JDK 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
-* [Spring Tool Suite 4](https://spring.io/tools)
-* [Lombok](https://projectlombok.org/download )
-* [Open UI](https://open-ui.org/)
-* [Postman](https://www.postman.com/downloads/)
-* [MongoDB](https://www.mongodb.com/try/download/community)
-* [MongoDB Compass](https://www.mongodb.com/try/download/compass)
-* [Git](https://git-scm.com/downloads)
-
-<br>
-
-</details>
 
 
 
-#### 1.2.3) Dependencias Maven
+### 1.4) Dependencias Maven [🔝](#índice-)
 
 <details>
  <summary>Ver</summary>
@@ -199,6 +184,30 @@ git clone https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_Mo
 <br>
 
 </details>
+
+
+
+
+### 1.5) Descargas [🔝](#índice-)
+
+<details>
+ <summary>Ver</summary>
+ 
+ <br>
+
+* [Java-JDK 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
+* [Spring Tool Suite 4](https://spring.io/tools)
+* [Lombok](https://projectlombok.org/download )
+* [Open UI](https://open-ui.org/)
+* [Postman](https://www.postman.com/downloads/)
+* [MongoDB](https://www.mongodb.com/try/download/community)
+* [MongoDB Compass](https://www.mongodb.com/try/download/compass)
+* [Git](https://git-scm.com/downloads)
+
+<br>
+
+</details>
+
 
 
 <br>
