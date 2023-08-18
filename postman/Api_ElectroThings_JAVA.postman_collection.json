@@ -29,7 +29,7 @@
 									}
 								],
 								"url": {
-									"raw": "{{base_url}}/productos/listado?page=0&size=20&sort=id,asc",
+									"raw": "{{base_url}}/productos/listado?page=0&size=200&sort=id,asc",
 									"host": [
 										"{{base_url}}"
 									],
@@ -44,7 +44,7 @@
 										},
 										{
 											"key": "size",
-											"value": "20"
+											"value": "200"
 										},
 										{
 											"key": "sort",
@@ -1013,6 +1013,111 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "addProduct",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n            \"id\": \"63096c8b51b2f04b3171c9a7\",\r\n            \"codigo\": \"88EW18-8821-1AS\",\r\n            \"nombre\": \"Nintendo Swith\",\r\n            \"descripcion\": \"Nintendo Switch Lite Dialga & Palkia Edition - 32 GB - Gris\",\r\n            \"categoria\": \"Gamer\",\r\n            \"marca\": \"Dialga\",\r\n            \"imagen\": \"https://http2.mlstatic.com/D_NQ_NP_743292-MLA48681039342_122021-O.webp\",\r\n            \"hojaDatos\": \"https://www.mercadolibre.com.ar/nintendo-switch-lite-dialga-palkia-edition-32-gb-gris/p/MLA18607543?pdp_filters=category:MLA438566#searchVariation=MLA18607543&position=1&search_layout=stack&type=product&tracking_id=029da8f1-2757-454b-a577-8be228acda68\",\r\n            \"stock\": 678,\r\n            \"precio\": 32000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "updateProduct",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n            \"codigo\": \"88EW18-8821-1ASS\",\r\n            \"nombre\": \"Nintendo Swith Edited\",\r\n            \"descripcion\": \"Nintendo Switch Lite Dialga & Palkia Edition - 32 GB - Gris Edited\",\r\n            \"categoria\": \"Gamer\",\r\n            \"marca\": \"Dialga\",\r\n            \"imagen\": \"https://http2.mlstatic.com/D_NQ_NP_743292-MLA48681039342_122021-O.webp\",\r\n            \"hojaDatos\": \"https://www.mercadolibre.com.ar/nintendo-switch-lite-dialga-palkia-edition-32-gb-gris/p/MLA18607543?pdp_filters=category:MLA438566#searchVariation=MLA18607543&position=1&search_layout=stack&type=product&tracking_id=029da8f1-2757-454b-a577-8be228acda68\",\r\n            \"stock\": 800,\r\n            \"precio\": 32000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/productos/64df7fa42d61c352e4539574",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"64df7fa42d61c352e4539574"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "updateProduct",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/productos/64df7fa42d61c352e4539574",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productos",
+										"64df7fa42d61c352e4539574"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1065,6 +1170,173 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/admin/usuarios/listado?page=0&size=20&sort=id,asc",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"usuarios",
+										"listado"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "20"
+										},
+										{
+											"key": "sort",
+											"value": "id,asc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "insert",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"string\",\r\n  \"nombre\": \"string\",\r\n  \"password\": \"string\",\r\n  \"roles\": [\r\n    \"string\"\r\n  ],\r\n  \"username\": \"string\"\r\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/usuarios/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"usuarios",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "editar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"stringEdit\",\r\n  \"nombre\": \"string\",\r\n  \"password\": \"string\",\r\n  \"roles\": [\r\n    \"string\"\r\n  ],\r\n  \"username\": \"string\"\r\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/admin/usuarios/11",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"usuarios",
+										"11"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "eliminar",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{bearer-token}}",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/admin/usuarios/11",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"admin",
+										"usuarios",
+										"11"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
@@ -1094,7 +1366,7 @@
 		},
 		{
 			"key": "bearer-token",
-			"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjkyMjkwMTIyLCJleHAiOjE2OTIyOTM3MjJ9.bA1jCSgQvZ9_J97-Xppmq-eIDd2mVreR4-GIqTICubgDvQpnM4wzPO87l_aBxfVgtLur7sYmKZeHGqF_FY7kJw"
+			"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIlJPTEVfQURNSU4iLCJST0xFX1VTRVIiXSwiaWF0IjoxNjkyMzY4MDc1LCJleHAiOjE2OTIzNzE2NzV9.hn7NLpFcbOwGMbzzYFfG_3Gzk5CAZUA3hMdNs369TTJgb2EkGyVfP_ZF28ufyb9GvGyJJszuRDBbTrUv1shOdg"
 		}
 	]
 }

@@ -47,7 +47,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 	public void addProducto(ProductoEntity producto) {
 
 		try {
-			if (producto == null) {
+			if (producto == null || !(producto instanceof ProductoEntity)) {
 				logger.error("ERROR addProducto : EL PRODUCTO " + producto + " ES NULO!!");
 				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
 			} else if (producto.getCodigo() == "" || producto.getNombre() == "" || producto.getMarca() == ""
@@ -97,7 +97,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 
 			System.out.println(productoDb);
 
-			if (id.isBlank() || id.isEmpty() || id == null) {
+			if (id.isBlank() || id.isEmpty() || id == null || !(producto instanceof ProductoEntity)) {
 				logger.error("ERROR updateProducto : EL ID  ES NULO O VACIO!!");
 				throw new ProductoNotFoundException("EL ID ES NULO O VACIO");
 
@@ -145,7 +145,7 @@ public class ProductoServiceImpl implements I_ProductoService {
 			logger.error("ERROR updateProducto : EL PRODUCTO " + producto
 					+ " NO SE HA ACTUALIZADO EN LA DB!!CAUSADO POR " + e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ACTUALIZAR EL PRODUCTO. CÓDIGO/NOMBRE REPETIDO O PRODUCTO NO ENCONTRADO! ", e, true,
+					"NO SE PUDO ACTUALIZAR EL PRODUCTO. VALIDAR LA TOTALIDAD DE CAMPOS O PRODUCTO NO ENCONTRADO! ", e, true,
 					true);
 		}
 	}
