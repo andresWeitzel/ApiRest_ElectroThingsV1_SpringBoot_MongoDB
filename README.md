@@ -90,7 +90,7 @@ Api Rest para la Aplicación Electro Things acerca de Productos Electrónicos co
 git clone https://github.com/andresWeitzel/ApiRest_ElectroThingsV1_SpringBoot_MongoDB
 ```
 * Click der sobre el proyecto --> Run as --> Spring Boot App
-* Ya tenemos corriendo nuestra api desde tomcat. El endpoint lo visualizamos desde consola.
+* Ya tenemos corriendo nuestra api desde tomcat. El url de la app para la ejecución de los endpoint's lo visualizamos desde consola.
 
 <br>
 
