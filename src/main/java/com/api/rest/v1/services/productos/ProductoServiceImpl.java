@@ -47,18 +47,16 @@ public class ProductoServiceImpl implements I_ProductoService {
 	public void addProducto(ProductoEntity producto) {
 
 		try {
-			if (producto == null || !(producto instanceof ProductoEntity)) {
-				logger.error("ERROR addProducto : EL PRODUCTO " + producto + " ES NULO!!");
-				throw new ProductoNotFoundException("EL PRODUCTO ES NULO");
+			if (producto == null || producto.toString().isBlank() || !(producto instanceof ProductoEntity)) {
+				logger.error("ERROR in addProducto service : EL PRODUCTO ES NULO!!");
+				throw new ProductoNotFoundException("PRODUCTO NULO");
 			} else if (producto.getCodigo() == "" || producto.getNombre() == "" || producto.getMarca() == ""
 					|| producto.getDescripcion() == "" || producto.getCategoria() == "" || producto.getPrecio() == 0
 					|| producto.getStock() == 0) {
-				logger.error(
-						"ERROR addProducto : LOS VALORES DE LOS CAMPOS DEL PRODUCTO " + producto + " NO SON VÁLIDOS!!");
+
+				logger.error("ERROR in addProducto service : LOS VALORES DE LOS CAMPOS DEL PRODUCTO NO SON VÁLIDOS!!");
 				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
 			} else {
-
-				System.out.println("\n PRODUCTO PRE:" + producto);
 
 				String id = new ObjectId().toString();
 				String fechaStr = String.valueOf(fecha.format(formatoFecha));
@@ -68,16 +66,15 @@ public class ProductoServiceImpl implements I_ProductoService {
 				producto.setFecha(fechaStr);
 				producto.setHora(horaStr);
 
-				System.out.println("\n PRODUCTO MODIFICADO:" + producto);
-
 				iProductoRepository.save(producto);
 
 				logger.info("SE HA INSERTADO CORRECTAMENTE EL PRODUCTO CON EL ID " + producto.getId());
 			}
 		} catch (Exception e) {
-			logger.error(
-					"ERROR addProducto : EL PRODUCTO " + producto + " NO SE HA INSERTADO EN LA DB!! CAUSADO POR " + e);
-			throw new ProductoNotFoundException("NO SE PUDO AGREGAR EL PRODUCTO. ", e, false, true);
+			logger.error("ERROR in addProducto service : EL PRODUCTO NO SE HA INSERTADO EN LA DB!! CAUSADO POR " + e.getMessage());
+			throw new ProductoNotFoundException(
+					"NO SE ES POSIBLE AGREGAR EL PRODUCTO. ERROR CAUSADO POR " + e.getMessage(), e.getCause(), false,
+					true);
 		}
 
 	}
@@ -145,8 +142,8 @@ public class ProductoServiceImpl implements I_ProductoService {
 			logger.error("ERROR updateProducto : EL PRODUCTO " + producto
 					+ " NO SE HA ACTUALIZADO EN LA DB!!CAUSADO POR " + e);
 			throw new ProductoNotFoundException(
-					"NO SE PUDO ACTUALIZAR EL PRODUCTO. VALIDAR LA TOTALIDAD DE CAMPOS O PRODUCTO NO ENCONTRADO! ", e, true,
-					true);
+					"NO SE PUDO ACTUALIZAR EL PRODUCTO. VALIDAR LA TOTALIDAD DE CAMPOS O PRODUCTO NO ENCONTRADO! ", e,
+					true, true);
 		}
 	}
 
