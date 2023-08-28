@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.api.rest.v1.entities.ProductoEntity;
 import com.api.rest.v1.exceptions.producto.ProductoIdMismatchException;
 import com.api.rest.v1.exceptions.producto.ProductoNotFoundException;
+import com.api.rest.v1.exceptions.producto.ProductoValidationException;
 import com.api.rest.v1.repositories.I_ProductoRepository;
 
 @Service
@@ -24,12 +25,10 @@ public class ProductoServiceImpl implements I_ProductoService {
 	@Autowired
 	I_ProductoRepository iProductoRepository;
 
-	// =============== LOGS ====================
+	// For logging
 	private static final Logger logger = org.apache.logging.log4j.LogManager.getLogger(ProductoServiceImpl.class);
 
-	// ================ AUTOGENERATE ====================
-
-	// Fecha y Hora Formateado
+	// For autogenerate
 	LocalDate fecha = LocalDate.now();
 	LocalTime hora = LocalTime.now();
 
@@ -55,7 +54,17 @@ public class ProductoServiceImpl implements I_ProductoService {
 					|| producto.getStock() == 0) {
 
 				logger.error("ERROR in addProducto service : LOS VALORES DE LOS CAMPOS DEL PRODUCTO NO SON VÁLIDOS!!");
-				throw new ProductoNotFoundException("VALORES DE CAMPOS NO VÁLIDOS");
+				throw new ProductoValidationException("VALORES DE CAMPOS NO VÁLIDOS");
+
+			} else if (iProductoRepository.findByCodigo(producto.getCodigo()).isPresent()) {
+
+				logger.error("ERROR in addProducto service : CÓDIGO DE PRODUCTO DUPLICADO!!");
+				throw new ProductoValidationException("CÓDIGO DE PRODUCTO DUPLICADO");
+			} else if (iProductoRepository.findByNombre(producto.getNombre()).isPresent()
+					&& iProductoRepository.findByDescripcion(producto.getDescripcion()).isPresent()) {
+
+				logger.error("ERROR in addProducto service : NOMBRE Y DESCRIPCIÓN DE PRODUCTO DUPLICADO!!");
+				throw new ProductoValidationException("NOMBRE Y DESCRIPCIÓN DE PRODUCTO DUPLICADO");
 			} else {
 
 				String id = new ObjectId().toString();
@@ -71,9 +80,10 @@ public class ProductoServiceImpl implements I_ProductoService {
 				logger.info("SE HA INSERTADO CORRECTAMENTE EL PRODUCTO CON EL ID " + producto.getId());
 			}
 		} catch (Exception e) {
-			logger.error("ERROR in addProducto service : EL PRODUCTO NO SE HA INSERTADO EN LA DB!! CAUSADO POR " + e.getMessage());
+			logger.error("ERROR in addProducto service : EL PRODUCTO NO SE HA INSERTADO EN LA DB!! CAUSADO POR "
+					+ e.getMessage());
 			throw new ProductoNotFoundException(
-					"NO SE ES POSIBLE AGREGAR EL PRODUCTO. ERROR CAUSADO POR " + e.getMessage(), e.getCause(), false,
+					"NO ES POSIBLE AGREGAR EL PRODUCTO. ERROR CAUSADO POR " + e.getMessage(), e.getCause(), false,
 					true);
 		}
 

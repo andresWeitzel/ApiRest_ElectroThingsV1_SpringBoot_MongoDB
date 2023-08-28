@@ -64,7 +64,9 @@ public class ProductoController {
 			iProductoService.addProducto(producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<JsonResponse>(new JsonResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
+			JsonResponse jsonResponseMsg = new JsonResponse();
+			jsonResponseMsg.setMessage(e.getMessage());
+			return new ResponseEntity<JsonResponse>(jsonResponseMsg,HttpStatus.BAD_REQUEST);
 
 		}
 	}
