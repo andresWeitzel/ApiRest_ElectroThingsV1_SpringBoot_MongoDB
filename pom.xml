@@ -41,7 +41,7 @@
 			<optional>true</optional>
 		</dependency>
 		
-		<!-- SPRING BOOT TEST, EXCLUIMOS JUNIT4 -->
+		<!-- SPRING BOOT TEST -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
