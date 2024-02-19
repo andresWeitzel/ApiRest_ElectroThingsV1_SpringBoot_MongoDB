@@ -2,6 +2,8 @@ package com.api.rest.v1.repositories;
 
 import java.util.Optional;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -47,11 +49,21 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 	@Query(value = "{'codigo': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByCodigo(String codigo, Pageable pageable);
 
+	@Query("{'codigo': ?0}")
+	Optional<ProductoEntity> findByCodigo(String codigo);
+	
 	@Query(value = "{'nombre': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByNombre(String nombre, Pageable pageable);
+	
+	@Query("{'nombre': ?0}")
+	Optional<ProductoEntity> findByNombre(String nombre);
 
 	@Query(value = "{'descripcion': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByDescripcion(String descripcion, Pageable pageable);
+	
+	@Query("{'descripcion': ?0}")
+	Optional<ProductoEntity> findByDescripcion(String descripcion);
+
 
 	@Query(value = "{'categoria': {$regex : ?0, $options: 'i'}}")
 	Page<ProductoEntity> findByCategoria(String categoria, Pageable pageable);
@@ -91,5 +103,6 @@ public interface I_ProductoRepository extends MongoRepository<ProductoEntity, St
 
 	@Query(value = "{'fecha': {$regex : ?0, $options: 'i'}, 'hora': {$regex : ?1, $options: 'i'}}")
 	Page<ProductoEntity> findByFechaHora(String fecha, String hora, Pageable pageable);
+
 
 }

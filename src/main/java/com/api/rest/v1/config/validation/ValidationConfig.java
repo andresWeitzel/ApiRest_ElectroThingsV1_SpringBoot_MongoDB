@@ -11,7 +11,7 @@ public class ValidationConfig {
 	@Bean
 	public ValidatingMongoEventListener validationMongoEventListener() {
 		return new ValidatingMongoEventListener(validator());
-	}
+	}//for commit
 	
 	@Bean
 	public LocalValidatorFactoryBean validator() {

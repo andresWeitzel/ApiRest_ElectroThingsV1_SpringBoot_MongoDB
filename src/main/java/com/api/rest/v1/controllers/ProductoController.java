@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.api.rest.v1.entities.ProductoEntity;
 import com.api.rest.v1.services.productos.I_ProductoService;
+import com.api.rest.v1.utils.http.JsonResponse;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
@@ -63,7 +64,9 @@ public class ProductoController {
 			iProductoService.addProducto(producto);
 			return new ResponseEntity<ProductoEntity>(producto, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+			JsonResponse jsonResponseMsg = new JsonResponse();
+			jsonResponseMsg.setMessage(e.getMessage());
+			return new ResponseEntity<JsonResponse>(jsonResponseMsg,HttpStatus.BAD_REQUEST);
 
 		}
 	}
