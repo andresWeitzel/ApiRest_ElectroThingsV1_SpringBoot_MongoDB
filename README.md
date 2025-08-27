@@ -1,5 +1,16 @@
 
-<img src="./doc/controllers/index.png" style="width: 100%; height: 80%"/>
+<img src="./doc/assets/img/controllers/inicioDocSwagger.png" style="width: 100%; height: 80%"/>
+
+  <div align="right">
+    <img width="28" height="30" src="./doc/assets/icons/backend/java/png/java.png" />
+    <img width="22" height="24" src="./doc/assets/icons/devops/png/maven.png" />
+    <img width="26" height="26" src="./doc/assets/icons/devops/png/git.png" />
+    <img width="27" height="27" src="./doc/assets/icons/devops/png/postman.png" />
+    <img width="25" height="25" src="./doc/assets/icons/devops/png/swagger.png" /> 
+    <img width="25" height="25" src="./doc/assets/icons/backend/java/png/spring-boot.png" />
+    <img width="25" height="25" src="./doc/assets/icons/backend/java/png/spring-security.png" />
+    <img width="24" height="26" src="./doc/assets/icons/database/png/mongo.png" />  
+  </div>  
 
 <br>
 
