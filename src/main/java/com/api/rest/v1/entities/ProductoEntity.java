@@ -1,6 +1,6 @@
 package com.api.rest.v1.entities;
 
-
+//For check validations
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
